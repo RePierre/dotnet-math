@@ -594,3 +594,6 @@ TSWLatexianTemp*
 
 # Emacs backup files
 *~
+
+# Course presentation tex file
+/docs/course-presentation.tex
