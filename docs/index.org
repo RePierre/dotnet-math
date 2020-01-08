@@ -1,0 +1,52 @@
+#+title: Tehnici Avansate de Programare
+#+author: Petru Rebeja
+#+description: Pagina cursului Technici Avansate de Programare. Facultatea de Matematică, Universitatea Alexandru Ioan Cuza, Iași.
+#+language: ro
+#+select_tags: export
+#+exclude_tags: noexport
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: timestamp:nil title:t toc:t todo:t |:t
+#+options: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:nil
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+setupfile: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+html_mathjax: align: left indent: 5em tagside: left font: Neo-Euler
+* Prezentare
+* Fișa disciplinei
+** Date despre program
+   | Instituția de învățământ        | Universitatea „Alexandru Ioan Cuza” din Iași |
+   | Facultatea                      | Facultatea de Matematică                     |
+   | Departamentul                   | Matematică                                   |
+   | Domeniul de studii              | Matematică                                   |
+   | Ciclul de studii                | Licență                                      |
+   | Programul de studii/Calificarea | Matematică-Informatică                       |
+** Date despre disciplină
+   | Denumirea disciplinei              | Tehnici avansate de programare             |
+   | Titularul activităților de curs    | Lect. Dr. Marius Apetrii/Drd. Petru Rebeja |
+   | Titularul activităților de seminar | Lect. Dr. Marius Apetrii/Drd. Petru Rebeja |
+   | An de studiu                       | III                                        |
+   | Semestru                           | IV                                         |
+   | Regimul disciplinei                | Opțional                                   |
+** Evaluare
+   | Tip activitate | Criterii de evaluare                                                        | Metode de evaluare                          | Pondere în nota finală |
+   |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
+   | Curs           | Cunoașterea și utilizarea corectă a noțiunilor și rezultatelor fundamentale | 3 teste (S3, S9 și S14)(*TS*)               |                    70% |
+   | Laborator      | Implementarea corectă a rezultatelor teoretice                              | Evaluarea portofoliului (teme+proiect)(*P*) |                    30% |
+   |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
+*** Standard minim de performanță:
+    \begin{equation}
+    TS \ge 5
+    \end{equation}
+    \begin{equation}
+    P \ge 5
+    \end{equation}
+
+** Referințe bibliografice
+   1. Liviu Negrescu, Lavinia Negrescu, *Limbajul C# pentru începători*, Editura Albastră, 2011
+   2. Joseph Albahari, Ben Albahari, *C# 7.0 in a Nutshell: The Definitive Reference*, O'Reilly, 2017
+   3. Adam Freeman, *Pro ASP.NET Core MVC*, Apress, 2016
+   4. Adam Freeman, *Pro Entity Framework Core 2 for ASP.NET Core MVC*, Apress, 2018
+   5. https://docs.microsoft.com/en-us/visualstudio/releasenotes/tfs2017-relnotes
+   6. https://git-scm.com/
+   7. Robert C. Martin, *Design Principles and Design Patterns*, 2000
+   8. Martin Fowler, *Refactoring. Improving the Design of Existing Code*, Addison-Wesley, 2018
+   9. https://www.martinfowler.com/microservices/
