@@ -1,0 +1,34 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Prezentarea cursului
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 13 Ianuarie 2020
+#+language: fr
+#+options: H:1 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: Luebeck
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+* Despre noi
+** Marius Apetrii                                            :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   Lector Doctor; prodecan al Facultății de Matematică
+** Petru Rebeja                                                     :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   Doctorand la Facultatea de Informatică, Technical Lead la Centric IT Solutions Romania.
+* Despre curs
+** Obiective
+   Ne propunem să vă facem intrarea în câmpul de muncă din domeniul IT un pic mai ușoară.
+** Structură
+   - 12 cursuri
+   - 12 laboratoare
+   - 3 teste
+* Întrebări?
+* Vă mulțumim!

@@ -11,6 +11,7 @@
 #+setupfile: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 #+html_mathjax: align: left indent: 5em tagside: left font: Neo-Euler
 * Prezentare
+  Prezentarea cursului în format [[file:course-presentation.pdf][pdf]].
 * Fișa disciplinei
 ** Date despre program
    | Instituția de învățământ        | Universitatea „Alexandru Ioan Cuza” din Iași |
