@@ -13,16 +13,17 @@
 #+beamer_outer_theme:
 #+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
 * Despre noi
-** Marius Apetrii                                            :B_block:
+** Lector Doctor Marius Apetrii                                     :B_block:
    :PROPERTIES:
    :BEAMER_env: block
    :END:
-   Lector Doctor; prodecan al Facultății de Matematică.
+   Prodecan al Facultății de Matematică.
 ** Petru Rebeja                                                     :B_block:
    :PROPERTIES:
    :BEAMER_env: block
    :END:
-   Doctorand la Facultatea de Informatică, Technical Lead la Centric IT Solutions Romania.
+   - Doctorand la Facultatea de Informatică;
+   - Technical Lead la Centric IT Solutions Romania.
 * Despre curs
 ** Obiective
    - Să faciliteze acumularea unui set de bune practici pentru dezvoltarea produselor software.
