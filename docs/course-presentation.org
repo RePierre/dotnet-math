@@ -6,7 +6,7 @@
 #+options: H:1 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 #+latex_class: beamer
 #+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
-#+beamer_theme: Luebeck
+#+beamer_theme: metropolis
 #+beamer_color_theme:
 #+beamer_font_theme:
 #+beamer_inner_theme:
@@ -17,7 +17,7 @@
    :PROPERTIES:
    :BEAMER_env: block
    :END:
-   Lector Doctor; prodecan al Facultății de Matematică
+   Lector Doctor; prodecan al Facultății de Matematică.
 ** Petru Rebeja                                                     :B_block:
    :PROPERTIES:
    :BEAMER_env: block
@@ -40,17 +40,21 @@
   - Noțiunile de bază vor fi prezentate la curs
   - Implementarea acestora în aplicația finală --- la laborator.
 * Ce vom face
-  Vom lucra în echipe la aplicațiile _propuse de voi_.
-* Evaluare
-  |      | Tip activitate | Mod de evaluare         | Pondere |
-  |------+----------------+-------------------------+---------|
-  | $TS$ | Curs           | 3 teste (S3, S9 și S14) |     70% |
-  | $P$  | Laborator      | Teme + Proiect          |     30% |
-** Criterii minime                                                  :B_block:
-   :PROPERTIES:
-   :BEAMER_env: block
-   :END:
-   - $TS \ge 5$
-   - $P \ge 5$
+  Vom lucra în echipe la aplicațiile *propuse de voi*.
+* Evaluare                                                          :B_block:
+  :PROPERTIES:
+  :BEAMER_env: block
+  :END:
+  |        | Tip activitate | Mod de evaluare         | Pondere |
+  |--------+----------------+-------------------------+---------|
+  | *$TS$* | Curs           | 3 teste (S3, S9 și S14) |     70% |
+  | *$P$*  | Laborator      | Teme + Proiect          |     30% |
+  |--------+----------------+-------------------------+---------|
+  \vfill
+  #+begin_center
+  Criterii minime: *$TS \ge 5 \land P \ge 5$*
+  #+end_center
 * Întrebări?
+  #+attr_latex: :width 0.4\textwidth
+  [[file:img/question-mark.png]]
 * Vă mulțumim!
