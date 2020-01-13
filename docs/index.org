@@ -56,3 +56,14 @@ Aplicația va fi propusă de către membrii echipei.
    7. Robert C. Martin, *Design Principles and Design Patterns*, 2000
    8. Martin Fowler, *Refactoring. Improving the Design of Existing Code*, Addison-Wesley, 2018
    9. https://www.martinfowler.com/microservices/
+* Date de contact
+** Petru Rebeja
+*** Email
+   #+begin_src emacs-lisp :exports code
+   (concat "petru" "." "rebeja" "@gmail.com")
+   #+end_src
+** Marius Apetrii
+*** Email
+   #+begin_src emacs-lisp :exports code
+   (concat "mapetrii" "@uaic.ro")
+   #+end_src
