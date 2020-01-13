@@ -25,8 +25,8 @@
    Doctorand la Facultatea de Informatică, Technical Lead la Centric IT Solutions Romania.
 * Despre curs
 ** Obiective
+   - Să faciliteze acumularea unui set de bune practici pentru dezvoltarea produselor software.
    - Să ofere pregătirea necesară pentru a urma o carieră în domeniul IT.
-   - Studenții să acumuleze un set de bune practici pentru dezvoltarea produselor software.
 * Competențe vizate
   La sfârșitul cursului veți putea să:
   - Creați o aplicație web utilizând platforma =.net=.
