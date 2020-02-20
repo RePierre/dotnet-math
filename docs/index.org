@@ -86,6 +86,10 @@ Aplicația va fi propusă de către membrii echipei.
    #+begin_src emacs-lisp :exports code
    (concat "petru" "." "rebeja" "@gmail.com")
    #+end_src
+*** Twitter
+    =@petrurebeja=
+
+    Anunțurile legate de curs/laborator vor fi marcate cu =#TAP2020=.
 ** Marius Apetrii
    :PROPERTIES:
    :CUSTOM_ID: marius-apetrii
