@@ -1,6 +1,6 @@
 #+title: Tehnici Avansate de Programare
 #+subtitle: Infrastructură și unelte
-#+author: Petru Rebeja
+#+author: Petru Rebeja, Marius Apetrii
 #+date: 20 Februarie 2020
 #+language: ro
 #+options: H:1 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t

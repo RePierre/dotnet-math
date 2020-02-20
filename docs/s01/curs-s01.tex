@@ -1,4 +1,4 @@
-% Created 2020-02-20 Thu 14:49
+% Created 2020-02-21 Fri 13:43
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -19,34 +19,34 @@
 \usefonttheme{}
 \useinnertheme{}
 \useoutertheme{}
-\author{Petru Rebeja}
+\author{Petru Rebeja, Marius Apetrii}
 \date{20 Februarie 2020}
 \title{Tehnici Avansate de Programare}
 \subtitle{Infrastructură și unelte}
 \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
 \hypersetup{
- pdfauthor={Petru Rebeja},
+ pdfauthor={Petru Rebeja, Marius Apetrii},
  pdftitle={Tehnici Avansate de Programare},
  pdfkeywords={},
  pdfsubject={},
- pdfcreator={Emacs 26.3 (Org mode 9.3.5)},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.6)},
  pdflang={Romanian}}
 \begin{document}
 
 \maketitle
-\begin{frame}[label={sec:org3f6344d}]{Informații}
+\begin{frame}[label={sec:orgc1b01dd}]{Informații}
 Pagina cursului: \url{https://rebeja.eu/dotnet-math}
 
 \begin{center}
 \includegraphics[height=0.6\textheight]{img/qr-pagina-curs.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgfa1be4e}]{Ciclul de dezvoltare al aplicațiilor}
+\begin{frame}[label={sec:orgafb33b9}]{Ciclul de dezvoltare al aplicațiilor}
 \begin{center}
 \includegraphics[width=\textwidth]{./img/ciclul-agile.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org6bc8040}]{Etapa I: Identificarea unei nevoi}
+\begin{frame}[label={sec:org68989d3}]{Etapa I: Identificarea unei nevoi}
 Un sistem software trebuie să satisfacă o anumită nevoie a utilizatorului:
 \begin{itemize}
 \item Automatizarea procesului manual,
@@ -54,44 +54,44 @@ Un sistem software trebuie să satisfacă o anumită nevoie a utilizatorului:
 \item Etc.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgce7872c}]{Etapa II: Cerințe inițiale}
+\begin{frame}[label={sec:orge71840f}]{Etapa II: Cerințe inițiale}
 \begin{itemize}
 \item După identificarea nevoii se alcătuiește lista de cerințe inițiale.
 \item Opțional, se identifică atributele arhitecturale suplimentare ale sistemului.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org1ee4aa5}]{Etapa III: Minimum Viable Product}
+\begin{frame}[label={sec:org48333a3}]{Etapa III: Minimum Viable Product}
 Din lista cerințelor inițiale se aleg cele care constituie un minim de viabilitate pentru proiect.
 \begin{definition}[Minimum viable product]
 Versiune a produsului software care conține o cantitate suficientă de funcționalitate pentru a satisface utilizatorii timpurii.\footnote{\url{https://en.wikipedia.org/wiki/Minimum\_viable\_product}}
 \end{definition}
 \end{frame}
-\begin{frame}[label={sec:org7b1ed11}]{Etapa IV: Dezvoltarea în iterații}
+\begin{frame}[label={sec:org7f32178}]{Etapa IV: Dezvoltarea în iterații}
 \begin{itemize}
-\item Cerințele sunt ordonate în funcție de importanță
-\item Echipa alege \(N\) cele mai importante cerințe
+\item Cerințele sunt ordonate în funcție de importanță.
+\item Echipa alege \(N\) cele mai importante cerințe.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org62a3eb6}]{Etapa IV: Dezvoltarea în iterații (cont.)}
+\begin{frame}[label={sec:org54a4613}]{Etapa IV: Dezvoltarea în iterații (cont.)}
 \begin{itemize}
-\item Mai întâi se planifică abordarea (task breakdown)
-\item Fiecare membru ia câte o sarcină
+\item Mai întâi se planifică abordarea (task breakdown).
+\item Fiecare membru ia câte o sarcină.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgff76f06}]{Etapa IV: Dezvoltarea în iterații (cont.)}
+\begin{frame}[label={sec:org9f6cb43}]{Etapa IV: Dezvoltarea în iterații (cont.)}
 \begin{itemize}
 \item Când o funcționalitate este gata, ea trece la testare.
 \item Dacă este conformă cu cerințele, aceasta este marcată ca finalizată.
 \item Altfel, revine la programator.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org2d982fe}]{Etapa IV: Dezvoltarea în iterații (cont.)}
+\begin{frame}[label={sec:orge85be7d}]{Etapa IV: Dezvoltarea în iterații (cont.)}
 \begin{itemize}
 \item La sfârșitul iterației se face o prezentare a funcționalităților implementate.
 \item Procesul se reia într-o iterație nouă.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgc3d7a6c}]{Etapa V: Lansarea în producție}
+\begin{frame}[label={sec:org66a4ce7}]{Etapa V: Lansarea în producție}
 \begin{itemize}
 \item Lansarea în producție se face când:
 \begin{itemize}
@@ -100,13 +100,13 @@ Versiune a produsului software care conține o cantitate suficientă de funcțio
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org74c7abc}]{Etapa VI: Întreținerea și dezvoltarea}
+\begin{frame}[label={sec:orgcf7f9af}]{Etapa VI: Întreținerea și dezvoltarea}
 \begin{itemize}
 \item Utilizatorii semnalează erori și cer funcționalități noi.
 \item Acestea sunt adăugate la lista de cerințe.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org6eaeac7}]{Etapa VII: Retragerea produsului}
+\begin{frame}[label={sec:orgfd220c5}]{Etapa VII: Retragerea produsului}
 Se întâmplă din mai multe motive:
 \begin{itemize}
 \item Nu aduce încasări suficiente,
@@ -114,22 +114,22 @@ Se întâmplă din mai multe motive:
 \item Etc.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org0ea427d}]{Unelte pentru dezvoltare}
+\begin{frame}[label={sec:org89c4194}]{Unelte pentru dezvoltare}
 \begin{center}
 \includegraphics[width=.9\linewidth]{img/vs2019.jpg}
 \end{center}
 Imagine preluată \footnote{\url{https://dev.infohub.cc/wp-content/uploads/2019/04/vs2019.jpg}}
 \end{frame}
-\begin{frame}[label={sec:org284b050}]{Bune practici în scrierea codului-sursă}
+\begin{frame}[label={sec:org646cdb9}]{Bune practici în scrierea codului-sursă}
 \begin{itemize}
 \item Codul-sursă trebuie scris în limba engleză.
 \item Textul trebuie să fie preluat dintr-un set de resurse.
 \item Alegeți tipul de date potrivit.
-\item Rescrieți codul nu dați copy/paste.
+\item Rescrieți codul, nu dați copy/paste.
 \item Dacă nu există în sistemul de păstrare a istoricului atunci nu există.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgaa13183}]{Păstrarea istoricului codului-sursă}
+\begin{frame}[label={sec:orga549027}]{Păstrarea istoricului codului-sursă}
 \begin{itemize}
 \item Produsele software mari pot ajunge și la milioane de linii de cod.
 \item Sistemele de control al reviziilor (version control systems) ne permit:
@@ -140,17 +140,17 @@ Imagine preluată \footnote{\url{https://dev.infohub.cc/wp-content/uploads/2019/
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org96c91e6}]{Git}
+\begin{frame}[label={sec:org80879bb}]{Git}
 \begin{block}{Git SCM}
 Git este un sistem de control al reviziilor open-source, distribuit și gratuit. Sistemul a fost proiectat să gestioneze rapid și eficient proiecte de toate dimensiunile.\footnote{\url{https://git-scm.com/}}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgb71c59d}]{Fluxul de lucru Git}
+\begin{frame}[label={sec:orgf863c23}]{Fluxul de lucru Git}
 \begin{center}
 \includegraphics[width=\textwidth]{img/gitflow.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgc5d9264}]{Bune practici pentru controlul reviziilor\footnote{\url{https://www.troyhunt.com/10-commandments-of-good-source-control/}}}
+\begin{frame}[label={sec:org027616f}]{Bune practici pentru controlul reviziilor\footnote{\url{https://www.troyhunt.com/10-commandments-of-good-source-control/}}}
 \begin{itemize}
 \item Dacă nu există în sistemul de control al reviziilor atunci nu există deloc.
 \item Fiecare versiune trebuie să fie atomică.
