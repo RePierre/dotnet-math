@@ -105,6 +105,8 @@ Aplicația va fi propusă de către membrii echipei.
    *Infrastructură și unelte*
 
    La curs vom discuta despre infrastructura și uneltele necesare pentru dezvoltarea aplicațiilor pe platforma =.net core=.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s01/curs-s01.pdf][pdf]].
 ** Laborator
    :PROPERTIES:
    :CUSTOM_ID: s01-lab
