@@ -108,7 +108,7 @@ Aplicația va fi propusă de către membrii echipei.
    :END:
    *Infrastructură și unelte*
 
-   La curs vom discuta despre infrastructura și uneltele necesare pentru dezvoltarea aplicațiilor pe platforma =.net core=.
+   La curs discutăm despre infrastructura și uneltele necesare pentru dezvoltarea aplicațiilor pe platforma =.net core=.
 
    Prezentarea de la curs poate fi descărcată în format [[file:s01/curs-s01.pdf][pdf]].
 ** Laborator
@@ -119,3 +119,22 @@ Aplicația va fi propusă de către membrii echipei.
    - Instalare [[https://visualstudio.microsoft.com/downloads/][Visual Studio 2019 Community Edition]]
    - Cont [[https://github.com/][GitHub]]
    - Cont [[https://dev.azure.com/][Azure DevOps]]
+* Săptămâna 02
+  :PROPERTIES:
+  :CUSTOM_ID: s02
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s02-curs
+   :END:
+   *Recapitulare și noțiuni de bază*
+
+   La curs discutăm despre tipurile de date în =.net= și exemplificăm principiile programării orientate-obiect pe o mini-aplicație.
+   Discuția continuă cu diferența dintre clasele abstracte și interfețe iar spre sfârșit discutăm despre acuplare și coeziune.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s02/curs-s02.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s02-lab
+   :END:
+   La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
