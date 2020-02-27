@@ -140,6 +140,8 @@ Aplicația va fi propusă de către membrii echipei.
    La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
 
    Cerințele pentru temă sunt pe [[https://github.com/RePierre/tap2020-t01][pagina dedicată]] temei pe GitHub.
+
+   O parte din noțiunile discutate se regăsesc și în acest [[https://rebeja.eu/posts/fii-practic-2016/][articol]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
