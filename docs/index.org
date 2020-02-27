@@ -140,3 +140,9 @@ Aplicația va fi propusă de către membrii echipei.
    La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
 
    Cerințele pentru temă sunt pe [[https://github.com/RePierre/tap2020-t01][pagina dedicată]] temei pe GitHub.
+* Legături utile
+  :PROPERTIES:
+  :CUSTOM_ID: links
+  :END:
+  - [[https://visualstudio.microsoft.com/dev-essentials/][Visual Studio Dev Essentials]] --- acces gratuit (limitat) la unelte oferite de Microsoft și partenerii săi.
+  - [[https://c4model.com/][Modelul C4]] -- modelul C4 pentru vizualizarea arhitecturii aplicațiilor software. O descriere scurtă a modelului este pe [[https://www.infoq.com/articles/C4-architecture-model/][InfoQ]].
