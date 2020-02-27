@@ -138,3 +138,5 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s02-lab
    :END:
    La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
+
+   Cerințele pentru temă sunt pe [[https://github.com/RePierre/tap2020-t01][pagina dedicată]] temei pe GitHub.
