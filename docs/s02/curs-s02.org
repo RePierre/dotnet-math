@@ -2,7 +2,7 @@
 #+title: Tehnici Avansate de Programare
 #+subtitle: Recapitulare și noțiuni de bază
 #+author: Petru Rebeja, Marius Apetrii
-#+date: 20 Februarie 2020
+#+date: 27 Februarie 2020
 #+language: ro
 #+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 #+latex_class: beamer

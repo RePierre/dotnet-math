@@ -1,4 +1,4 @@
-% Created 2020-02-27 Thu 14:37
+% Created 2020-02-27 Thu 18:49
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -20,7 +20,7 @@
 \useinnertheme{}
 \useoutertheme{}
 \author{Petru Rebeja, Marius Apetrii}
-\date{20 Februarie 2020}
+\date{27 Februarie 2020}
 \title{Tehnici Avansate de Programare}
 \subtitle{Recapitulare și noțiuni de bază}
 \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
@@ -35,8 +35,8 @@
 
 \maketitle
 \section{Introducere}
-\label{sec:org39a9d24}
-\begin{frame}[label={sec:orgf6925c4}]{Ce am discutat data trecută}
+\label{sec:org698769d}
+\begin{frame}[label={sec:orga35dd45}]{Ce am discutat data trecută}
 \pause
 \begin{itemize}
 \item Ciclul de dezvoltare al aplicațiilor
@@ -46,7 +46,7 @@
 \item Bune practici
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org55e29c5},fragile]{Ce vom discuta azi}
+\begin{frame}[label={sec:org5adcbf0},fragile]{Ce vom discuta azi}
  \begin{itemize}
 \item Tipuri de date în \texttt{.net}
 \item Principiile programării orientată-obiect
@@ -55,13 +55,13 @@
 \end{itemize}
 \end{frame}
 \section{Tipuri de date în \texttt{.net}}
-\label{sec:orgaed4876}
-\begin{frame}[label={sec:orgbb5567a},fragile]{Tipuri \texttt{referință} și tipuri \texttt{valoare}}
+\label{sec:org2c4a03a}
+\begin{frame}[label={sec:orgb3c7abe},fragile]{Tipuri \texttt{referință} și tipuri \texttt{valoare}}
  \begin{center}
 \includegraphics[width=0.6\textwidth]{./img/netcore-types.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgc6c8715},fragile]{Tipuri \texttt{referință} și tipuri \texttt{valoare}}
+\begin{frame}[label={sec:orgbfe7a49},fragile]{Tipuri \texttt{referință} și tipuri \texttt{valoare}}
  \begin{block}{Exemple}
 \begin{center}
 \begin{tabular}{ll}
@@ -76,14 +76,14 @@ Tip Referință & Tip Valoare\\
 \end{center}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org4a38277},fragile]{Tipuri \texttt{valoare}}
+\begin{frame}[label={sec:org5bbc74c},fragile]{Tipuri \texttt{valoare}}
  \begin{itemize}
 \item O variabilă a unui tip valoare conține o instanță a tipului respectiv.
 \item La crearea unei instanțe se alocă o singură zonă în memorie.
 \item Dimensiunea zonei alocate este dată de tip.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgc08bfea},fragile]{Tipuri \texttt{referință}}
+\begin{frame}[label={sec:orgd3a14b2},fragile]{Tipuri \texttt{referință}}
  \begin{itemize}
 \item O variabilă a unui tip referință conține adresa de memorie unde este alocată instanța propriu-zisă.
 \item La crearea unei instanțe se alocă două zone de memorie:
@@ -94,37 +94,37 @@ Tip Referință & Tip Valoare\\
 \item Dimensiunea zonei alocate pentru instanță poate să varieze (ex. \texttt{List<T>}).
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org72fdd3b},fragile]{Cazul special: \texttt{string}}
+\begin{frame}[label={sec:org800afc2},fragile]{Cazul special: \texttt{string}}
  \begin{itemize}
 \item Deși tipul \texttt{string} este un tip referință, acesta se comportă ca un tip valoare.
 \item Această proprietate se numește \texttt{imuabilitate}
 \end{itemize}
 \end{frame}
 \section{Principiile Programării Orientate-Obiect}
-\label{sec:org6c50ecf}
-\begin{frame}[label={sec:org30e7bd9}]{Recapitulare}
+\label{sec:orgcbd1a37}
+\begin{frame}[label={sec:org2cbc23d}]{Recapitulare}
 \begin{itemize}
 \item \alert{Încapsularea} --- îmbinarea datelor și metodelor care le procesează.
 \item \alert{Moștenire} --- proprietățile tipului părinte se păstrează și la copii.
 \item \alert{Polimorfism} --- același comportament manifestat de mai multe tipuri.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgc820c1a}]{Exemplificare}
+\begin{frame}[label={sec:orgaf1a637}]{Exemplificare}
 \begin{block}{Context}
 \vskip 0.1in
 Pentru exemplificare vom modela o serie de operațiuni bancare.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgda2c780}]{Exemplificare}
+\begin{frame}[label={sec:org622831a}]{Exemplificare}
 \begin{block}{Cerință I}
 \vskip 0.1in
 În calitate de posesor al unui cont bancar vreau să pot depune și extrage diverse sume de bani din cont.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org3d408fe}]{Încapsularea}
+\begin{frame}[label={sec:orgc5d9026}]{Încapsularea}
 În situația de față, \alert{încapsularea} ne permite să îmbinăm retragerea de fonduri cu verificarea dacă sunt fonduri suficiente.
 \end{frame}
-\begin{frame}[label={sec:orgf303672}]{Exemplificare}
+\begin{frame}[label={sec:org32d1a81}]{Exemplificare}
 \begin{block}{Cerință II}
 \vskip 0.1in
 În calitate de posesor de conturi, pot avea conturi de diferite tipuri: economii și debit. Pentru retragerea de fonduri din fiecare cont se percep comisioane diferite în funcție de tipul acestuia:
@@ -134,21 +134,21 @@ Pentru exemplificare vom modela o serie de operațiuni bancare.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org03846c7}]{Exemplificare}
+\begin{frame}[label={sec:org5ec040a}]{Exemplificare}
 \begin{block}{Cerință III}
 \vskip 0.1in
 În calitate de posesor de conturi pot avea un cont de credit cu un comision de retragere de 0.7\%
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org223cb78}]{Moștenirea}
+\begin{frame}[label={sec:orga7d7406}]{Moștenirea}
 În exemplul dat \alert{moștenirea} ne permite să declarăm o clasă de bază cu proprietățile comune și să implementăm particularitățile în clasele derivate.
 \end{frame}
-\begin{frame}[label={sec:org7f74662}]{Polimorfismul}
+\begin{frame}[label={sec:org575b62e}]{Polimorfismul}
 \alert{Polimorfismul} ne permite să aplicăm reguli de calcul diferite pentru aceeași metodă.
 \end{frame}
 \section{Clase abstracte vs. Interfețe}
-\label{sec:orgfda11d5}
-\begin{frame}[label={sec:org0628fac}]{Clasa abstractă}
+\label{sec:org1dfdd65}
+\begin{frame}[label={sec:org6e20f88}]{Clasa abstractă}
 \begin{itemize}
 \item Oferă o implementare implicită pentru metode și proprietăți.
 \item Nu se pot crea instanțe ale claselor abstracte.
@@ -157,7 +157,7 @@ Pentru exemplificare vom modela o serie de operațiuni bancare.
 \item Un tip de date poate deriva dintr-o singură clasă abstractă.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org6925415}]{Interfața}
+\begin{frame}[label={sec:org51667cd}]{Interfața}
 \begin{itemize}
 \item Nu oferă nicio implementare.
 \item Cel mai mare grad de abstractizare.
@@ -166,30 +166,30 @@ Pentru exemplificare vom modela o serie de operațiuni bancare.
 \end{itemize}
 \end{frame}
 \section{Modularizarea codului-sursă}
-\label{sec:org83d0346}
-\begin{frame}[label={sec:org976a385}]{Acuplare și Coeziune}
+\label{sec:org03f3194}
+\begin{frame}[label={sec:orgdb23bb1}]{Acuplare și Coeziune}
 Două atribute foarte importante ale unui produs software de succes sunt:
 \begin{itemize}
 \item Grad mic de acuplare,
 \item Grad mare de coeziune.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org8daeb39}]{Acuplarea}
+\begin{frame}[label={sec:orgd03c6b9}]{Acuplarea}
 \begin{quotation} %% Acuplarea
 \alert{Acuplarea} este o măsură a gradului de interdependență dintre modulele unui produs software\footnote{\url{https://en.wikipedia.org/wiki/Coupling\_(computer\_programming)}}.
 \end{quotation}
 \end{frame}
-\begin{frame}[label={sec:org934f8f6},fragile]{Acuplarea --- exemplu}
+\begin{frame}[label={sec:orgf70361d},fragile]{Acuplarea --- exemplu}
  Implementarea clasică a șablonului \texttt{Singleton} este un exemplu de grad înalt de acuplare: clasele care folosesc metodele definite de \texttt{Singleton} sunt dependente de acesta.
 \end{frame}
-\begin{frame}[label={sec:org2b86433}]{Coeziunea}
+\begin{frame}[label={sec:orgc8d554d}]{Coeziunea}
 \begin{quotation} %% Coeziunea
 \alert{Coeziunea} este măsura în care elementele unui modul aparțin unul de celălalt\footnote{\url{https://en.wikipedia.org/wiki/Cohesion\_(computer\_science)}}.
 \end{quotation}
 \end{frame}
 \section{Încheiere}
-\label{sec:orgda7319c}
-\begin{frame}[label={sec:orgc949043},fragile]{Ce am discutat azi}
+\label{sec:org6ef0d38}
+\begin{frame}[label={sec:orgfceeaa8},fragile]{Ce am discutat azi}
  \begin{itemize}
 \item Tipuri de date în \texttt{.net}.
 \item Principiile programării orientată-obiect.
@@ -197,6 +197,6 @@ Două atribute foarte importante ale unui produs software de succes sunt:
 \item Acuplare și Coeziune.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org517a0f1}]{Vă mulțumesc!}
+\begin{frame}[label={sec:orgd6a6420}]{Vă mulțumesc!}
 \end{frame}
 \end{document}
