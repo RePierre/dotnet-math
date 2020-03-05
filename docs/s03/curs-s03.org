@@ -1,0 +1,167 @@
+#    -*- mode: org -*-
+#+title: Tehnici Avansate de Programare
+#+subtitle: Gestionarea resurselor și evaluare
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 5 Martie 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Informații
+   #+begin_center
+   Avem spațiu dedicat cursului pe Slack.
+   #+end_center
+   #+attr_latex: :height 0.6\textheight
+   [[file:img/tap-2020-slack-invite.png]]
+** Ce vom discuta azi
+   - =Garbage collector=
+   - =IDisposable=
+   - Evaluare
+* Gestiunea resurselor în =.net=
+** Resursele utilizate de aplicații
+   Platforma =.net= separă resursele în două categorii:
+   1. Resurse gestionate automat (/managed resources/)
+   2. Resurse gestionate manual (/unmanaged resources/)
+** Resurse gestionate automat
+   - Resursele gestionate automat sunt resursele care se află sub controlul platformei =.net=.
+   - Pot fi dealocate automat de =Garbage Collector=.
+** Resurse gestionate manual
+   Resursele gestionate manual sunt resursele din afara platformei dar cu care avem nevoie să interacționăm.
+
+   Exemple:
+   - Ferestre,
+   - Fișiere,
+   - Conexiuni la baza de date
+   - Etc.
+** Modul de gestiune al resurselor
+   Resursele utilizate de aplicații _trebuie_ gestionate eficient.
+** De ce contează asta?
+   - Gestiunea resurselor are impact direct asupra aplicațiilor.
+   - O gestiune necorespunzătoare poate avea efecte precum:
+     - Costuri ridicate de infrastructură,
+     - Costuri ridicate de întreținere,
+     - Timp de răspuns întârziat => satisfacția scăzută a utilizatorilor.
+** Modul de gestiune al resurselor
+   Resursele unei aplicații =.net= sunt gestionate astfel:
+   - =Garbage Collector= se ocupă de curățarea memoriei alocată resurselor gestionate automat,
+   - Șablonul de eliminare (/dispose pattern/).
+* =Garbage Collector=
+** =Garbage Collector=[fn:1] (=GC=)
+   - Este responsabil de gestiunea eficientă a memoriei.
+   - Elimină necesitatea de a elibera manual memoria ocupată de resursele aplicației.
+   - Oferă siguranța la acces (un obiect nu poate citi conținutul altuia).
+** Generații de obiecte[fn:1]
+   Memoria heap este organizată în 3 generații:
+   1. *Generația 0* --- conține obiecte cu termen de viață foarte scurt. Marea majoritate a obiectelor trebuie să fie în generația 0.
+   2. *Generația 1* --- conține obiecte cu termen de viață scurt și/sau de dimensiuni mari. Este o zonă de trecere de la generația 0 la generația 2.
+   3. *Generația 2* --- conține obiecte cu termen de viață lung. Ex: date statice ale aplicației.
+** Modul de lucru al =GC=[fn:1]
+   - La crearea unui obiect nou, acesta este pus în Generația 0.
+   - La următoarea execuție a =GC= se verifică:
+     - Dacă obiectul mai are referințe active, atunci este mutat în Generația 1,
+     - Altfel, memoria alocată obiectului este eliberată.
+   - Procesul se repetă pentru fiecare generație în parte.
+** Modul de lucru al =GC=[fn:1]
+   - Când =GC= începe verificarea memoriei, toate firele de execuție a aplicației sunt suspendate.
+   - Excepție: firul care declanșează =GC= nu este supendat.
+** Impactul =GC=
+   Efectul execuției =GC= asupra procesorului și impactul asupra timpului de răspuns al aplicației =Discord=[fn:2].
+   #+attr_lagex: :height 0.6\textheight
+   [[file:img/gc-impact.png]]
+* =Dispose pattern=
+** =Dispose pattern=[fn:3]
+   - Este folosit pentru a dealoca memoria resurselor gestionate automat.
+   - Este o implementare a metodei =System.IDisposable.Dispose()=
+** =IDisposable=
+   #+begin_src csharp
+     public interface IDisposable
+     {
+	 void Dispose();
+     }
+   #+end_src
+** =Dispose pattern=[fn:3]
+   #+begin_src csharp
+     public void Dispose()
+     {
+	 Dispose(true);
+	 GC.SuppresFinalize(this);
+     }
+   #+end_src
+** =Dispose pattern=[fn:3]
+   #+begin_src csharp
+     protected virtual void Dispose(bool disposing)
+     {
+	 if(this.disposed)
+	     return;
+
+	 if(disposing)
+	 {
+	     // Dispose managed resources
+	 }
+
+	 // Dispose unmanaged resources
+	 this.disposed = true;
+     }
+   #+end_src
+** =Dispose pattern=[fn:3]
+   #+begin_src csharp
+     ~DisposableResource()
+     {
+	 Dispose(false);
+     }
+   #+end_src
+* Cum utilizăm obiecte =IDisposable=
+** Cum utilizăm obiecte =IDisposable=
+   - Obiectele care implementează =IDisposable= trebuie dealocate prin apelarea metodei =Dispose()=.
+   - Apelarea se poate face în două moduri:
+     - Cu instrucțiunea =using= sau,
+     - Într-un block =try/finally=.
+** Blocul =try/finally=
+   #+begin_src csharp
+     DisposableResource res = null;
+     try
+     {
+	 res = new DisposableResource();
+	 // Do something with the resource
+     }
+     finally
+     {
+	 if(res != null) res.Dispose();
+     }
+   #+end_src
+** Instrucțiunea =using=
+   - Apelează automat metoda =Dispose()= la părăsirea contextului curent.
+   - Este echivalentă cu blocul =try/finally=.
+   \vskip 0.3in
+   #+begin_src csharp
+     using(var res = new DisposableResource())
+     {
+	 // Do something with the resource
+     }
+   #+end_src
+* Încheiere
+** Ce am discutat azi
+   - =Garbage collector=
+   - =IDisposable=
+   - Evaluare
+** Vă mulțumesc
+   #+begin_center
+   Succes la evaluare!
+   #+end_center
+
+* Footnotes
+
+[fn:3]https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose
+
+[fn:2]https://blog.discordapp.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f
+
+[fn:1]https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals

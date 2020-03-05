@@ -142,6 +142,24 @@ Aplicația va fi propusă de către membrii echipei.
    Cerințele pentru temă sunt pe [[https://github.com/RePierre/tap2020-t01][pagina dedicată]] temei pe GitHub.
 
    O parte din noțiunile discutate se regăsesc și în acest [[https://rebeja.eu/posts/fii-practic-2016/][articol]].
+* Săptămâna 03
+  :PROPERTIES:
+  :CUSTOM_ID: s03
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s03-curs
+   :END:
+   *Gestionarea resurselor și evaluare*
+
+   La curs discutăm despre gestionarea eficientă a resurselor în =.net= și un șablon de implementare pentru =IDisposable=.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s03/curs-s03.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s03-lab
+   :END:
+   La laborator avem prima evaluare din acest semestru.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links

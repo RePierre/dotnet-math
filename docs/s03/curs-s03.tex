@@ -1,0 +1,246 @@
+% Created 2020-03-05 Thu 14:51
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{5 Martie 2020}
+\title{Tehnici Avansate de Programare}
+\subtitle{Gestionarea resurselor și evaluare}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.4)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:org22379c3}
+\begin{frame}[label={sec:org2136e44}]{Informații}
+\begin{center}
+Avem spațiu dedicat cursului pe Slack.
+\end{center}
+\begin{center}
+\includegraphics[height=0.6\textheight]{img/tap-2020-slack-invite.png}
+\end{center}
+\end{frame}
+\begin{frame}[label={sec:org4f9032a},fragile]{Ce vom discuta azi}
+ \begin{itemize}
+\item \texttt{Garbage collector}
+\item \texttt{IDisposable}
+\item Evaluare
+\end{itemize}
+\end{frame}
+\section{Gestiunea resurselor în \texttt{.net}}
+\label{sec:orgd7532be}
+\begin{frame}[label={sec:org219246f},fragile]{Resursele utilizate de aplicații}
+ Platforma \texttt{.net} separă resursele în două categorii:
+\begin{enumerate}
+\item Resurse gestionate automat (\emph{managed resources})
+\item Resurse gestionate manual (\emph{unmanaged resources})
+\end{enumerate}
+\end{frame}
+\begin{frame}[label={sec:orgf96b837},fragile]{Resurse gestionate automat}
+ \begin{itemize}
+\item Resursele gestionate automat sunt resursele care se află sub controlul platformei \texttt{.net}.
+\item Pot fi dealocate automat de \texttt{Garbage Collector}.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org5569e28}]{Resurse gestionate manual}
+Resursele gestionate manual sunt resursele din afara platformei dar cu care avem nevoie să interacționăm.
+
+Exemple:
+\begin{itemize}
+\item Ferestre,
+\item Fișiere,
+\item Conexiuni la baza de date
+\item Etc.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga79b7e0}]{Modul de gestiune al resurselor}
+Resursele utilizate de aplicații \uline{trebuie} gestionate eficient.
+\end{frame}
+\begin{frame}[label={sec:orgec899e8}]{De ce contează asta?}
+\begin{itemize}
+\item Gestiunea resurselor are impact direct asupra aplicațiilor.
+\item O gestiune necorespunzătoare poate avea efecte precum:
+\begin{itemize}
+\item Costuri ridicate de infrastructură,
+\item Costuri ridicate de întreținere,
+\item Timp de răspuns întârziat => satisfacția scăzută a utilizatorilor.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org481e40f},fragile]{Modul de gestiune al resurselor}
+ Resursele unei aplicații \texttt{.net} sunt gestionate astfel:
+\begin{itemize}
+\item \texttt{Garbage Collector} se ocupă de curățarea memoriei alocată resurselor gestionate automat,
+\item Șablonul de eliminare (\emph{dispose pattern}).
+\end{itemize}
+\end{frame}
+\section{\texttt{Garbage Collector}}
+\label{sec:org9c336b3}
+\begin{frame}[label={sec:orged16945},fragile]{\texttt{Garbage Collector}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals}\label{org7569fbb}} (\texttt{GC})}
+ \begin{itemize}
+\item Este responsabil de gestiunea eficientă a memoriei.
+\item Elimină necesitatea de a elibera manual memoria ocupată de resursele aplicației.
+\item Oferă siguranța la acces (un obiect nu poate citi conținutul altuia).
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga82e65d}]{Generații de obiecte\textsuperscript{\ref{org7569fbb}}}
+Memoria heap este organizată în 3 generații:
+\begin{enumerate}
+\item \alert{Generația 0} --- conține obiecte cu termen de viață foarte scurt. Marea majoritate a obiectelor trebuie să fie în generația 0.
+\item \alert{Generația 1} --- conține obiecte cu termen de viață scurt și/sau de dimensiuni mari. Este o zonă de trecere de la generația 0 la generația 2.
+\item \alert{Generația 2} --- conține obiecte cu termen de viață lung. Ex: date statice ale aplicației.
+\end{enumerate}
+\end{frame}
+\begin{frame}[label={sec:orgd757701},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{org7569fbb}}}
+ \begin{itemize}
+\item La crearea unui obiect nou, acesta este pus în Generația 0.
+\item La următoarea execuție a \texttt{GC} se verifică:
+\begin{itemize}
+\item Dacă obiectul mai are referințe active, atunci este mutat în Generația 1,
+\item Altfel, memoria alocată obiectului este eliberată.
+\end{itemize}
+\item Procesul se repetă pentru fiecare generație în parte.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org0758605},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{org7569fbb}}}
+ \begin{itemize}
+\item Când \texttt{GC} începe verificarea memoriei, toate firele de execuție a aplicației sunt suspendate.
+\item Excepție: firul care declanșează \texttt{GC} nu este supendat.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgd568e81},fragile]{Impactul \texttt{GC}}
+ Efectul execuției \texttt{GC} asupra procesorului și impactul asupra timpului de răspuns al aplicației \texttt{Discord}\footnote{\url{https://blog.discordapp.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f}}.
+\begin{center}
+\includegraphics[width=.9\linewidth]{img/gc-impact.png}
+\end{center}
+\end{frame}
+\section{\texttt{Dispose pattern}}
+\label{sec:orgff871f5}
+\begin{frame}[label={sec:orgdf38249},fragile]{\texttt{Dispose pattern}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose}\label{orgf947f36}}}
+ \begin{itemize}
+\item Este folosit pentru a dealoca memoria resurselor gestionate automat.
+\item Este o implementare a metodei \texttt{System.IDisposable.Dispose()}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgf9170f0},fragile]{\texttt{IDisposable}}
+ \begin{verbatim}
+public interface IDisposable
+{
+    void Dispose();
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:orgab315e6},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgf947f36}}}
+ \begin{verbatim}
+public void Dispose()
+{
+    Dispose(true);
+    GC.SuppresFinalize(this);
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:org566482f},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgf947f36}}}
+ \begin{verbatim}
+protected virtual void Dispose(bool disposing)
+{
+    if(this.disposed)
+	return;
+
+    if(disposing)
+    {
+	// Dispose managed resources
+    }
+
+    // Dispose unmanaged resources
+    this.disposed = true;
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:org3bb2503},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgf947f36}}}
+ \begin{verbatim}
+~DisposableResource()
+{
+    Dispose(false);
+}
+\end{verbatim}
+\end{frame}
+\section{Cum utilizăm obiecte \texttt{IDisposable}}
+\label{sec:org4302db1}
+\begin{frame}[label={sec:orgbd37a42},fragile]{Cum utilizăm obiecte \texttt{IDisposable}}
+ \begin{itemize}
+\item Obiectele care implementează \texttt{IDisposable} trebuie dealocate prin apelarea metodei \texttt{Dispose()}.
+\item Apelarea se poate face în două moduri:
+\begin{itemize}
+\item Cu instrucțiunea \texttt{using} sau,
+\item Într-un block \texttt{try/finally}.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org510d854},fragile]{Blocul \texttt{try/finally}}
+ \begin{verbatim}
+DisposableResource res = null;
+try
+{
+    res = new DisposableResource();
+    // Do something with the resource
+}
+finally
+{
+    if(res != null) res.Dispose();
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:orgffe3e28},fragile]{Instrucțiunea \texttt{using}}
+ \begin{itemize}
+\item Apelează automat metoda \texttt{Dispose()} la părăsirea contextului curent.
+\item Este echivalentă cu blocul \texttt{try/finally}.
+\end{itemize}
+\vskip 0.3in
+\begin{verbatim}
+using(var res = new DisposableResource())
+{
+    // Do something with the resource
+}
+\end{verbatim}
+\end{frame}
+\section{Încheiere}
+\label{sec:org50c6e59}
+\begin{frame}[label={sec:org072efbb},fragile]{Ce am discutat azi}
+ \begin{itemize}
+\item \texttt{Garbage collector}
+\item \texttt{IDisposable}
+\item Evaluare
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgd58d2b6}]{Vă mulțumesc}
+\begin{center}
+Succes la evaluare!
+\end{center}
+\end{frame}
+\end{document}
