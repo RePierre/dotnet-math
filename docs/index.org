@@ -160,6 +160,8 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s03-lab
    :END:
    La laborator avem prima evaluare din acest semestru.
+
+   Pagina cu cerințele pentru evaluare este pe [[https://github.com/RePierre/tap2020-e01][GitHub]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
