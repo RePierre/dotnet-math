@@ -168,3 +168,4 @@ Aplicația va fi propusă de către membrii echipei.
   :END:
   - [[https://visualstudio.microsoft.com/dev-essentials/][Visual Studio Dev Essentials]] --- acces gratuit (limitat) la unelte oferite de Microsoft și partenerii săi.
   - [[https://c4model.com/][Modelul C4]] -- modelul C4 pentru vizualizarea arhitecturii aplicațiilor software. O descriere scurtă a modelului este pe [[https://www.infoq.com/articles/C4-architecture-model/][InfoQ]].
+  - [[https://guides.github.com/introduction/flow/][GitHub flow]] - o descriere a modului de lucru pe GitHub.
