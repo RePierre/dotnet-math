@@ -162,6 +162,25 @@ Aplicația va fi propusă de către membrii echipei.
    La laborator avem prima evaluare din acest semestru.
 
    Pagina cu cerințele pentru evaluare este pe [[https://github.com/RePierre/tap2020-e01][GitHub]].
+* Săptămâna 04
+  :PROPERTIES:
+  :CUSTOM_ID: s04
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s04-curs
+   :END:
+   *Fluxul de lucru Git și principiile SOLID*
+
+   La curs discutăm despre cum aplicăm fluxul de lucru Git în contextul unui anumit proiect (cu sau fără drepturi de a crea modificări) și enunțăm și exemplificăm principiile SOLID.
+   Printre altele, discutăm și despre cum este indicat să adăugăm biblioteci din surse terțe la aplicația noastră.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s04/curs-s04.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s04-lab
+   :END:
+   Din cauza deciziei Universității de suspendare temporară a cursurilor, tema va fi anunțată ulterior.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links

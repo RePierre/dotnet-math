@@ -16,23 +16,126 @@
 #+LATEX_HEADER: \RequirePackage{fancyvrb}
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 * Introducere
+** Informații
+   #+begin_center
+   Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
+   #+end_center
 ** Recapitulare
    - =Garbage collector=
    - =IDisposable=
-** Ce vom discuta azi
+** Despre ce vom discuta azi
    - Fluxul de lucru Git
+   - Ecosistemul =NuGet=
    - Principiile =SOLID=
 * Fluxul de lucru Git
+** Git[fn:1]
+   #+attr_latex: :height .8\textheight
+   [[file:img/xkcd-git.png]]
+** Fluxul de lucru GitHub[fn:8]
+   #+attr_latex: :width \textwidth
+   [[file:img/github-flow.png]]
+** Fluxul de lucru GitHub
+   Pentru proiectele la care aveți drepturi să faceți modificări:
+   - Creați o ramură nouă,
+   - Implementați cerințele prin *modificări multiple și atomice*,
+   - Creați un *Pull Request* din ramura nouă,
+   - Revizuiți și modificați dacă este cazul,
+   - Îmbinați ramura nouă cu =master=,
+   - Livrați funcționalitatea adăugată.
+** Fluxul de lucru extins[fn:9]
+   Pentru proiectele la care nu aveți dreptul să faceți modificări:
+   - Creați un =fork= al proiectului,
+   - Adăugați modificările necesare în =fork=-ul propriu (folosing fluxul de lucru de mai sus),
+   - Creați un =Pull Request= din =fork=-ul propriu,
+   - Adăugați modificări suplimentare dacă este cazul
+   - O persoană desemnată va decide dacă modificările vor fi acceptate sau nu.
+** Descrierea modificărilor[fn:2]
+   #+attr_latex: :width .7\textwidth
+   [[file:img/xkcd-git-commit.png]]
+** Ghid pentru descrierea modificărilor[fn:10]
+   - Lăsați o linie goală între sumar și restul descrierii.
+   - Sumarul trebuie să aibă maxim 50 caractere.
+   - Scrieți conform regulilor de gramatică și ortografie:
+     - Începeți propozițiile cu majusculă,
+     - Nu puneți punct după sumar.
+   - Descrierea trebuie să explice *ce* și *de ce* a fost modificat; nu /cum/.
+* Ecosistemul =NuGet=
+** Ce este =NuGet=?
+   - Aplicație utilitară pentru integrarea bibliotecilor oferite de terți în soluție/proiect.
+   - Facilitează instalarea pachetelor și a pachetelor de care acestea depind.
+   - Facilitează ștergerea și actualizarea pachetelor.
+** Ce este un =pachet NuGet=?
+   - O arhivă cu extensia schimbată din =.zip= în =.nupkg=.
+   - Conține bibliotecile necesare (fișierele =.dll=) și metadate.
+** Pachetele =NuGet=
+   - Cele publice se găsesc pe https://www.nuget.org/.
+   - Pentru pachetele private sunt necesare servere dedicate.
 * Principiile =SOLID=
+** SOLID
+   - S :: Single Responsibility Principle
+   - O :: Open-Closed Principle
+   - L :: Liskov Substitution Principle
+   - I :: Interface Segregation Principle
+   - D :: Dependency Inversion Principle
+** Single Responsibility Principle
+*** Single Responsibility Principle                                 :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Fiecare modul trebuie să fie responsabil pentru un singur aspect legat de funcționalitatea oferită de sistemul software. Mai mult, acel aspect trebuie să fie încapsulat în întregime de modulul responsabil[fn:3].
+** Open-Closed Principle
+*** Open-Closed Principle                                           :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Părțile componente ale unui sistem software trebuie să fie ușor de extins dar greu de modificat[fn:4].
+** Liskov Substitution Principle
+*** Liskov Substitution Principle                                   :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Obiectele unui sistem software trebuie să fie substituibile de către instanțe ale unor subtipuri de obiecte, fără ca substituția să afecteze corectitudinea sistemului[fn:5].
+** Interface Segregation Principle
+*** Interface Segregation Principle                                 :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Interfețele trebuie să fie mici și specifice contextului de utilizare; nu mari și generale[fn:6].
+** Dependency Inversion Principle
+*** Dependency Inversion Principle
+    Modulele unui sistem software trebuie să depindă de reprezentări abstracte și nu de implementări concrete[fn:7].
 * Încheiere
 ** Recapitulare --- fluxul de lucru Git
    - O ramură nouă pentru o cerință (=branch per feature=)
    - Modificări atomice
    - Sincronizări frecvente
    - =Pull-Request= și îmbinare în =master=
+** Recapitulare --- =NuGet=
+   Este indicat să folosim =NuGet= pentru adăugarea de biblioteci în soluție/proiect.
 ** Recapitulare --- =SOLID=
-   - *SRP*
-   - *Open-Closed*
-   - *Liskov Substitution*
-   - *Inversion of Control*
-   - *Dependency injection*
+   - *Single Responsibility Principle*
+   - *Open-Closed Principle*
+   - *Liskov Substitution Principle*
+   - *Interface Segregation Principle*
+   - *Dependency Inversion Principle*
+* Footnotes
+
+[fn:10]https://chris.beams.io/posts/git-commit/
+
+[fn:9]https://guides.github.com/activities/forking/
+
+[fn:8]https://guides.github.com/introduction/flow/
+
+[fn:7]https://en.wikipedia.org/wiki/Dependency_inversion_principle
+
+[fn:6]https://en.wikipedia.org/wiki/Interface_segregation_principle
+
+[fn:5]https://en.wikipedia.org/wiki/Liskov_substitution_principle
+
+[fn:4]https://en.wikipedia.org/wiki/Open/closed_principle
+
+[fn:3]https://en.wikipedia.org/wiki/Single_responsibility_principle
+
+[fn:2]https://xkcd.com/1296/
+
+[fn:1]https://xkcd.com/1597/
