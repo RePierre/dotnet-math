@@ -180,7 +180,7 @@ Aplicația va fi propusă de către membrii echipei.
    :PROPERTIES:
    :CUSTOM_ID: s04-lab
    :END:
-   Din cauza deciziei Universității de suspendare temporară a cursurilor, tema va fi anunțată ulterior.
+   Din cauza [[http://www.uaic.ro/uaic-a-decis-suspendarea-activitatii-didactice-si-a-evenimentelor-in-perioada-13-31-martie-2020/][deciziei Universității]] de suspendare temporară a cursurilor, tema va fi anunțată ulterior.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
