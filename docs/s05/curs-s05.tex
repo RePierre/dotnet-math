@@ -1,0 +1,136 @@
+% Created 2020-03-19 Thu 14:59
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{19 Martie 2020}
+\title{Tehnici Avansate de Programare}
+\subtitle{Modularizarea codului-sursă}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.4)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:org67630a6}
+\begin{frame}[label={sec:org3bc015e},fragile]{Recapitulare}
+ \begin{itemize}
+\item \texttt{Fluxul de lucru Git} permite să implementăm cerințe noi fără să afectăm aplicația în vreun fel.
+\item Ecosistemul \texttt{NuGet} ne permite să integrăm biblioteci terțe pentru a ne concentra asupra logicii aplicației.
+\item Principiile \texttt{SOLID} ne ajută să scriem cod de calitate ridicată.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org698ceaf}]{Despre ce vom discuta azi}
+\begin{itemize}
+\item Cum organizăm codul-sursă în soluție
+\end{itemize}
+\end{frame}
+\section{Concepte de bază în Visual Studio}
+\label{sec:org61661c9}
+\begin{frame}[label={sec:org120f5b3}]{Soluție}
+\begin{itemize}
+\item O mulțime de resurse necesare pentru crearea unei aplicații.
+\item Resursele sunt grupate (de obicei) în proiecte.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga97867a},fragile]{Proiect}
+ \begin{itemize}
+\item O submulțime de resurse menite să fie compilate împreună în:
+\begin{itemize}
+\item O bibliotecă software (\texttt{.dll}),
+\item O aplicație executabilă (\texttt{.exe}),
+\item O aplicație Web.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org21b3d10},fragile]{Spațiu de nume (\texttt{namespace})}
+ \begin{itemize}
+\item Denotă un domeniu restrâns căruia îi aparține o mulțime de tipuri.
+\item Este folosit pentru a diferenția tipurile cu același nume.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org5a00851},fragile]{Denumirea spațiilor de nume}
+ Șablonul recomandat pentru denumirea spațiilor de nume noi este\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-namespaces}}:
+\begin{verbatim}
+<Company>.(<Product>|<Technology>)[.<Feature>][.<Subnamespace>]
+\end{verbatim}
+\end{frame}
+\section{Modularizarea codului sursă}
+\label{sec:org62bfdf1}
+\begin{frame}[label={sec:org0fabc35}]{Recapitulare: Acuplarea}
+\begin{quotation} %% Acuplarea
+\alert{Acuplarea} este o măsură a gradului de interdependență dintre modulele unui produs software\footnote{\url{https://en.wikipedia.org/wiki/Coupling\_(computer\_programming)}}.
+\end{quotation}
+\end{frame}
+\begin{frame}[label={sec:org77342e3}]{Recapitulare: Coeziunea}
+\begin{quotation} %% Coeziunea
+\alert{Coeziunea} este măsura în care elementele unui modul aparțin unul de celălalt\footnote{\url{https://en.wikipedia.org/wiki/Cohesion\_(computer\_science)}}.
+\end{quotation}
+\end{frame}
+\section{De ce modularizăm codul-sursă?}
+\label{sec:orgd5e70ad}
+\begin{frame}[label={sec:org75ebbc4}]{Separarea funcționalităților}
+\begin{itemize}
+\item Fiecare modul este responsabil de o singură funcționalitate.
+\item Gradul ridicat de coeziune și gradul redus de acuplare rezultă în cod ușor de întreținut.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgd08bcc9},fragile]{Reutilizarea codului-sursă}
+ \begin{itemize}
+\item Modulele pot fi combinate pentru a obține aplicații noi (ex: pachete \texttt{NuGet}).
+\item Aceleași module pot fi reutilizate pentru publicarea aplicației pe diferite platforme.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org11c0295}]{Încapsulare}
+\begin{itemize}
+\item Modulul expune doar interfața publică și ascunde detaliile de implementare.
+\item Ulterior detaliile de implementare pot fi modificate fără să afecteze funcționalitatea consumatorilor.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org8ff58c1}]{Ușor de testat}
+\begin{itemize}
+\item Este mai ușor să scrii teste pentru module cu acuplare mică și coeziune mare.
+\item La rândul lor și testele devin suficient de mici și modulare.
+\end{itemize}
+\end{frame}
+\section{Încheiere}
+\label{sec:orge06ba92}
+\begin{frame}[label={sec:orgfcbf27d}]{Recapitulare}
+Modularizarea codului-sursă ne permite să:
+\begin{itemize}
+\item Separăm funcționalitățile/responsabilitățile,
+\item Încapsulăm și reutilizăm codul-sursă și
+\item Să testăm mai codul mai ușor/rapid.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org4211c7f}]{Vă mulțumesc!}
+\begin{center}
+Mulțumesc pentru atenție!
+\end{center}
+\end{frame}
+\end{document}

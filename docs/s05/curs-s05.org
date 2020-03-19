@@ -1,0 +1,87 @@
+#    -*- mode: org -*-
+#+title: Tehnici Avansate de Programare
+#+subtitle: Modularizarea codului-sursă
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 19 Martie 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   - =Fluxul de lucru Git= permite să implementăm cerințe noi fără să afectăm aplicația în vreun fel.
+   - Ecosistemul =NuGet= ne permite să integrăm biblioteci terțe pentru a ne concentra asupra logicii aplicației.
+   - Principiile =SOLID= ne ajută să scriem cod de calitate ridicată.
+** Despre ce vom discuta azi
+   - Cum organizăm codul-sursă în soluție
+* Concepte de bază în Visual Studio
+** Soluție
+   - O mulțime de resurse necesare pentru crearea unei aplicații.
+   - Resursele sunt grupate (de obicei) în proiecte.
+** Proiect
+   - O submulțime de resurse menite să fie compilate împreună în:
+     - O bibliotecă software (=.dll=),
+     - O aplicație executabilă (=.exe=),
+     - O aplicație Web.
+** Spațiu de nume (=namespace=)
+   - Denotă un domeniu restrâns căruia îi aparține o mulțime de tipuri.
+   - Este folosit pentru a diferenția tipurile cu același nume.
+** Denumirea spațiilor de nume
+   Șablonul recomandat pentru denumirea spațiilor de nume noi este[fn:3]:
+   #+begin_src
+   <Company>.(<Product>|<Technology>)[.<Feature>][.<Subnamespace>]
+   #+end_src
+   #+begin_comment
+   Cum ar suna spațiul de nume al aplicației voastre?
+   #+end_comment
+* Modularizarea codului sursă
+** Recapitulare: Acuplarea
+*** Acuplarea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Acuplarea* este o măsură a gradului de interdependență dintre modulele unui produs software[fn:1].
+** Recapitulare: Coeziunea
+*** Coeziunea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Coeziunea* este măsura în care elementele unui modul aparțin unul de celălalt[fn:2].
+* De ce modularizăm codul-sursă?
+** Separarea funcționalităților
+   - Fiecare modul este responsabil de o singură funcționalitate.
+   - Gradul ridicat de coeziune și gradul redus de acuplare rezultă în cod ușor de întreținut.
+** Reutilizarea codului-sursă
+   - Modulele pot fi combinate pentru a obține aplicații noi (ex: pachete =NuGet=).
+   - Aceleași module pot fi reutilizate pentru publicarea aplicației pe diferite platforme.
+** Încapsulare
+   - Modulul expune doar interfața publică și ascunde detaliile de implementare.
+   - Ulterior detaliile de implementare pot fi modificate fără să afecteze funcționalitatea consumatorilor.
+** Ușor de testat
+   - Este mai ușor să scrii teste pentru module cu acuplare mică și coeziune mare.
+   - La rândul lor și testele devin suficient de mici și modulare.
+* Încheiere
+** Recapitulare
+   Modularizarea codului-sursă ne permite să:
+   - Separăm funcționalitățile/responsabilitățile,
+   - Încapsulăm și reutilizăm codul-sursă și
+   - Să testăm mai codul mai ușor/rapid.
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+* Footnotes
+
+[fn:3]https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-namespaces
+
+[fn:2]https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+
+[fn:1]https://en.wikipedia.org/wiki/Coupling_(computer_programming)
