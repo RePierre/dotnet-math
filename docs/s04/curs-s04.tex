@@ -1,4 +1,4 @@
-% Created 2020-03-12 Thu 15:00
+% Created 2020-03-19 Thu 10:12
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -22,7 +22,7 @@
 \useinnertheme{}
 \useoutertheme{}
 \author{Petru Rebeja, Marius Apetrii}
-\date{12 Martie 2020}
+\date{19 Martie 2020}
 \title{Tehnici Avansate de Programare}
 \subtitle{Fluxul de lucru cu Git și principiile SOLID}
 \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
@@ -37,19 +37,19 @@
 
 \maketitle
 \section{Introducere}
-\label{sec:org28c45fa}
-\begin{frame}[label={sec:orgdb6be40}]{Informații}
+\label{sec:org1cca4fe}
+\begin{frame}[label={sec:org34ecb77}]{Informații}
 \begin{center}
 Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org5fca9d6},fragile]{Recapitulare}
+\begin{frame}[label={sec:org1e7e04b},fragile]{Recapitulare}
  \begin{itemize}
 \item \texttt{Garbage collector}
 \item \texttt{IDisposable}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org298c2e3},fragile]{Despre ce vom discuta azi}
+\begin{frame}[label={sec:org658104d},fragile]{Despre ce vom discuta azi}
  \begin{itemize}
 \item Fluxul de lucru Git
 \item Ecosistemul \texttt{NuGet}
@@ -57,18 +57,18 @@ Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \end{itemize}
 \end{frame}
 \section{Fluxul de lucru Git}
-\label{sec:orgad70af3}
-\begin{frame}[label={sec:orgcb0f555}]{Git\footnote{\url{https://xkcd.com/1597/}}}
+\label{sec:orgcc846df}
+\begin{frame}[label={sec:org4a8cf8d}]{Git\footnote{\url{https://xkcd.com/1597/}}}
 \begin{center}
 \includegraphics[height=.8\textheight]{img/xkcd-git.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org1b17122}]{Fluxul de lucru GitHub\footnote{\url{https://guides.github.com/introduction/flow/}}}
+\begin{frame}[label={sec:org48d3cb1}]{Fluxul de lucru GitHub\footnote{\url{https://guides.github.com/introduction/flow/}}}
 \begin{center}
 \includegraphics[width=\textwidth]{img/github-flow.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgf583bd4},fragile]{Fluxul de lucru GitHub}
+\begin{frame}[label={sec:orgafaea58},fragile]{Fluxul de lucru GitHub}
  Pentru proiectele la care aveți drepturi să faceți modificări:
 \begin{itemize}
 \item Creați o ramură nouă,
@@ -79,7 +79,7 @@ Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \item Livrați funcționalitatea adăugată.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org679378a},fragile]{Fluxul de lucru extins\footnote{\url{https://guides.github.com/activities/forking/}}}
+\begin{frame}[label={sec:org06f68ce},fragile]{Fluxul de lucru extins\footnote{\url{https://guides.github.com/activities/forking/}}}
  Pentru proiectele la care nu aveți dreptul să faceți modificări:
 \begin{itemize}
 \item Creați un \texttt{fork} al proiectului,
@@ -89,12 +89,12 @@ Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \item O persoană desemnată va decide dacă modificările vor fi acceptate sau nu.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgbde4efc}]{Descrierea modificărilor\footnote{\url{https://xkcd.com/1296/}}}
+\begin{frame}[label={sec:org06d006c}]{Descrierea modificărilor\footnote{\url{https://xkcd.com/1296/}}}
 \begin{center}
 \includegraphics[width=.7\textwidth]{img/xkcd-git-commit.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgccf73e4}]{Ghid pentru descrierea modificărilor\footnote{\url{https://chris.beams.io/posts/git-commit/}}}
+\begin{frame}[label={sec:org3d7e834}]{Ghid pentru descrierea modificărilor\footnote{\url{https://chris.beams.io/posts/git-commit/}}}
 \begin{itemize}
 \item Lăsați o linie goală între sumar și restul descrierii.
 \item Sumarul trebuie să aibă maxim 50 caractere.
@@ -107,29 +107,29 @@ Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \end{itemize}
 \end{frame}
 \section{Ecosistemul \texttt{NuGet}}
-\label{sec:org2510b9a}
-\begin{frame}[label={sec:orgc708a65},fragile]{Ce este \texttt{NuGet}?}
+\label{sec:orgb351a84}
+\begin{frame}[label={sec:orgcd05010},fragile]{Ce este \texttt{NuGet}?}
  \begin{itemize}
 \item Aplicație utilitară pentru integrarea bibliotecilor oferite de terți în soluție/proiect.
 \item Facilitează instalarea pachetelor și a pachetelor de care acestea depind.
 \item Facilitează ștergerea și actualizarea pachetelor.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgaad82c3},fragile]{Ce este un \texttt{pachet NuGet}?}
+\begin{frame}[label={sec:org965a327},fragile]{Ce este un \texttt{pachet NuGet}?}
  \begin{itemize}
 \item O arhivă cu extensia schimbată din \texttt{.zip} în \texttt{.nupkg}.
 \item Conține bibliotecile necesare (fișierele \texttt{.dll}) și metadate.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org34ac0d6},fragile]{Pachetele \texttt{NuGet}}
+\begin{frame}[label={sec:org0302c7f},fragile]{Pachetele \texttt{NuGet}}
  \begin{itemize}
 \item Cele publice se găsesc pe \url{https://www.nuget.org/}.
 \item Pentru pachetele private sunt necesare servere dedicate.
 \end{itemize}
 \end{frame}
 \section{Principiile \texttt{SOLID}}
-\label{sec:org5aa08ed}
-\begin{frame}[label={sec:orgdf0f763}]{SOLID}
+\label{sec:orgb90eed9}
+\begin{frame}[label={sec:org7cd0d8a}]{SOLID}
 \begin{description}
 \item[{S}] Single Responsibility Principle
 \item[{O}] Open-Closed Principle
@@ -138,34 +138,39 @@ Link-ul către spațiul Slack dedicat cursului va fi dezactivat azi.
 \item[{D}] Dependency Inversion Principle
 \end{description}
 \end{frame}
-\begin{frame}[label={sec:org338ef08}]{Single Responsibility Principle}
+\begin{frame}[label={sec:org582b83c},fragile]{Context}
+ Vrem să simulăm tranzacții financiare modelând diverse tipuri de conturi bancare (\texttt{Debit}, \texttt{Credit} etc.) precum și operațiunile care se fac asupra acestora.
+
+Mai multe detalii în cursul II.
+\end{frame}
+\begin{frame}[label={sec:org21097bd}]{Single Responsibility Principle}
 \begin{block}{Single Responsibility Principle}
 Fiecare modul trebuie să fie responsabil pentru un singur aspect legat de funcționalitatea oferită de sistemul software. Mai mult, acel aspect trebuie să fie încapsulat în întregime de modulul responsabil\footnote{\url{https://en.wikipedia.org/wiki/Single\_responsibility\_principle}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org3048771}]{Open-Closed Principle}
+\begin{frame}[label={sec:orga1204be}]{Open-Closed Principle}
 \begin{block}{Open-Closed Principle}
 Părțile componente ale unui sistem software trebuie să fie ușor de extins dar greu de modificat\footnote{\url{https://en.wikipedia.org/wiki/Open/closed\_principle}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org31ab77d}]{Liskov Substitution Principle}
+\begin{frame}[label={sec:orgdc66d77}]{Liskov Substitution Principle}
 \begin{block}{Liskov Substitution Principle}
 Obiectele unui sistem software trebuie să fie substituibile de către instanțe ale unor subtipuri de obiecte, fără ca substituția să afecteze corectitudinea sistemului\footnote{\url{https://en.wikipedia.org/wiki/Liskov\_substitution\_principle}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org8beb6a8}]{Interface Segregation Principle}
+\begin{frame}[label={sec:orge089924}]{Interface Segregation Principle}
 \begin{block}{Interface Segregation Principle}
 Interfețele trebuie să fie mici și specifice contextului de utilizare; nu mari și generale\footnote{\url{https://en.wikipedia.org/wiki/Interface\_segregation\_principle}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgd9d0bef}]{Dependency Inversion Principle}
+\begin{frame}[label={sec:orgabaa785}]{Dependency Inversion Principle}
 \begin{block}{Dependency Inversion Principle}
 Modulele unui sistem software trebuie să depindă de reprezentări abstracte și nu de implementări concrete\footnote{\url{https://en.wikipedia.org/wiki/Dependency\_inversion\_principle}}.
 \end{block}
 \end{frame}
 \section{Încheiere}
-\label{sec:orga2c3bd5}
-\begin{frame}[label={sec:org9441cc0},fragile]{Recapitulare --- fluxul de lucru Git}
+\label{sec:orga54c08b}
+\begin{frame}[label={sec:orgf85c2e1},fragile]{Recapitulare --- fluxul de lucru Git}
  \begin{itemize}
 \item O ramură nouă pentru o cerință (\texttt{branch per feature})
 \item Modificări atomice
@@ -173,10 +178,10 @@ Modulele unui sistem software trebuie să depindă de reprezentări abstracte ș
 \item \texttt{Pull-Request} și îmbinare în \texttt{master}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgf5dbb09},fragile]{Recapitulare --- \texttt{NuGet}}
+\begin{frame}[label={sec:org6833631},fragile]{Recapitulare --- \texttt{NuGet}}
  Este indicat să folosim \texttt{NuGet} pentru adăugarea de biblioteci în soluție/proiect.
 \end{frame}
-\begin{frame}[label={sec:orgeabd63c},fragile]{Recapitulare --- \texttt{SOLID}}
+\begin{frame}[label={sec:org3c35317},fragile]{Recapitulare --- \texttt{SOLID}}
  \begin{itemize}
 \item \alert{Single Responsibility Principle}
 \item \alert{Open-Closed Principle}

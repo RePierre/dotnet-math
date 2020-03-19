@@ -2,7 +2,7 @@
 #+title: Tehnici Avansate de Programare
 #+subtitle: Fluxul de lucru cu Git și principiile SOLID
 #+author: Petru Rebeja, Marius Apetrii
-#+date: 12 Martie 2020
+#+date: 19 Martie 2020
 #+language: ro
 #+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 #+latex_class: beamer
@@ -77,6 +77,10 @@
    - L :: Liskov Substitution Principle
    - I :: Interface Segregation Principle
    - D :: Dependency Inversion Principle
+** Context
+   Vrem să simulăm tranzacții financiare modelând diverse tipuri de conturi bancare (=Debit=, =Credit= etc.) precum și operațiunile care se fac asupra acestora.
+
+   Mai multe detalii în cursul II.
 ** Single Responsibility Principle
 *** Single Responsibility Principle                                 :B_block:
     :PROPERTIES:
