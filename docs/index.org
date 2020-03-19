@@ -180,7 +180,7 @@ Aplicația va fi propusă de către membrii echipei.
    :PROPERTIES:
    :CUSTOM_ID: s04-lab
    :END:
-   Din cauza [[http://www.uaic.ro/uaic-a-decis-suspendarea-activitatii-didactice-si-a-evenimentelor-in-perioada-13-31-martie-2020/][deciziei Universității]] de suspendare temporară a cursurilor, tema va fi anunțată ulterior.
+   La laborator conceptele =SOLID= și fluxul de lucru discutate la curs asupra exercițiului de la [[https://github.com/RePierre/tap2020-t01][tema 1]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
