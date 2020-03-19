@@ -180,7 +180,25 @@ Aplicația va fi propusă de către membrii echipei.
    :PROPERTIES:
    :CUSTOM_ID: s04-lab
    :END:
-   La laborator conceptele =SOLID= și fluxul de lucru discutate la curs asupra exercițiului de la [[https://github.com/RePierre/tap2020-t01][tema 1]].
+   La laborator aplicăm conceptele =SOLID= și fluxul de lucru discutate la curs asupra exercițiului de la [[https://github.com/RePierre/tap2020-t01][tema 1]].
+* Săptămâna 05
+  :PROPERTIES:
+  :CUSTOM_ID: s05
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s05-curs
+   :END:
+   *Modularizarea codului-sursă*
+
+   La curs discutăm despre cât este de important să modularizăm codul-sursă.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s05/curs-s05.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s05-lab
+   :END:
+   La laborator modularizăm aplicația implementată la [[https://github.com/RePierre/tap2020-t01][tema 1]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
