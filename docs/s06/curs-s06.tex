@@ -1,0 +1,269 @@
+% Created 2020-03-26 Thu 15:53
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{26 Martie 2020}
+\title{Tehnici Avansate de Programare}
+\subtitle{Delegates,  Attributes, Lambda Expressionis \& Extension Methods}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.4)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:org4c954e2}
+\begin{frame}[label={sec:org39c3f51},fragile]{Recapitulare}
+ \begin{itemize}
+\item Principiile \texttt{SOLID}
+\item Modularizarea codului-sursă
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org358cca2}]{Despre ce vom discuta azi}
+\begin{itemize}
+\item Delegates
+\item Expresii lambda
+\item Atribute
+\item Extension methods
+\end{itemize}
+\end{frame}
+\section{\texttt{Delegates}}
+\label{sec:orga35304c}
+\begin{frame}[label={sec:org3eb7d18},fragile]{Ce este un \texttt{Delegate}}
+ \begin{itemize}
+\item Un obiect care știe să apeleze o metodă\footnote{Joseph Albahari and Ben Albahari. 2012. C\# 5.0 in a Nutshell: The Definitive Reference (5th. ed.). O’Reilly Media, Inc.\label{org083420e}}
+\item Diferențiem între:
+\begin{itemize}
+\item Un \texttt{tip Delegate}
+\item O \texttt{instanță Delegate}
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org44cb6f4},fragile]{Tipuri \texttt{Delegate}}
+ \begin{itemize}
+\item Un tip \texttt{Delegate} definește semnătura metodelor pe care le poate apela o instanță a acestui tip.
+\end{itemize}
+\begin{block}{Cum definim un tip Delegate:}
+\begin{verbatim}
+delegate TResult Transformer<TItem, TResult>(TItem item);
+\end{verbatim}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org508246d},fragile]{Instanță \texttt{Delegate}}
+ \begin{itemize}
+\item Este \alert{slab echivalentă} cu un \texttt{pointer la o funcție} din limbajul \texttt{C}.
+\item Este delegată de apelant cu invocarea propriu-zisă: apelantul invocă instanța tipului \texttt{Delegate} iar aceasta la rândul ei apelează metoda(ele) țintă\textsuperscript{\ref{org083420e}}.
+\item Decuplează apelantul de metoda-țintă.
+\end{itemize}
+\begin{block}{Exemplu}
+\begin{verbatim}
+var parse = new Transformer<string, int>(System.Convert.ToInt32);
+var result = parse("2020");
+\end{verbatim}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org90f3885},fragile]{Instanță \texttt{Delegate}}
+ Compilatorul ne oferă o sintaxă mai simplă pentru declararea instanțelor \texttt{Delegate}:
+\begin{block}{Exemplu}
+\begin{verbatim}
+Transformer<string, int> parse = System.Convert.ToInt32;
+var result = parse("2020");
+\end{verbatim}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org1cbd9eb},fragile]{\texttt{Delegate} vs interfață\textsuperscript{\ref{org083420e}}}
+ \begin{itemize}
+\item Problemele pe care le rezolvă un \texttt{Delegate} pot fi rezolvate și cu o interfață.
+\item Alegem să folosim un \texttt{Delegate} atunci când:
+\begin{itemize}
+\item Definirea și implementarea unei interfețe necesită să scriem mult \emph{cod de umplutură}.
+\item Trebuie să apelăm mai multe metode (\texttt{multicasting}).
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org9a68d4a},fragile]{\texttt{Multicast Delegates}}
+ \begin{itemize}
+\item O instanță \texttt{Delegate} poate referenția mai multe metode.
+\item Acestea sunt apelate în ordinea în care au fost adăugate la instanță.
+\item Adăugarea unei metode la lista de invocare se face cu operatorul \texttt{+=}.
+\item Eliminarea din listă se face cu \texttt{-=}.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org43997b5},fragile]{\texttt{Multicast Delegates}}
+ \begin{block}{Exemplu}
+\begin{verbatim}
+delegate void ReportProgress(int percentage, string status);
+
+void ReportProgressToConsole(int percentage, string status){
+    Console.WriteLine("Progress: {0}%", percentage);
+    Console.WriteLine("Status: {0}.", status);
+}
+
+void ReportProgressToFile(int percentage, string status){
+    System.IO.File.WriteAllText("status.txt",
+	String.Format("{0}% Done. Status: {1}.", percentage, status));
+}
+
+static void Main(){
+    var reportProgress = ReportProgressToConsole;
+    reportProgress+=ReportProgressToFile;
+    reportProgress(50, "Waiting...");
+}
+\end{verbatim}
+\end{block}
+\end{frame}
+\section{Expresii Lambda}
+\label{sec:org9a8555f}
+\begin{frame}[label={sec:org5930a29},fragile]{Ce este o expresie lambda}
+ \begin{itemize}
+\item O metodă fără nume menită să înlocuiască o instanță \texttt{delegate}.
+\item O sintaxă mai simplă pentru declararea unei instanțe \texttt{delegate} ad-hoc.
+\vskip 0.3in
+\end{itemize}
+\begin{block}{Forma expresiei lambda}
+\vskip 0.1in
+\texttt{(parametri) => expresie | \{ bloc; \}}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgc0f123a},fragile]{Expresii lambda}
+ \begin{block}{Exemplu}
+\begin{verbatim}
+delegate void ReportProgress(int percentage, string status);
+
+static void Main(){
+    ReportProgress p = (percentage, status)=>
+	OConsole.WriteLine("{0}%. Status: {1}.", percentage, status)
+}
+\end{verbatim}
+\end{block}
+\end{frame}
+\section{Atribute}
+\label{sec:org1342e78}
+\begin{frame}[label={sec:org0effaf5},fragile]{Ce sunt atributele}
+ \begin{itemize}
+\item Un mecanism pentru adăugarea de date suplimentare la elementele codului-sursă (metode, clase, parametri etc.).
+\item O clasă derivată din clasa abstractă \texttt{System.Attribute}.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga10cae9},fragile]{Exemplu}
+ \begin{block}{Marcarea unui tip perimat}
+\begin{verbatim}
+[Obsolete]
+public class GodObject
+{
+}
+\end{verbatim}
+Compilatorul va emite un mesaj de avertizare la întâlnirea unei referințe către tipul \texttt{GodObject}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org3a525ad},fragile]{Alte exemple}
+ \begin{itemize}
+\item Serializare: atributele descriu relația de corespondență dintre un membru al clasei și un element XML,
+\item Securitate: atributele conțin cerințele necesare pentru ca apelantul să aibă acces la resursa decorată,
+\item Depanare: compilatorul ignoră metodele decorate cu \texttt{ConditionalAttribute}.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org7dc037b},fragile]{Parametrii atributelor}
+ \begin{itemize}
+\item Atributele pot avea două tipuri de parametri:
+\begin{enumerate}
+\item Parametri de \alert{ordine} (\texttt{positional}) --- sunt parametrii constructorilor publici ai atributului,
+\item Parametri cu \alert{nume} (\texttt{named}) --- corespund câmpurilor și proprietăților publice ale atributului.
+\end{enumerate}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org57a1f29},fragile]{Parametrii atributelor --- exemplu}
+ \begin{verbatim}
+public class XmlElementAttribute: Attribute
+{
+    public XmlElementAttribute(string elementName)
+    {
+	ElementName = elementName;
+    }
+
+    public string Namespace {get; set;}
+}
+
+[XmlElement(nameof(Student), Namespace="https://www.math.uaic.ro")]
+public class Student
+{
+}
+\end{verbatim}
+
+\noindent\rule{\textwidth}{0.5pt}
+Aici \texttt{nameof(Student)} este parametru de ordine iar \texttt{Namespace="https://www.math.uaic.ro"} este parametru cu nume.
+\end{frame}
+\section{Metodele de extensiune}
+\label{sec:org7336d02}
+\begin{frame}[label={sec:org7ca2ae7},fragile]{Ce sunt \texttt{extension methods}}
+ \begin{itemize}
+\item Metode care extind funcționalitatea unui tip existent fără să-l modifice.
+\item Metode statice definite într-o clasă statică dar care sunt apelate ca și metode ale unei instanțe.
+\item Primul parametru al metodei are modificatorul \texttt{this} și denotă tipul de date care va fi extins.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgbf9022a},fragile]{Exemplu}
+ \begin{verbatim}
+public static class DateTimeExtensions
+{
+    public static string ToIsoShortDate(this DateTime date)
+    {
+	return date.ToString("yyyy-MM-dd");
+    }
+}
+
+static void Main()
+{
+    Console.WriteLine(DateTime.Today.ToIsoShortDate());
+    // 2020-03-26
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:org605efb9},fragile]{Avantajele metodelor de extensiune}
+ \begin{itemize}
+\item Îmbunătățesc lizibilitatea codului și cresc calitatea acestuia,
+\item Permit înlănțuirea apelurilor \texttt{Where().Select()}
+\item Decuplează codul-sursă.
+\end{itemize}
+\end{frame}
+\section{Încheiere}
+\label{sec:org7ea6d2d}
+\begin{frame}[label={sec:orga2bebeb}]{Recapitulare}
+\begin{itemize}
+\item Delegates
+\item Expresii lambda
+\item Atribute
+\item Extension methods
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orge8cda0a}]{Vă mulțumesc!}
+\begin{center}
+Mulțumesc pentru atenție!
+\end{center}
+\end{frame}
+\end{document}
