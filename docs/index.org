@@ -215,7 +215,7 @@ Aplicația va fi propusă de către membrii echipei.
    :PROPERTIES:
    :CUSTOM_ID: s06-lab
    :END:
-   La laborator extindem aplicația implementată la [[https://github.com/RePierre/tap2020-t01][tema 1]].
+   La laborator extindem aplicația implementată la [[https://github.com/RePierre/tap2020-t01][tema 1]] și începem să discutăm despre proiectele de curs.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
