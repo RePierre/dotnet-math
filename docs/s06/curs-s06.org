@@ -121,7 +121,7 @@
 
       static void Main(){
 	  ReportProgress p = (percentage, status)=>
-	      OConsole.WriteLine("{0}%. Status: {1}.", percentage, status)
+	      Console.WriteLine("{0}%. Status: {1}.", percentage, status)
       }
     #+end_src
 * Atribute
