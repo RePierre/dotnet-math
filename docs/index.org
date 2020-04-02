@@ -208,6 +208,7 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s05-curs
    :END:
    *Delegates,  Attributes, Lambda Expressionis & Extension Methods*
+
    La curs discutăm despre Delegates,  Attributes, Lambda Expressionis și Extension Methods.
 
    Prezentarea la curs poate fi descărcat în format [[file:s06/curs-s06.pdf][pdf]].
