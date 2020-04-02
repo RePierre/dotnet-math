@@ -1,4 +1,4 @@
-% Created 2020-04-02 Thu 15:16
+% Created 2020-04-02 Thu 15:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -24,7 +24,7 @@
 \author{Petru Rebeja, Marius Apetrii}
 \date{2 Aprilie 2020}
 \title{Tehnici Avansate de Programare}
-\subtitle{LINQ \& Entity Framework}
+\subtitle{LINQ, Entity Framework \& Repository Pattern}
 \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
 \hypersetup{
  pdfauthor={Petru Rebeja, Marius Apetrii},
@@ -37,8 +37,8 @@
 
 \maketitle
 \section{Introducere}
-\label{sec:org038061f}
-\begin{frame}[label={sec:orgda70782}]{Recapitulare}
+\label{sec:org764d22f}
+\begin{frame}[label={sec:org7a980c1}]{Recapitulare}
 \begin{itemize}
 \item Delegates
 \item Expresii lambda
@@ -46,7 +46,7 @@
 \item Extension methods
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orge6482d0}]{Despre ce vom discuta azi}
+\begin{frame}[label={sec:org1203f17}]{Despre ce vom discuta azi}
 \begin{itemize}
 \item LINQ
 \item Entity Framework
@@ -54,28 +54,28 @@
 \end{itemize}
 \end{frame}
 \section{LINQ}
-\label{sec:org0f7573d}
-\begin{frame}[label={sec:org9f0642c},fragile]{Ce este LINQ}
+\label{sec:orgc5ed647}
+\begin{frame}[label={sec:org22fd0fd},fragile]{Ce este LINQ}
  \begin{itemize}
 \item LINQ = Language Integrated Query.
-\item O mulțime de funcții ale platformei \texttt{.net} și particularități ale limbajului de programare care permit interogarea uniformă atât a colecțiilor de date din memorie cât și a surselor de date externe\footnote{Joseph Albahari and Ben Albahari. 2012. C\# 5.0 in a Nutshell: The Definitive Reference (5th. ed.). O’Reilly Media, Inc.\label{org0ec79a7}}.
+\item O mulțime de funcții ale platformei \texttt{.net} și particularități ale limbajului de programare care permit interogarea uniformă atât a colecțiilor de date din memorie cât și a surselor de date externe\footnote{Joseph Albahari and Ben Albahari. 2012. C\# 5.0 in a Nutshell: The Definitive Reference (5th. ed.). O’Reilly Media, Inc.\label{org03724bb}}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org1d829bc},fragile]{Sintaxa LINQ}
+\begin{frame}[label={sec:org5851f0e},fragile]{Sintaxa LINQ}
  Interogările LINQ pot fi scrise folosind două tipuri de sintaxă:
 \begin{itemize}
 \item Sintaxa de interogare (\texttt{Query syntax}),
 \item Sintaxa pe bază de înlănțuire de funcții (\texttt{Fluent syntax}).
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgce01196},fragile]{Query syntax}
+\begin{frame}[label={sec:org1aaba56},fragile]{Query syntax}
  \begin{itemize}
 \item O sintaxă simplificată.
 \item \alert{Nu} este o transpunere a sintaxei \texttt{SQL} în \texttt{C\#}.
-\item A fost inspirată în mare parte de limbajele funcționale (\texttt{LISP}, \texttt{Haskel}); \texttt{SQL} a avut o influență mai mult cosmetică\textsuperscript{\ref{org0ec79a7}}.
+\item A fost inspirată în mare parte de limbajele funcționale (\texttt{LISP}, \texttt{Haskel}); \texttt{SQL} a avut o influență mai mult cosmetică\textsuperscript{\ref{org03724bb}}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org15c7031},fragile]{Query syntax --- exemplu}
+\begin{frame}[label={sec:org16e5b60},fragile]{Query syntax --- exemplu}
  \begin{verbatim}
 var numbers = new int[]{1, 2, 3, 4};
 
@@ -85,13 +85,13 @@ var odd = from n in numbers
 	  select n;
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:orgce5348a}]{Fluent syntax}
+\begin{frame}[label={sec:org675d16c}]{Fluent syntax}
 \begin{itemize}
 \item Sintaxa fundamentală și cea mai flexibilă.
 \item Reprezintă o înlănțuire a operatorilor (metode de extensiune care operează pe colecții de elemente).
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgdd5c1f2},fragile]{Fluent syntax --- exemplu}
+\begin{frame}[label={sec:org7861756},fragile]{Fluent syntax --- exemplu}
  \begin{verbatim}
 var numbers = new int[]{1, 2, 3, 4};
 
@@ -100,7 +100,7 @@ var odd = numbers
     .OrderByDescending(n => n);
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:org4b20dfb},fragile]{Operatori standard}
+\begin{frame}[label={sec:org0d32471},fragile]{Operatori standard}
  Platforma \texttt{.net} pune la dispoziție o mulțime de \alert{operatori LINQ standard} în clasa \href{https://docs.microsoft.com/en-us/dotnet/api/system.linq.enumerable?view=netcore-3.1}{\texttt{Enumerable}}.
 
 
@@ -113,7 +113,7 @@ Exemple:
 \item etc.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org00c2d83},fragile]{Execuție întârziată}
+\begin{frame}[label={sec:orgf84a667},fragile]{Execuție întârziată}
  \begin{itemize}
 \item O interogare \texttt{LINQ} este executată abia atunci când începem să parcurgem mulțimea-rezultat.
 \item Excepții:
@@ -123,7 +123,7 @@ Exemple:
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orge0d991a},fragile]{Execuție întârziată --- exemplu\textsuperscript{\ref{org0ec79a7}}}
+\begin{frame}[label={sec:org6c2a884},fragile]{Execuție întârziată --- exemplu\textsuperscript{\ref{org03724bb}}}
  \begin{verbatim}
 var numbers = new List<int>(){1};
 var multiples = numbers.Select(n => n * 10);
@@ -139,25 +139,25 @@ foreach(var n in multiples)
 \end{block}
 \end{frame}
 \section{Entity Framework}
-\label{sec:org3499151}
-\begin{frame}[label={sec:org399d75b},fragile]{Ce este un ORM}
+\label{sec:org017daf4}
+\begin{frame}[label={sec:org5173c99},fragile]{Ce este un ORM}
  \begin{block}{\texttt{Object-Relational Mapping}}
 Este o tehnică prin care interogarea și manipularea datelor dintr-o bază de date se face folosind paradigma orientat-obiect\footnote{\url{https://stackoverflow.com/a/1279678/844006}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org61a2cd8},fragile]{Entity Framework}
+\begin{frame}[label={sec:orgdc52189},fragile]{Entity Framework}
  \begin{block}{Entity Framework}
 Este o bibliotecă pentru platforma \texttt{.net} care oferă funcționalitatea \texttt{ORM}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org985b5fc},fragile]{Fluxuri de lucru}
+\begin{frame}[label={sec:org47dc205},fragile]{Fluxuri de lucru}
  \texttt{Entity Framework} oferă două moduri de a modela baza de date:
 \begin{enumerate}
 \item Din cod --- programatorul definește asocierile dintre clase și tabele precum și relațiile dintre diferite tabele.
 \item Folosind interfața grafică --- utilizatorul definește schema bazei de date cu ajutorul unei interfețe grafice iar codul este generat de platformă.
 \end{enumerate}
 \end{frame}
-\begin{frame}[label={sec:org4e62690},fragile]{Alegerea fluxului de lucru\footnote{\url{https://docs.microsoft.com/en-us/ef/ef6/modeling/\#ef-workflows}}}
+\begin{frame}[label={sec:orgf0faf21},fragile]{Alegerea fluxului de lucru\footnote{\url{https://docs.microsoft.com/en-us/ef/ef6/modeling/\#ef-workflows}}}
  \begin{center}
 \begin{tabular}{lll}
  & Prefer să scriu cod & Prefer interfață grafică\\
@@ -167,17 +167,17 @@ Bază de date existentă & \texttt{Code First} & \texttt{Database First}\\
 \end{tabular}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org4992dfa}]{Definirea modelului}
+\begin{frame}[label={sec:orgbd587db}]{Definirea modelului}
 \begin{block}{Modelare}
 Este procedeul prin care definim tipurile de obiecte și relațiile dintre ele a.î. să reprezinte procesele din viața reală pe care le simulează aplicația curentă.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org732f0a0}]{Definirea modelului}
+\begin{frame}[label={sec:org2039d22}]{Definirea modelului}
 \begin{block}{Modelul bazei de date}
 Totalitatea claselor și altor tipuri de date care reprezintă structura bazei de date a aplicației.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org786b7a8},fragile]{Noțiuni de bază}
+\begin{frame}[label={sec:orge6d5fa1},fragile]{Noțiuni de bază}
  \begin{block}{Data context / \texttt{DbContext}}
 \begin{itemize}
 \item Reprezintă o sesiune pentru interogarea și manipularea datelor din baza de date.
@@ -185,14 +185,14 @@ Totalitatea claselor și altor tipuri de date care reprezintă structura bazei d
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org77594b2}]{Noțiuni de bază}
+\begin{frame}[label={sec:org9af0cf3}]{Noțiuni de bază}
 \begin{block}{Entity}
 \begin{itemize}
 \item Denumire generică pentru fiecare tip de date din modelul bazei de date.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgd795057},fragile]{Noțiuni de bază}
+\begin{frame}[label={sec:orge0349fc},fragile]{Noțiuni de bază}
  \begin{block}{Relație / \texttt{Navigational Properity}}
 \begin{itemize}
 \item O proprietate a unei entități prin care se modelează relația cu altă entitate,
@@ -200,34 +200,34 @@ Totalitatea claselor și altor tipuri de date care reprezintă structura bazei d
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgdeceb6c}]{Noțiuni de bază}
+\begin{frame}[label={sec:org9f71e33}]{Noțiuni de bază}
 \begin{block}{CRUD}
 \begin{itemize}
 \item Un acronim care denotă cele 4 funcții ale unui model de date: \alert{Create}, \alert{Read}, \alert{Update}, \alert{Delete}.
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org53ed962},fragile]{Eager vs Lazy loading}
+\begin{frame}[label={sec:org14f6ced},fragile]{Eager vs Lazy loading}
  \begin{itemize}
 \item Implicit Entity Framework va încărca entitățile relaționate atunci când acestea sunt parcurse (\texttt{Lazy loading}).
 \item Acest comportament poate fi modificat a.î. entitățile relaționate să fie încărcate în același timp cu entitatea principală (\texttt{Eager loading}).
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org1aea0a8},fragile]{Eager vs Lazy loading}
+\begin{frame}[label={sec:orgce053a3},fragile]{Eager vs Lazy loading}
  \begin{itemize}
 \item \texttt{Lazy loading} scade presiunea asupra bazei de date dar necesită o conexiune activă la parcurgere,
 \item \texttt{Eager loading} --- invers.
 \end{itemize}
 \end{frame}
 \section{Repository Pattern}
-\label{sec:org5c62e72}
-\begin{frame}[label={sec:org32a49e8},fragile]{Ce este \texttt{Repository}}
+\label{sec:org8da0e41}
+\begin{frame}[label={sec:orgbd6cf53},fragile]{Ce este \texttt{Repository}}
  \begin{itemize}
 \item Șablon de proiectare care decuplează logica aplicației de accesul la date.
 \item Interfață pentru a implementa operațiile \texttt{CRUD} pentru o anumită entitate.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org1f6c1aa}]{Avantaje}
+\begin{frame}[label={sec:org5a4b266}]{Avantaje}
 \begin{itemize}
 \item Decuplează logica aplicației de accesul la date,
 \item Decuplează aplicația de modificările aplicate bazei de date,
@@ -235,7 +235,7 @@ Totalitatea claselor și altor tipuri de date care reprezintă structura bazei d
 \item Logica aplicației devine mai ușor de testat.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org7d5e757},fragile]{Exemplu}
+\begin{frame}[label={sec:org270044a},fragile]{Exemplu}
  \begin{verbatim}
 public interface IStudentRepository
 {
@@ -249,8 +249,8 @@ public interface IStudentRepository
 \end{verbatim}
 \end{frame}
 \section{Încheiere}
-\label{sec:orgd254312}
-\begin{frame}[label={sec:org50336b7}]{Recapitulare}
+\label{sec:org16cf87e}
+\begin{frame}[label={sec:org729baf2}]{Recapitulare}
 \pause
 \begin{block}{LINQ}
 \pause
@@ -267,7 +267,7 @@ O platformă care permite interogarea și manipularea datelor folosind paradigma
 Șablon de proiectare ce decuplează logica aplicației de accesul la date.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org344cfb4}]{Vă mulțumesc!}
+\begin{frame}[label={sec:orgcdbd6ed}]{Vă mulțumesc!}
 \begin{center}
 Mulțumesc pentru atenție!
 \end{center}

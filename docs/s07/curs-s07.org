@@ -1,5 +1,5 @@
 #+title: Tehnici Avansate de Programare
-#+subtitle: LINQ & Entity Framework
+#+subtitle: LINQ, Entity Framework & Repository Pattern
 #+author: Petru Rebeja, Marius Apetrii
 #+date: 2 Aprilie 2020
 #+language: ro
