@@ -1,0 +1,226 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Unit of Work pattern, Dependency Injection & @@latex:\\@@ Test-Driven Development
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 9 Aprilie 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   - *LINQ* --- O mulțime de funcții ce permit interogarea uniformă a colecțiilor de date din diverse surse.
+   - *Entity Framework* --- O platformă care permite interogarea și manipularea datelor folosind paradigma orientat-obiect.
+   - *Repository Pattern* --- Șablon de proiectare ce decuplează logica aplicației de accesul la date.
+** Agenda
+   - Unit of Work pattern
+   - Dependency Injection
+   - Test-Driven Development
+* =Unit of Work= pattern
+** Repository
+   #+begin_src csharp
+     public interface IRepository<TEntity>
+     {
+	 IQueryable<TEntity> Query();
+	 void Insert(TEntity entity);
+	 void Update(TEntity entity);
+	 void Delete(TEntity entityId);
+	 void SaveChanges();
+     }
+   #+end_src
+** Repository
+   - Folosim o instanță de =repository= pentru a efectua operații =CRUD= asupra uneia sau a mai multor entități de același tip.
+   - Toate modificările sunt păstrate în memorie.
+   - Metoda =SaveChanges()= este apelată pentru a salva modificările în baza de date.
+** Scenariu problematic
+   Vrem să introducem în baza de date un client nou și datele de contact ale acestuia:
+
+   #+begin_src csharp
+     customerRepository.Insert(new Customer{...});
+     customerRepository.SaveChanges();
+
+     addressRepository.Insert(new CustomerAddress{...});
+     addressRepository.SaveChanges();
+   #+end_src
+   @@latex:\pause@@
+   Ce se întâmplă dacă =addressRepository.SaveChanges()= aruncă o excepție?
+** Scenariu problematic
+   Ce se întâmplă dacă =addressRepository.SaveChanges()= aruncă o excepție?
+   - Clientul este salvat în baza de date dar adresa nu.
+   - Baza de date rămâne într-o stare neconsistentă.
+   - Pentru a reveni la consistență clientul fără adresă trebuie șters.
+** Scenariu problematic
+   - Astfel de scenarii se regăsesc des în cerințele aplicațiilor.
+   - Atunci când lucrăm cu mai mult de două entități asigurarea consistenței datelor devine un mecanism foarte complex.
+** Soluția
+   Pentru a evita astfel de probleme folosim =Unit of Work=.
+** Unit of Work
+*** Unit of Work                                                    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    =Unit of Work= ține evidența tuturor modificărilor aferente bazei de date efectuate în timpul unei tranzacții logice din aplicație. La finalul tranzacției modificările sunt salvate în baza de date într-un mod care asigură atomicitatea și integritatea datelor.[fn:1]
+** Unit of Work Pattern
+   #+begin_src csharp
+     public interface IRepository<TEntity>
+     {
+	 IQueryable<TEntity> Query();
+	 void Insert(TEntity entity);
+	 void Update(TEntity entity);
+	 void Delete(TEntity entityId);
+     }
+
+     public interface IUnitOfWork
+     {
+	 void Commit();
+     }
+   #+end_src
+   - Metoda =SaveChanges()= devine redundantă și trebuie eliminată din interfața =IRepository=.
+** Exemplu
+   #+begin_src csharp
+     public class RegisterCustomerTransaction
+     {
+	 public RegisterCustomerTransaction(
+	     IRepository<Customer> customerRepository,
+	     IRepository<CustomerAddress> addressRepository,
+	     IUnitOfWork unitOfWork)
+	 {
+	     ...
+	 }
+
+	 public void Execute(Customer customer, CustomerAddress address)
+	 {
+	     customerRepository.Insert(customer);
+	     addressRepository.Insert(address);
+	     unitOfWork.Commit();
+	 }
+     }
+   #+end_src
+* =Depencency Injection=
+** Definiție
+*** Dependency Injection                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    =Dependency Injection= este o tehnică prin care un obiect îi furnizează altuia dependențele de care acesta din urmă are nevoie.[fn:2]
+** Definiție
+*** Dependency Injection                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    =Dependency Injection= este un termen de 25 dolari pentru un concept de 5 cenți. [...] =Dependency Injection= înseamnă să-i dai unei instanțe a unui anumit obiect variabilele de care are nevoie.[fn:3]
+** Avantaje
+   - Separarea responsabilităților[fn:4]:
+     - *Injectorul* construiește dependențele și le injectează în client și
+     - *Clientul* manipulează dependențele pentru obținerea unui anumit scop.
+   - Reducerea codului de umplutură și a gradului de acuplare.
+** Avantaje
+   - Flexibilitatea la schimbări fără necesitatea de recompilare --- efectele execuției codului client pot fi modificate prin injectarea unei implementări diferite.
+   - Facilitează testarea în izolare.
+** Dezavantaje
+   - Grad de abstractizare mai mare care crește dificultatea codului.
+   - Induce o dependență față de o bibliotecă pentru =Dependency Injection=.
+   - Poate duce la o acuplare mai mare prin utilizarea defectuoasă.
+** =Service Locator=
+*** =Service Locator=                                               :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Ideea de bază a unui =Service Locator= este să ai la dispoziție un obiect care știe cum să obțină, la cerere, instanțe ale tuturor serviciilor necesare unei aplicații[fn:5].
+  @@latex:\vskip 0.5in@@
+  *N.B.*: O instanță de serviciu = o dependență.
+** =Service Locator= --- exemplu
+   #+begin_src csharp
+     public class RegisterCustomerTransaction
+     {
+	 public RegisterCustomerTransaction()
+	 {
+	     customerRepository = ServiceLocator
+		 .GetInstance<IRepository<Customer>>();
+	     addressRepository = ServiceLocator
+		 .GetInstance<IRepository<CustomerAddress>>();
+	     unitOfWork = ServiceLocator.GetInstance<IUnitOfWork>();
+	 }
+     }
+   #+end_src
+** =Service Locator=
+   - *Este un anti-șablon*[fn:6].
+   - Induce un grad mare de acuplare.
+   - Ascunde dependențele.
+* Test-Driven Development
+** Definiție
+*** Test-Driven Development[fn:7]                                         :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    Este un stil de dezvoltare a aplicațiilor constând în trecerea frecventă prin următoarele trei activități:
+    - Scrierea de cod
+    - Scrierea de teste unitare și
+    - Refactorizare.
+** Ciclul de dezvoltare =TDD=[fn:8]
+   - Scierea unui singur test unitar menit să descrie un anumit aspect al metodei,
+   - Execuția testului care eșuează deoarece aspectul încă nu este implementat,
+   - Scrierea cantității de cod necesare pentru a trece testul,
+   - Refactorizarea codului scris pentru a se încadra în diverse criterii (simplitate, lizibilitate etc.).
+** Ciclul de dezvoltare =TDD=
+   Procesul se repetă de mai multe ori ducând la acumularea de teste unitare pentru fiecare aspect al aplicației.
+** Avantaje
+   - Reduce timpul petrecut pentru depanare,
+   - Reduce numărul defectelor din aplicație,
+   - Scade gradul de acuplare și crește coeziunea.
+** Dezavantaje
+   - Crește timpul necesar pentru dezvoltare,
+   - Crește efortul necesar întreținerii,
+   - Necesită o perioadă de adaptare.
+** Teste unitare
+   - Metode care verifică un anumit aspect al modulului pe care îl testează.
+   - Sunt decorate cu atributul =[TestMethod]=.
+   - De obicei sunt într-o clasă decorată cu =[TestClass]=.
+** Structura unui test
+   Un test este structurat conform șablonului =AAA=:
+   - *Arrange*  --- pregătirile necesare pentru a apela metoda testată: crearea de instanțe false, instanțierea clasei etc.
+   - *Act* --- apelarea propriu-zisă a metodei testate și preluarea rezultatelor.
+   - *Assert* --- verificarea rezultatelor și/sau comportamentului metodei testate.
+* Încheiere
+** Recapitulare
+   @@latex:\pause@@
+*** Unit of Work
+    @@latex:\pause@@
+    Este un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+    @@latex:\pause@@
+*** Dependency Injection
+    @@latex:\pause@@
+    Este o modalitate de a-i da unei instanțe variabilele de care aceasta are nevoie separând astfel crearea de instanțe de utilizarea lor.
+    @@latex:\pause@@
+*** Test-Driven Development
+    @@latex:\pause@@
+    Este un stil de dezvoltare software în care mai întâi se scriu testele pentru un anumit aspect iar mai apoi implementarea propriu-zisă.
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:8]https://www.agilealliance.org/glossary/tdd
+
+[fn:7]https://www.agilealliance.org/glossary/tdd
+
+[fn:6]https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/
+
+[fn:5]https://martinfowler.com/articles/injection.html#UsingAServiceLocator
+
+[fn:1]https://www.martinfowler.com/eaaCatalog/unitOfWork.html
+
+[fn:2]https://en.wikipedia.org/wiki/Dependency_injection
+
+[fn:3]https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html
+
+[fn:4]https://en.wikipedia.org/wiki/Dependency_injection

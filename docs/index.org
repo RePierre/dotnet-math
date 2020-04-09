@@ -235,6 +235,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s07-lab
    :END:
    La laborator începem să definim schema de baze de date pentru proiectul de curs.
+* Săptămâna 08
+  :PROPERTIES:
+  :CUSTOM_ID: s08
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s08-curs
+   :END:
+   *Unit of Work pattern, Dependency Injection & Test-Driven Development*
+
+   La curs discutăm despre cum putem încapsula operațiile asupra bazei de date într-o tranzacție cu =Unit of Work pattern= apoi discutăm despre =Dependency Injection= și =Test-Driven Development=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s08/curs-s08.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s08-lab
+   :END:
+   La laborator analizăm propunerile pentru proiectele de curs.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
