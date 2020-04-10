@@ -257,7 +257,9 @@ Aplicația va fi propusă de către membrii echipei.
   :PROPERTIES:
   :CUSTOM_ID: links
   :END:
-  - [[https://visualstudio.microsoft.com/dev-essentials/][Visual Studio Dev Essentials]] - acces gratuit (limitat) la unelte oferite de Microsoft și partenerii săi.
-  - [[https://c4model.com/][Modelul C4]] - modelul C4 pentru vizualizarea arhitecturii aplicațiilor software. O descriere scurtă a modelului este pe [[https://www.infoq.com/articles/C4-architecture-model/][InfoQ]].
-  - [[https://guides.github.com/introduction/flow/][GitHub flow]] - o descriere a modului de lucru pe GitHub.
-  - [[https://www.youtube.com/watch?v=aJnFGMclhU8][Git Workflow Strategies]] - o comparație între =GitHub flow= și =Git workflow=.
+  - [[https://visualstudio.microsoft.com/dev-essentials/][Visual Studio Dev Essentials]] --- acces gratuit (limitat) la unelte oferite de Microsoft și partenerii săi.
+  - [[https://c4model.com/][Modelul C4]] --- modelul C4 pentru vizualizarea arhitecturii aplicațiilor software. O descriere scurtă a modelului este pe [[https://www.infoq.com/articles/C4-architecture-model/][InfoQ]].
+  - [[https://guides.github.com/introduction/flow/][GitHub flow]] --- o descriere a modului de lucru pe GitHub.
+  - [[https://www.youtube.com/watch?v=aJnFGMclhU8][Git Workflow Strategies]] --- o comparație între =GitHub flow= și =Git workflow=.
+  - [[https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet][Markdown Cheatsheet]] --- exemple de formatare folosind sintaxa =markdown=.
+  - [[https://help.github.com/en/github/writing-on-github][Writing on GitHub]] --- formatarea textului folosind sintaxa =markdown= specifică GitHub.
