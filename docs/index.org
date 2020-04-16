@@ -253,6 +253,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s08-lab
    :END:
    La laborator analizăm propunerile pentru proiectele de curs.
+* Săptămâna 09
+  :PROPERTIES:
+  :CUSTOM_ID: s09
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s09-curs
+   :END:
+   *Baze de date și Gestiunea sarcinilor de lucru*
+
+   La curs discutăm despre cum păstrăm istoricul bazei alături de istoricul codului-sursă și fluxul de lucru pentru dezvoltarea proiectului de curs.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s09/curs-s09.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s09-lab
+   :END:
+   La laborator avem a doua evaluare din acest semestru.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
