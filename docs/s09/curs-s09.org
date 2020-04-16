@@ -1,0 +1,136 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Baze de date și Gestiunea sarcinilor de lucru
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 16 Aprilie 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   - *Unit of Work* --- un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+   - *Dependency Injection* --- o modalitate de a-i da unei instanțe variabilele de care aceasta are nevoie separând astfel crearea de instanțe de utilizarea lor.
+   - *Test-Driven Development* --- un stil de dezvoltare software în care mai întâi se scriu testele pentru un anumit aspect iar mai apoi implementarea propriu-zisă.
+** Agenda
+   - Baze de date
+   - Istoricul schemei bazei de date relaționale
+   - Gestiunea sarcinilor de lucru într-un proiect
+* Baze de date
+** Noțiuni de bază
+*** Bază de date                                                    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    O =bază de date= este o colecție organizată de date care sunt stocate și accesate de pe un calculator[fn:1].
+** Noțiuni de bază
+*** Sistem de Gestiune al Bazelor de Date                           :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Sistemul de Gestiune a Bazelor de Date este un sistem software care le permite utilizatorilor să definească, să creeze, să întrețină și să controleze accesul la baza de date[fn:2].
+** Noțiuni de bază
+*** Schema bazei de date                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Schema bazei de date este structura logică a bazei de date descrisă într-un limbaj formal suportat de SGBD[fn:3] sau o reprezentare vizuală a acesteia[fn:4]
+** Tipuri de baze de date
+   Există două tipuri de baze de date:
+   - Relaționale (=SQL=) și
+   - Non-relaționale (=No-SQL=)
+** Baze de date relaționale
+   - Sunt bazate pe tabele și modelează relația dintre ele,
+   - Au o schemă predefinită,
+   - Suportă interogări complexe,
+** Baze de date relaționale (cont.)
+   - Suportă creșterea pe verticală (=vertical scaling=) prin adăugarea de memorie RAM, spațiu pe disk etc.,
+   - Pun accentul pe proprietățile =ACID=:
+     - =Atomicity= --- modificări atomice,
+     - =Consistency= --- impune consistența datelor
+     - =Isolation= --- modificările se fac în izolare unele față de altele
+     - =Durability= --- modificările sunt salvate pe disk.
+** Baze de date No-SQL
+   - Sunt bazate pe documente, grafuri, perechi cheie-valoare etc.
+   - *Nu* au o schemă predefinită,
+   - Au suport limitat pentru interogări complexe,
+** Baze de date No-SQL (cont.)
+   - Suportă creșterea pe orizontală (=horizontal scaling=) prin adăugarea de noduri noi,
+   - Aplică teorema CAP[fn:5] --- în orice moment oferă două proprietăți din următoarele:
+     - =Consistency= --- orice scriere primește cele mai recente date sau o eroare,
+     - =Availability= --- fiecare cerere primește un răspuns dar pot să nu fie cele mai recente,
+     - =Partition tolerance= --- systemul continuă să funcționeze în ciuda pierderii unor mesaje.
+* Evoluția bazei de date
+** Evoluția aplicației
+   - Baza de date evoluează (de obicei) împreună cu aplicația,
+   - Modificările bazei de date fac parte din ciclul de dezvoltare.
+** Bune practici
+   - Schema bazei de date trebuie păstrată în sistemul de management al istoricului[fn:6] pentru a asigura sincronizarea între modificările aplicației și a bazei de date,
+   - Aplicarea modificărilor trebuie sincronizată,
+   - Altfel întregul sistem software devine inutilizabil.
+* Gestiunea sarcinilor de lucru
+** Componente-cheie
+   Dezvoltarea unui sistem software implică existența următoarelor componente:
+   - Lista de cerințe/defecte (=product backlog=),
+   - Fluxul de lucru în dezvoltare,
+   - Documentația,
+   - Ciclul de lansare.
+** Lista de cerințe/defecte
+*** Product backlog                                                 :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Este o listă de cerințe și defecte ale sistemului software, ordonată după valoarea adăugată, risc și prioritate.
+    @@latex:\vskip 0.1in@@
+    - =Product Backlog Item= = o cerință sau un defect din listă.
+** Fluxul de lucru
+   - Totalitatea stărilor prin care trece o sarcină. Ex. (=Open=, =In Progress=, =Closed=).
+   - Sarcinile sunt afișate pe o tablă separată în coloane cu o coloană pentru fiecare stare.
+   - La trecerea dintr-o stare în alta sarcina este mutată în coloana respectivă.
+** Documentația
+   - Trebuie păstrată la minimul necesar și ajustată o dată cu modificările aplicației.
+   - Trebuie păstrată în sistemul de gestiune al istoricului:
+     - Fiind aproape de cod este (mai) ușor de întreținut,
+     - Trebuie să fie într-un format care să permită revizuirea modificărilor (ex: =markdown=).
+** Ciclul de lansare
+   - Poate fi periodic sau sporadic,
+   - Necesită planificarea sarcinilor și modificărilor pentru fiecare versiune.
+   - Sarcinile planificate sunt puse într-o listă nouă sau etichetate pentru a putea fi filtrate.
+* Demonstrații
+* Încheiere
+** Recapitulare --- baze de date
+   - *Baza de date* este o colecție organizată de date care pot fi manipulate prin intermediul unui SGBD.
+   - *SGBD* = Sistem de Gestiune al Bazelor de Date; permite manipulearea datelor și întreținerea bazelor de date.
+   - *Schema bazei de date* este reprezentarea structurii bazei de date și trebuie păstrată în sistemul de gestiune al istoricului alături de codul-sursă al aplicației.
+   - Folosiți =Database project= din Visual Studio pentru modificarea schemei bazei de date.
+** Recapitulare --- dezvoltare proiect
+   - Păstrați o listă a sarcinilor de lucru a proiectului,
+   - Definiți un flux de lucru,
+   - Păstrați un minim necesar de documentație,
+   - Concentrați-vă asupra sarcinilor planificate pentru versiunea nouă.
+** Vă mulțumesc
+   #+begin_center
+   Succes la evaluare!
+   #+end_center
+
+* Footnotes
+
+[fn:6]https://www.troyhunt.com/10-commandments-of-good-source-control/
+
+[fn:5]https://en.wikipedia.org/wiki/CAP_theorem
+
+[fn:4]https://www.techopedia.com/definition/30601/database-schema
+[fn:3]http://en.wikipedia.org/wiki/Database_schema
+[fn:2]Connolly, Thomas M.; Begg, Carolyn E. (2014). Database Systems – A Practical Approach to Design Implementation and Management (6th ed.). Pearson. p. 64. ISBN 978-1292061184.
+[fn:1]https://en.wikipedia.org/wiki/Database

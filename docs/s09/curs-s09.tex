@@ -1,0 +1,204 @@
+% Created 2020-04-16 Thu 15:39
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{16 Aprilie 2020}
+\title{Tehnici Avansate de Programare}
+\subtitle{Baze de date și Gestiunea sarcinilor de lucru}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.3.6)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:orga8173ff}
+\begin{frame}[label={sec:orgbed4e3d}]{Recapitulare}
+\begin{itemize}
+\item \alert{Unit of Work} --- un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+\item \alert{Dependency Injection} --- o modalitate de a-i da unei instanțe variabilele de care aceasta are nevoie separând astfel crearea de instanțe de utilizarea lor.
+\item \alert{Test-Driven Development} --- un stil de dezvoltare software în care mai întâi se scriu testele pentru un anumit aspect iar mai apoi implementarea propriu-zisă.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgd187ecf}]{Agenda}
+\begin{itemize}
+\item Baze de date
+\item Istoricul schemei bazei de date relaționale
+\item Gestiunea sarcinilor de lucru într-un proiect
+\end{itemize}
+\end{frame}
+\section{Baze de date}
+\label{sec:org963c770}
+\begin{frame}[label={sec:org01db716},fragile]{Noțiuni de bază}
+ \begin{block}{Bază de date}
+\vskip 0.1in
+O \texttt{bază de date} este o colecție organizată de date care sunt stocate și accesate de pe un calculator\footnote{\url{https://en.wikipedia.org/wiki/Database}}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org0f17213}]{Noțiuni de bază}
+\begin{block}{Sistem de Gestiune al Bazelor de Date}
+\vskip 0.1in
+Sistemul de Gestiune a Bazelor de Date este un sistem software care le permite utilizatorilor să definească, să creeze, să întrețină și să controleze accesul la baza de date\footnote{Connolly, Thomas M.; Begg, Carolyn E. (2014). Database Systems – A Practical Approach to Design Implementation and Management (6th ed.). Pearson. p. 64. ISBN 978-1292061184.}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org3f2e50b}]{Noțiuni de bază}
+\begin{block}{Schema bazei de date}
+\vskip 0.1in
+Schema bazei de date este structura logică a bazei de date descrisă într-un limbaj formal suportat de SGBD\footnote{\url{http://en.wikipedia.org/wiki/Database\_schema}} sau o reprezentare vizuală a acesteia\footnote{\url{https://www.techopedia.com/definition/30601/database-schema}}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org8345456},fragile]{Tipuri de baze de date}
+ Există două tipuri de baze de date:
+\begin{itemize}
+\item Relaționale (\texttt{SQL}) și
+\item Non-relaționale (\texttt{No-SQL})
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgde685f4}]{Baze de date relaționale}
+\begin{itemize}
+\item Sunt bazate pe tabele și modelează relația dintre ele,
+\item Au o schemă predefinită,
+\item Suportă interogări complexe,
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org67dd947},fragile]{Baze de date relaționale (cont.)}
+ \begin{itemize}
+\item Suportă creșterea pe verticală (\texttt{vertical scaling}) prin adăugarea de memorie RAM, spațiu pe disk etc.,
+\item Pun accentul pe proprietățile \texttt{ACID}:
+\begin{itemize}
+\item \texttt{Atomicity} --- modificări atomice,
+\item \texttt{Consistency} --- impune consistența datelor
+\item \texttt{Isolation} --- modificările se fac în izolare unele față de altele
+\item \texttt{Durability} --- modificările sunt salvate pe disk.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org3b17f9d}]{Baze de date No-SQL}
+\begin{itemize}
+\item Sunt bazate pe documente, grafuri, perechi cheie-valoare etc.
+\item \alert{Nu} au o schemă predefinită,
+\item Au suport limitat pentru interogări complexe,
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org97ef92f},fragile]{Baze de date No-SQL (cont.)}
+ \begin{itemize}
+\item Suportă creșterea pe orizontală (\texttt{horizontal scaling}) prin adăugarea de noduri noi,
+\item Aplică teorema CAP\footnote{\url{https://en.wikipedia.org/wiki/CAP\_theorem}} --- în orice moment oferă două proprietăți din următoarele:
+\begin{itemize}
+\item \texttt{Consistency} --- orice scriere primește cele mai recente date sau o eroare,
+\item \texttt{Availability} --- fiecare cerere primește un răspuns dar pot să nu fie cele mai recente,
+\item \texttt{Partition tolerance} --- systemul continuă să funcționeze în ciuda pierderii unor mesaje.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\section{Evoluția bazei de date}
+\label{sec:orga0f5082}
+\begin{frame}[label={sec:orgc8b64a2}]{Evoluția aplicației}
+\begin{itemize}
+\item Baza de date evoluează (de obicei) împreună cu aplicația,
+\item Modificările bazei de date fac parte din ciclul de dezvoltare.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org6e62fd7}]{Bune practici}
+\begin{itemize}
+\item Schema bazei de date trebuie păstrată în sistemul de management al istoricului\footnote{\url{https://www.troyhunt.com/10-commandments-of-good-source-control/}} pentru a asigura sincronizarea între modificările aplicației și a bazei de date,
+\item Aplicarea modificărilor trebuie sincronizată,
+\item Altfel întregul sistem software devine inutilizabil.
+\end{itemize}
+\end{frame}
+\section{Gestiunea sarcinilor de lucru}
+\label{sec:org0dad813}
+\begin{frame}[label={sec:org851ea9b},fragile]{Componente-cheie}
+ Dezvoltarea unui sistem software implică existența următoarelor componente:
+\begin{itemize}
+\item Lista de cerințe/defecte (\texttt{product backlog}),
+\item Fluxul de lucru în dezvoltare,
+\item Documentația,
+\item Ciclul de lansare.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga4a94b4},fragile]{Lista de cerințe/defecte}
+ \begin{block}{Product backlog}
+\vskip 0.1in
+Este o listă de cerințe și defecte ale sistemului software, ordonată după valoarea adăugată, risc și prioritate.
+\vskip 0.1in
+\begin{itemize}
+\item \texttt{Product Backlog Item} = o cerință sau un defect din listă.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgd2ec424},fragile]{Fluxul de lucru}
+ \begin{itemize}
+\item Totalitatea stărilor prin care trece o sarcină. Ex. (\texttt{Open}, \texttt{In Progress}, \texttt{Closed}).
+\item Sarcinile sunt afișate pe o tablă separată în coloane cu o coloană pentru fiecare stare.
+\item La trecerea dintr-o stare în alta sarcina este mutată în coloana respectivă.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga4079d4},fragile]{Documentația}
+ \begin{itemize}
+\item Trebuie păstrată la minimul necesar și ajustată o dată cu modificările aplicației.
+\item Trebuie păstrată în sistemul de gestiune al istoricului:
+\begin{itemize}
+\item Fiind aproape de cod este (mai) ușor de întreținut,
+\item Trebuie să fie într-un format care să permită revizuirea modificărilor (ex: \texttt{markdown}).
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org72a00f2}]{Ciclul de lansare}
+\begin{itemize}
+\item Poate fi periodic sau sporadic,
+\item Necesită planificarea sarcinilor și modificărilor pentru fiecare versiune.
+\item Sarcinile planificate sunt puse într-o listă nouă sau etichetate pentru a putea fi filtrate.
+\end{itemize}
+\end{frame}
+\section{Demonstrații}
+\label{sec:orga3055df}
+\section{Încheiere}
+\label{sec:orgf858f01}
+\begin{frame}[label={sec:org91c8d78},fragile]{Recapitulare --- baze de date}
+ \begin{itemize}
+\item \alert{Baza de date} este o colecție organizată de date care pot fi manipulate prin intermediul unui SGBD.
+\item \alert{SGBD} = Sistem de Gestiune al Bazelor de Date; permite manipulearea datelor și întreținerea bazelor de date.
+\item \alert{Schema bazei de date} este reprezentarea structurii bazei de date și trebuie păstrată în sistemul de gestiune al istoricului alături de codul-sursă al aplicației.
+\item Folosiți \texttt{Database project} din Visual Studio pentru modificarea schemei bazei de date.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org4079b4d}]{Recapitulare --- dezvoltare proiect}
+\begin{itemize}
+\item Păstrați o listă a sarcinilor de lucru a proiectului,
+\item Definiți un flux de lucru,
+\item Păstrați un minim necesar de documentație,
+\item Concentrați-vă asupra sarcinilor planificate pentru versiunea nouă.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgacfdbb2}]{Vă mulțumesc}
+\begin{center}
+Succes la evaluare!
+\end{center}
+\end{frame}
+\end{document}
