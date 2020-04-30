@@ -273,6 +273,24 @@ Aplicația va fi propusă de către membrii echipei.
    La laborator avem a doua evaluare din acest semestru.
 
    Pagina cu cerințele pentru evaluare este pe [[https://github.com/RePierre/tap2020-e02][GitHub]].
+* Săptămâna 10
+  :PROPERTIES:
+  :CUSTOM_ID: s10
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s10-curs
+   :END:
+   *ASP.NET Core MVC --- Introducere*
+
+   La curs discutăm despre şablonul =Model-View-Controller= şi facem introducerea platformei =ASP.NET Core MVC=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s10/curs-s10.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s10-lab
+   :END:
+   La laborator lucrăm la proiectul de la finalul semestrului.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
