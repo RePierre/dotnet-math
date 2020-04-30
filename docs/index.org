@@ -50,8 +50,8 @@ Aplicația va fi propusă de către membrii echipei.
    :END:
    | Tip activitate | Criterii de evaluare                                                        | Metode de evaluare                          | Pondere în nota finală |
    |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
-   | Curs           | Cunoașterea și utilizarea corectă a noțiunilor și rezultatelor fundamentale | 3 teste (S3, S9 și S14)(*TS*)               |                    70% |
-   | Laborator      | Implementarea corectă a rezultatelor teoretice                              | Evaluarea portofoliului (teme+proiect)(*P*) |                    30% |
+   | Curs           | Cunoașterea și utilizarea corectă a noțiunilor și rezultatelor fundamentale | 2 teste (S3 şi S9)(*TS*)                    |                    60% |
+   | Laborator      | Implementarea corectă a rezultatelor teoretice                              | Evaluarea portofoliului (teme+proiect)(*P*) |                    40% |
    |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
 *** Standard minim de performanță:
     \begin{equation}
