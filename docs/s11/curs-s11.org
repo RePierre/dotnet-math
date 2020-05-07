@@ -42,7 +42,7 @@
    10. Trimite răspuns lui B
 ** Execuţie asincronă
    1. Trimite interogare la baza de date pentru utilizatorul A
-   2. Trimite interogare la baza de date pentru utilizaotul B
+   2. Trimite interogare la baza de date pentru utilizatorul B
    3. Primeşte răspuns la interogarea pentru A
    4. Generează HTML-ul pentru A
    5. Trimite răspuns lui A
@@ -125,7 +125,7 @@
 * Demonstraţii
 * Încheiere
 ** Recapitulare
-   - =TPL= simplifică integrarea execuţiei paralele şi asincrone în aplicaţie lăsând în grija sistemului detaliile de nivel jos a.î. programatorul să se poată concentra asupra logicii aplicaţiei.
+   - =TPL= simplifică integrarea execuţiei paralele şi asincrone în aplicaţie lăsând în grija sistemului detaliile de nivel inferior a.î. programatorul să se poată concentra asupra logicii aplicaţiei.
    - =Middleware= sunt componentele care fac parte din linia de procesare a interogărilor şi răspunsurilor la interogări.
    - Două componente de acest fel sunt middleware pentru autentificare şi autorizare care se ocupă de atestarea identităţii utilizatorului şi respectiv verificarea drepturilor de acces.
    - Putem folosi =ASP.NET Core Identity= pentru a implementa autentificarea.
