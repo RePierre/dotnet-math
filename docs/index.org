@@ -291,6 +291,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s10-lab
    :END:
    La laborator lucrăm la proiectul de la finalul semestrului.
+* Săptămâna 11
+  :PROPERTIES:
+  :CUSTOM_ID: s11
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s11-curs
+   :END:
+   *=Task Parallel Library= şi securitatea în ASP.NET Core MVC*
+
+   La curs discutăm despre =Task Parallel Library= şi cum =async= şi =await= ne ajută în implementarea proprie a modulelor care se ocupă de autorizare şi autentificare în =ASP.NET Core MVC=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s11/curs-s11.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s11-lab
+   :END:
+   La laborator lucrăm la proiectul de la finalul semestrului.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
@@ -301,3 +319,6 @@ Aplicația va fi propusă de către membrii echipei.
   - [[https://www.youtube.com/watch?v=aJnFGMclhU8][Git Workflow Strategies]] --- o comparație între =GitHub flow= și =Git workflow=.
   - [[https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet][Markdown Cheatsheet]] --- exemple de formatare folosind sintaxa =markdown=.
   - [[https://help.github.com/en/github/writing-on-github][Writing on GitHub]] --- formatarea textului folosind sintaxa =markdown= specifică GitHub.
+  - [[http://www.albahari.com/threading/part5.aspx][Fire de execuţie în C#]] --- articol despre cum trebuie utilizate firele de execuţie în C# şi conceptele din spate.
+  - [[http://www.albahari.com/threading/part5.aspx][Parallel Programming in C#]] --- descriere detaliată a conceptelor din =Task Parallel Library=.
+  - [[https://www.linqpad.net/][LINQPad]] --- aplicaţie care permite executarea interogărilor =LINQ= în mod interactiv.
