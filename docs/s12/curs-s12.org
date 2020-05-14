@@ -1,0 +1,193 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Database design & Introducere în DevOps
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 13 Mai 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   @@latex:\pause@@
+   - =TPL= simplifică integrarea execuţiei paralele şi asincrone în aplicaţie lăsând în grija sistemului detaliile de nivel inferior a.î. programatorul să se poată concentra asupra logicii aplicaţiei.
+   @@latex:\pause@@
+   - =Middleware= sunt componentele care fac parte din linia de procesare a interogărilor şi răspunsurilor la interogări. Ex: middleware pentru autentificare şi autorizare.
+   @@latex:\pause@@
+   - =Autentificare= --- procesul de preluare a datelor care atestă identitatea unui utilizator şi verificarea acestora; implementat de =ASP.NET Core Identity=.
+   @@latex:\pause@@
+   - =Autorizare= --- procesul de verificare a drepturilor de acces a  unui utilizator în vederea accesării unei anumite resurse; se face cu ajutorul =AuthorizeAttribute=.
+** Agenda
+   - Proiectarea bazelor de date
+     - Relaţii
+     - Forme normale
+     - Proiectare
+   - DevOps
+     - Continuous Integration
+     - Continuous Delivery
+     - Continuous Deployment
+   - Demonstraţii
+* Proiectarea bazelor de date
+** Primary/Foreign Key
+   - O cheie primară (=Primary Key=) este o mulţime de coloane ale unui tabel a căror valori identifică în mod unic o înregistrare[fn:1].
+   - O cheie străină (=Foreign Key=) este o mulţime de coloane ale unui tabel care fac referinţă la o cheie primară[fn:2].
+** Relaţie
+   Adăugarea unei chei străine crează o =relaţie= între cele două tabele unde:
+   - Tabelul =copil= este cel care conţine cheia străină,
+   - Tabelul =părinte= este cel care conţine cheia primară referenţiată de tabelul copil.
+** Exemplu: 1*N
+   #+attr_latex: :width \textwidth
+   [[file:img/one-to-many.png]]
+** Exemplu[fn:6]: N*M
+   #+attr_latex: :width .8\textwidth
+   [[file:img/many-to-many.png]]
+** Normalizare
+*** Normalizarea bazei de date                                      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   Procesul de structurare a unei baze de date relaţionale pentru a reduce redundanţa datelor şi a îmbunătăţi integritatea acestora[fn:3].
+** Objective normalizare
+   - Modelarea conceptelor din lumea reală şi a relaţiilor dintre acestea.
+   - Extensibilitate sporită: adăugarea obiectelor noi se face cu intervenţie minimă.
+** Forme normale
+   - Normalizarea se face prin aducerea schemei la o =formă normală=.
+   - O =formă normală= este o proprietate a structurii bazei de date.
+   - Există mai multe forme normale (=FN1=---=FN6= etc.).
+   - O bază de date este normalizată dacă respectă cel puţin =FN3=.
+** Forma Normală 1
+*** FN1                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    O relaţie este în =Forma Normală 1= dacă în fiecare coloană a unui tabel avem doar valori atomice.
+** Forma Normală 1
+   Normalizarea la =FN1= se face prin:
+   1. Eliminarea grupurilor care se repetă.
+   2. Crearea unui table pentru fiecare colecţie de date cu coeziune mare.
+   3. Adăugarea unei chei primare.
+** Forma Normală 2
+*** FN2                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   O relaţie este în =Forma Normală 2= dacă:
+   1. Este în =Forma Normală 1= şi
+   2. Toate atributele unui tabel depind doar de cheia primară direct sau indirect.
+** Forma Normală 2
+   Tournament winners[fn:4]
+   | _Tournament_         | _Year_ | Winner         | Winner's date of birth |
+   |----------------------+------+----------------+------------------------|
+   | Indiana Invitational | 1998 | Al Fredrickson | 21 July 1975           |
+   | Cleveland Open       | 1999 | Bob Albertson  | 28 September 1968      |
+   | Des Moines Masters   | 1999 | Al Fredrickson | 21 July 1975           |
+   | Indiana Invitational | 1999 | Chip Masterson | 14 March 1977          |
+** Forma Normală 3
+*** FN3                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   O relaţie este în =Forma Normală 3= dacă:
+   1. Este în =Forma Normală 2= şi
+   2. Fiecare atribut depinde direct de cheia primară.
+** Forma Normală 3[fn:5]
+*** Tournament winners                                             :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :END:
+   | Tournament           | Year | Winner         |
+   |----------------------+------+----------------|
+   | Indiana Invitational | 1998 | Al Fredrickson |
+   | Cleveland Open       | 1999 | Bob Albertson  |
+   | Des Moines Masters   | 1999 | Al Fredrickson |
+   | Indiana Invitational | 1999 | Chip Masterson |
+*** Winner's dates of birth                                        :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :END:
+   | Winner         | Date of birth     |
+   |----------------+-------------------|
+   | Chip Masterson | 14 March 1977     |
+   | Al Fredrickson | 21 July 1975      |
+   | Bob Albertson  | 28 September 1968 |
+* DevOps
+** DevOps
+*** DevOps                                                          :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   Un set de practici care combină dezvoltarea software (=Dev=) şi logistica IT (=Ops=) a cărui scop este să reducă durata ciclului de dezvoltare software şi să crească frecvenţa de livrare a sistemelor software[fn:8].
+** Conductele de livrare
+*** Deployment pipeline                                                  :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Procesul _automat_ prin care codul-sursă este preluat din sistemul de gestiune al istoricului şi transformat într-un artefact (=deliverable=) prin care sistemul software poate fi pus la dispoziţia utilizatorilor.
+** Conductele de livrare: Motivaţie
+   - Automatizarea procesului elimină riscul de eroare umană
+   - Timpii de aşteptare constanţi
+   - Creşte încrederea în calitatea produsului
+** Exemplu[fn:7]
+   #+attr_latex: :width \textwidth
+   [[file:img/deployment-pipeline.png]]
+** Continuous Integration
+*** Continuous Integration                                          :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Practică a dezvoltării software în care modificările aduse de fiecare programator în parte sunt integrate în sistemul de gestine al istoricului şi verificate în mod automat.
+** Continuous Delivery
+*** Continuous Delivery[fn:9]                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Practică a dezvoltării software în care aplicaţia poate fi lansată în producţie în orice moment.
+  - Necesită intervenţie umană.
+** Continuous Deployment
+*** Continuous Deployment                                           :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Practică a dezvoltării software în care orice modificare nouă a aplicaţiei este lansată în mod automat în producţie.
+* Demonstraţii
+* Încheiere
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:9] https://www.martinfowler.com/bliki/ContinuousDelivery.html
+
+[fn:8] https://en.wikipedia.org/wiki/DevOps
+
+[fn:7] https://www.linux.com/audience/devops/devops-fundamentals-part-4-patterns-and-practices/
+
+[fn:6] https://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/
+
+[fn:5] https://en.wikipedia.org/wiki/Third_normal_form
+
+[fn:4] https://en.wikipedia.org/wiki/Third_normal_form
+
+[fn:3] https://en.wikipedia.org/wiki/Database_normalization
+
+[fn:2] https://www.w3schools.com/sql/sql_foreignkey.asp
+
+[fn:1] http://www.differencebetween.net/technology/difference-between-primary-key-and-unique-key/
