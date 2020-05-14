@@ -1,7 +1,7 @@
 #+title: Tehnici Avansate de Programare
 #+subtitle: Database design & Introducere în DevOps
 #+author: Petru Rebeja, Marius Apetrii
-#+date: 13 Mai 2020
+#+date: 14 Mai 2020
 #+language: ro
 #+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
 #+latex_class: beamer
