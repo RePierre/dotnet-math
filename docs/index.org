@@ -309,6 +309,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s11-lab
    :END:
    La laborator lucrăm la proiectul de la finalul semestrului.
+* Săptămâna 12
+  :PROPERTIES:
+  :CUSTOM_ID: s12
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s12-curs
+   :END:
+   *Database design & Introducere în DevOps*
+
+   La curs discutăm despre proiectarea bazelor de date şi facem o scurtă introducere în practicile şi nomenclatura =DevOps=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s12/curs-s12.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s12-lab
+   :END:
+   La laborator lucrăm la proiectul de la finalul semestrului.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
