@@ -1,0 +1,212 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: De la modularizare la arhitectură
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 21 Mai 2020
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   @@latex:\pause@@
+   - Elemente esenţiale în proiectarea bazelor de date: =cheie primară=, =cheie străină= şi =relaţie=.
+   @@latex:\pause@@
+   - =Normalizare= --- proiectarea/restructurarea bazei de date pentru a o aduce în (cel puţin) =forma normală 3=.
+   @@latex:\pause@@
+   - =Practicile DevOps= pentru creşterea frecvenţei de livrare.
+   @@latex:\pause@@
+   - =Conductele de livrare= --- ne ajută să implementăm practici precum:
+     - =Continuous Integration= --- integrarea şi verificarea automată a modificărilor,
+     - =Continous Delivery= --- posibilitatea de a trimite oricând aplicaţia în producţie,
+     - =Continuous Deployment= --- lansarea automată în producţie a modificărilor noi.
+** Agenda
+   - Studiu de caz modularizare
+   - Arhitectura software
+   - Tipuri de arhitecturi software
+   - Demonstraţii
+* Modularizare --- studiu de caz
+** =Entity= vs =ViewModel=
+*** =User= vs =UserViewModel=                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :END:
+    #+attr_latex: :height .8\textheight
+    [[file:img/entity-vs-view-model.png]]
+*** Întrebări                                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :BEAMER_env: block
+    :END:
+    - De ce avem nevoie de =User= şi =UserViewModel=?
+    - Care sunt diferenţele dintre ele?
+** =Entity= vs =ViewModel=
+*** =User= vs =UserViewModel=                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :END:
+    #+attr_latex: :height .8\textheight
+    [[file:img/entity-vs-view-model.png]]
+*** Scop                                                      :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :BEAMER_env: block
+    :END:
+    - Clasa =User=
+      - Reprezintă /domeniul/ aplicaţiei
+      - Se mulează pe tabelul =Users= din baza de date.
+    - Clasa =UserViewModel=
+      - Reprezintă /modelul/ pentru o anumită pagină
+      - Se mulează pe câmpurile de intrare/afişare ale paginii.
+** =Entity= vs =ViewModel=
+*** =User= vs =UserViewModel=                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :END:
+    #+attr_latex: :height .8\textheight
+    [[file:img/entity-vs-view-model.png]]
+*** Diferenţe                                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :BEAMER_env: block
+    :END:
+    - =Entity= != =ViewModel= pentru multe aplicaţii.
+    - De obicei un =ViewModel= agregă date din mai multe entităţi.
+** =Entity= vs =ViewModel=
+*** =User= vs =UserViewModel=                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :END:
+    #+attr_latex: :height .8\textheight
+    [[file:img/entity-vs-view-model.png]]
+*** Bune practici                                             :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :BEAMER_env: block
+    :END:
+    - Chiar dacă =ViewModel= = =Entity= se recomandă crearea unui =ViewModel=.
+    - Astfel decuplăm /domeniu/ de /view/;
+    - Altfel, o modificare în entitate poate genera modificări în view.
+** =Entity= vs =ViewModel=
+*** =User= vs =UserViewModel=                                 :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.4
+    :BEAMER_env: block
+    :END:
+    #+attr_latex: :height .8\textheight
+    [[file:img/entity-vs-view-model.png]]
+*** Securitate                                                :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_col: 0.6
+    :BEAMER_env: block
+    :END:
+    - O entitate poate conţine informaţii sensibile care nu trebuie să fie văzute de toţi utilizatorii.
+    - La înregistrarea unei entităţi, utilizatorii maliţioşi pot suprascrie anumite atribute (=overposting=)
+* Arhitectura software
+** Definiţii
+*** Arhitectura software[fn:1]                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Modul de organizare care stă la baza unui sistem software şi este încorporat în componentele acestuia, în relaţiile dintre componente şi mediu şi în principiile care ghidează proiectarea şi evoluţia sistemului.
+** Definiţii
+*** Arhitectura software[fn:2]                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Arhitectura se referă la chestiile importante. Oricare ar fi acelea.
+    @@latex:\\@@
+    @@latex:\hfill@@ --- Ralph Johnson
+** Definiţii
+*** Arhitectura software[fn:3]                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Constă în toate deciziile importante despre structurile care alcătuiesc sistemul şi interacţiunile dintre ele. Aceste decizii suportă o mulţime de caracteristici ale sistemului pe care acesta trebuie să le demonstreze pentru a deveni un sistem de succes.
+** Caracteristici[fn:4][fn:5]
+   - *Performanţă* --- timpul de răspuns per acţiune.
+   - *Securitate* --- rezistenţă la atacuri şi furt/pierdere de date.
+   - *Scalabilitate* --- adăugarea de resurse noi pentru a face faţă cererii sporite.
+   - *Rezistenţă la erori* (=fault tolerance=) --- posibilitatea de a continua operarea la apariţia erorilor.
+   - etc.
+** Deciziile arhitecturale
+   - Ţin cont de caracteristicile dorite,
+   - Nu includ prea multe caracteristici --- arhitectura generică este un anti-şablon,
+   - Tind spre obţinerea celui mai puţin prost model[fn:9].
+* Tipuri de arhitecturi software
+** Arhitectura bazată pe N niveluri[fn:6]
+   [[file:img/n-tier-architecture.png]]
+** Arhitectura bazată pe N niveluri --- organizare fizică[fn:7]
+   [[file:img/n-tier-physical.png]]
+** Arhitectura bazată pe N niveluri
+   - Avantaje:
+     - Complexitate redusă,
+     - Uşor de portat pe alte servere.
+   - Dezavantaje:
+     - Nu se pot aloca resurse per modul.
+     - Modularizarea deficitară poate duce la latenţe.
+** Microservicii
+   Definiţii
+   1. *Microserviciu* --- proces separat care răspunde de funcţionalitatea legată de un singur aspect al domeniului unei aplicaţii. De obicei este apelat prin protocolul =HTTP=.
+   2. *API Gateway* --- punctul de acces al metodelor expuse de microservicii.
+** Microservicii --- arhitectură[fn:8]
+   [[file:img/microservices-logical.png]]
+** Microservicii
+   - Avantaje:
+     - Alocare de resure pe modul => scalabilitate îmbunătăţită.
+     - Uşor de întreţinut --- pot fi dezvoltate şi instalate independent.
+   - Dezavantaje:
+     - Complexitate sporită dată de interconectarea mai multor servicii şi instalarea acestora în producţie.
+     - Întreţinere şi evoluţie --- fiecare versiune nouă trebuie să păstreze compatibilitatea cu una sau mai multe versiuni vechi.
+** Alte tipuri de arhitecturi
+   1. *Monolit modular* --- sistem instalat pe un singur nivel dar organizat astfel încât modulele să fie independente şi să expună funcţionalitatea prin interfeţe.
+   2. *Arhitectură bazată pe evenimente* --- sistem în care modulele comunică prin declanşare şi procesare de evenimente. Modulele sunt distribuite şi au un grad maxim de decuplare.
+   3. Etc.
+* Recapitulare
+** Arhitectura software
+   @@latex:\pause@@
+  - *Arhitectură software* --- structurarea sistemului software a. î. acesta să corespundă caracteristicilor cerute (cel mai puţin prost model care corespunde cerinţelor).
+   @@latex:\pause@@
+  - Există mai multe tipuri de arhitecturi: N-niveluri, microservicii, monolit modular etc.
+   @@latex:\pause@@
+  - Fiecare model vine cu avantajele şi dezavantaje proprii; acestea trebuie analizate înainte de a implementa modelul ales.
+* Demonstraţii
+* Încheiere
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:9] Ford, Neal, Rebecca Parsons, and Patrick Kua. Building evolutionary architectures: support constant change. " O'Reilly Media, Inc.", 2017.
+
+[fn:8] https://docs.microsoft.com/nb-no/azure/architecture/guide/architecture-styles/microservices
+
+[fn:7] https://www.bmc.com/blogs/n-tier-architecture-tier-2-tier-3-and-multi-tier-explained/
+
+[fn:6] https://dotnetdaily.net/featured/n-tier-architecture-asp-net
+
+[fn:5] https://syndicode.com/2018/05/03/12-software-architecture-quality-attributes/
+
+[fn:4] https://en.wikipedia.org/wiki/List_of_system_quality_attributes
+
+[fn:3] James McGovern, et al., A Practical Guide to Enterprise Architecture. Prentice Hall 2004
+
+[fn:2] Ford, Neal, Rebecca Parsons, and Patrick Kua. Building evolutionary architectures: support constant change. " O'Reilly Media, Inc.", 2017.
+
+[fn:1] IEEE Computer Society, IEEE Recommended Practice for Architectural Description of Software-Intensive Systems: IEEE Std 1472000. 2000.
