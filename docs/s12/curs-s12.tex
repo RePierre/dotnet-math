@@ -1,4 +1,4 @@
-% Created 2020-05-14 Thu 23:08
+% Created 2020-05-21 Thu 11:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -37,8 +37,8 @@
 
 \maketitle
 \section{Introducere}
-\label{sec:org40d1ff0}
-\begin{frame}[label={sec:org0f5db4e},fragile]{Recapitulare}
+\label{sec:org4507d23}
+\begin{frame}[label={sec:orgfa5e7a6},fragile]{Recapitulare}
  \pause
 \begin{itemize}
 \item \texttt{TPL} simplifică integrarea execuţiei paralele şi asincrone în aplicaţie lăsând în grija sistemului detaliile de nivel inferior a.î. programatorul să se poată concentra asupra logicii aplicaţiei.
@@ -56,7 +56,7 @@
 \item \texttt{Autorizare} --- procesul de verificare a drepturilor de acces a  unui utilizator în vederea accesării unei anumite resurse; se face cu ajutorul \texttt{AuthorizeAttribute}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org210611a}]{Agenda}
+\begin{frame}[label={sec:org648bfb8}]{Agenda}
 \begin{itemize}
 \item Proiectarea bazelor de date
 \begin{itemize}
@@ -74,43 +74,43 @@
 \end{itemize}
 \end{frame}
 \section{Proiectarea bazelor de date}
-\label{sec:orgd90425f}
-\begin{frame}[label={sec:orga88983c},fragile]{Primary/Foreign Key}
+\label{sec:org44a424f}
+\begin{frame}[label={sec:org4826ff4},fragile]{Primary/Foreign Key}
  \begin{itemize}
 \item O cheie primară (\texttt{Primary Key}) este o mulţime de coloane ale unui tabel a căror valori identifică în mod unic o înregistrare\footnote{\url{http://www.differencebetween.net/technology/difference-between-primary-key-and-unique-key/}}.
 \item O cheie străină (\texttt{Foreign Key}) este o mulţime de coloane ale unui tabel care fac referinţă la o cheie primară\footnote{\url{https://www.w3schools.com/sql/sql\_foreignkey.asp}}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org4613e27},fragile]{Relaţie}
+\begin{frame}[label={sec:org240b2f0},fragile]{Relaţie}
  Adăugarea unei chei străine crează o \texttt{relaţie} între cele două tabele unde:
 \begin{itemize}
 \item Tabelul \texttt{copil} este cel care conţine cheia străină,
 \item Tabelul \texttt{părinte} este cel care conţine cheia primară referenţiată de tabelul copil.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org411032e}]{Exemplu: 1*N}
+\begin{frame}[label={sec:orgda7bc8e}]{Exemplu: 1*N}
 \begin{center}
 \includegraphics[width=\textwidth]{img/one-to-many.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:org8954570}]{Exemplu\footnote{\url{https://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/}}: N*M}
+\begin{frame}[label={sec:org3a9b201}]{Exemplu\footnote{\url{https://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables/}}: N*M}
 \begin{center}
 \includegraphics[width=.8\textwidth]{img/many-to-many.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orga7653d8}]{Normalizare}
+\begin{frame}[label={sec:org8245fac}]{Normalizare}
 \begin{block}{Normalizarea bazei de date}
 \vskip 0.1in
 Procesul de structurare a unei baze de date relaţionale pentru a reduce redundanţa datelor şi a îmbunătăţi integritatea acestora\footnote{\url{https://en.wikipedia.org/wiki/Database\_normalization}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org0d82aec}]{Objective normalizare}
+\begin{frame}[label={sec:org32624b9}]{Objective normalizare}
 \begin{itemize}
 \item Modelarea conceptelor din lumea reală şi a relaţiilor dintre acestea.
 \item Extensibilitate sporită: adăugarea obiectelor noi se face cu intervenţie minimă.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org71a8b3c},fragile]{Forme normale}
+\begin{frame}[label={sec:org710ca13},fragile]{Forme normale}
  \begin{itemize}
 \item Normalizarea se face prin aducerea schemei la o \texttt{formă normală}.
 \item O \texttt{formă normală} este o proprietate a structurii bazei de date.
@@ -118,13 +118,13 @@ Procesul de structurare a unei baze de date relaţionale pentru a reduce redunda
 \item O bază de date este normalizată dacă respectă cel puţin \texttt{FN3}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgf02a5db},fragile]{Forma Normală 1}
+\begin{frame}[label={sec:orga3ce708},fragile]{Forma Normală 1}
  \begin{block}{FN1}
 \vskip 0.1in
 O relaţie este în \texttt{Forma Normală 1} dacă în fiecare coloană a unui tabel avem doar valori atomice.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org4a2ebe4},fragile]{Forma Normală 1}
+\begin{frame}[label={sec:org15c5547},fragile]{Forma Normală 1}
  Normalizarea la \texttt{FN1} se face prin:
 \begin{enumerate}
 \item Eliminarea grupurilor care se repetă.
@@ -132,7 +132,7 @@ O relaţie este în \texttt{Forma Normală 1} dacă în fiecare coloană a unui 
 \item Adăugarea unei chei primare.
 \end{enumerate}
 \end{frame}
-\begin{frame}[label={sec:orge50f95e},fragile]{Forma Normală 2}
+\begin{frame}[label={sec:org1192849},fragile]{Forma Normală 2}
  \begin{block}{FN2}
 \vskip 0.1in
 O relaţie este în \texttt{Forma Normală 2} dacă:
@@ -142,7 +142,7 @@ O relaţie este în \texttt{Forma Normală 2} dacă:
 \end{enumerate}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org93ad5e8}]{Forma Normală 2}
+\begin{frame}[label={sec:orgceb3a30}]{Forma Normală 2}
 Tournament winners\footnote{\url{https://en.wikipedia.org/wiki/Third\_normal\_form}}
 \begin{center}
 \begin{tabular}{lrll}
@@ -155,7 +155,7 @@ Indiana Invitational & 1999 & Chip Masterson & 14 March 1977\\
 \end{tabular}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orge0d9976},fragile]{Forma Normală 3}
+\begin{frame}[label={sec:org1fc37d1},fragile]{Forma Normală 3}
  \begin{block}{FN3}
 \vskip 0.1in
 O relaţie este în \texttt{Forma Normală 3} dacă:
@@ -165,7 +165,7 @@ O relaţie este în \texttt{Forma Normală 3} dacă:
 \end{enumerate}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgef399ae}]{Forma Normală 3\footnote{\url{https://en.wikipedia.org/wiki/Third\_normal\_form}}}
+\begin{frame}[label={sec:orgc95e252}]{Forma Normală 3\footnote{\url{https://en.wikipedia.org/wiki/Third\_normal\_form}}}
 \begin{center}
 \begin{tabular}{lrl}
 Tournament & Year & Winner\\
@@ -187,38 +187,38 @@ Bob Albertson & 28 September 1968\\
 \end{center}
 \end{frame}
 \section{DevOps}
-\label{sec:org6dab39a}
-\begin{frame}[label={sec:org7a17569},fragile]{DevOps}
+\label{sec:org632df36}
+\begin{frame}[label={sec:orge08479f},fragile]{DevOps}
  \begin{block}{DevOps}
 \vskip 0.1in
 Un set de practici care combină dezvoltarea software (\texttt{Dev}) şi logistica IT (\texttt{Ops}) a cărui scop este să reducă durata ciclului de dezvoltare software şi să crească frecvenţa de livrare a sistemelor software\footnote{\url{https://en.wikipedia.org/wiki/DevOps}}.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org8974d86},fragile]{Conductele de livrare}
+\begin{frame}[label={sec:orgbec45a7},fragile]{Conductele de livrare}
  \begin{block}{Deployment pipeline}
 \vskip 0.1in
 Procesul \uline{automat} prin care codul-sursă este preluat din sistemul de gestiune al istoricului şi transformat într-un artefact (\texttt{deliverable}) prin care sistemul software poate fi pus la dispoziţia utilizatorilor.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:org0425565}]{Conductele de livrare: Motivaţie}
+\begin{frame}[label={sec:org1ac25f9}]{Conductele de livrare: Motivaţie}
 \begin{itemize}
 \item Automatizarea procesului elimină riscul de eroare umană
 \item Timpii de aşteptare constanţi
 \item Creşte încrederea în calitatea produsului
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org4bf04c0}]{Exemplu\footnote{\url{https://www.linux.com/audience/devops/devops-fundamentals-part-4-patterns-and-practices/}}}
+\begin{frame}[label={sec:org0849343}]{Exemplu\footnote{\url{https://www.linux.com/audience/devops/devops-fundamentals-part-4-patterns-and-practices/}}}
 \begin{center}
 \includegraphics[width=\textwidth]{img/deployment-pipeline.png}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orgb37709b}]{Continuous Integration}
+\begin{frame}[label={sec:org66bcacb}]{Continuous Integration}
 \begin{block}{Continuous Integration}
 \vskip 0.1in
 Practică a dezvoltării software în care modificările aduse de fiecare programator în parte sunt integrate în sistemul de gestine al istoricului şi verificate în mod automat.
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orgcb5eba5}]{Continuous Delivery}
+\begin{frame}[label={sec:org4375936}]{Continuous Delivery}
 \begin{block}{Continuous Delivery\footnote{\url{https://www.martinfowler.com/bliki/ContinuousDelivery.html}}}
 \vskip 0.1in
 Practică a dezvoltării software în care aplicaţia poate fi lansată în producţie în orice moment.
@@ -227,17 +227,40 @@ Practică a dezvoltării software în care aplicaţia poate fi lansată în prod
 \end{itemize}
 \end{block}
 \end{frame}
-\begin{frame}[label={sec:orge524b82}]{Continuous Deployment}
+\begin{frame}[label={sec:org616ee5f}]{Continuous Deployment}
 \begin{block}{Continuous Deployment}
 \vskip 0.1in
 Practică a dezvoltării software în care orice modificare nouă a aplicaţiei este lansată în mod automat în producţie.
 \end{block}
 \end{frame}
 \section{Demonstraţii}
-\label{sec:org54aa1a9}
+\label{sec:org0322eb4}
 \section{Încheiere}
-\label{sec:orga70d0bb}
-\begin{frame}[label={sec:org3fb56ab}]{Vă mulțumesc!}
+\label{sec:orgee205eb}
+\begin{frame}[label={sec:orgc90892a},fragile]{Recapitulare}
+ \pause
+\begin{itemize}
+\item Elemente esenţiale în proiectarea bazelor de date: \texttt{cheie primară}, \texttt{cheie străină} şi \texttt{relaţie}.
+\end{itemize}
+\pause
+\begin{itemize}
+\item \texttt{Normalizare} --- proiectarea/restructurarea bazei de date pentru a o aduce în (cel puţin) \texttt{forma normală 3}.
+\end{itemize}
+\pause
+\begin{itemize}
+\item \texttt{Practicile DevOps} pentru creşterea frecvenţei de livrare.
+\end{itemize}
+\pause
+\begin{itemize}
+\item \texttt{Conductele de livrare} --- ne ajută să implementăm practici precum:
+\begin{itemize}
+\item \texttt{Continuous Integration} --- integrarea şi verificarea automată a modificărilor,
+\item \texttt{Continous Delivery} --- posibilitatea de a trimite oricând aplicaţia în producţie,
+\item \texttt{Continuous Deployment} --- lansarea automată în producţie a modificărilor noi.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org58f89da}]{Vă mulțumesc!}
 \begin{center}
 Mulțumesc pentru atenție!
 \end{center}

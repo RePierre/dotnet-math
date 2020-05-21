@@ -167,6 +167,18 @@
     Practică a dezvoltării software în care orice modificare nouă a aplicaţiei este lansată în mod automat în producţie.
 * Demonstraţii
 * Încheiere
+** Recapitulare
+   @@latex:\pause@@
+   - Elemente esenţiale în proiectarea bazelor de date: =cheie primară=, =cheie străină= şi =relaţie=.
+   @@latex:\pause@@
+   - =Normalizare= --- proiectarea/restructurarea bazei de date pentru a o aduce în (cel puţin) =forma normală 3=.
+   @@latex:\pause@@
+   - =Practicile DevOps= pentru creşterea frecvenţei de livrare.
+   @@latex:\pause@@
+   - =Conductele de livrare= --- ne ajută să implementăm practici precum:
+     - =Continuous Integration= --- integrarea şi verificarea automată a modificărilor,
+     - =Continous Delivery= --- posibilitatea de a trimite oricând aplicaţia în producţie,
+     - =Continuous Deployment= --- lansarea automată în producţie a modificărilor noi.
 ** Vă mulțumesc!
    #+begin_center
    Mulțumesc pentru atenție!
