@@ -327,6 +327,25 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s12-lab
    :END:
    La laborator lucrăm la proiectul de la finalul semestrului.
+* Săptămâna 13
+  :PROPERTIES:
+  :CUSTOM_ID: s13
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s13-curs
+   :END:
+   *De la modularizare la arhitectură*
+
+   Începem cursul cu o discuţie asupra unui studiu de caz --- de ce este indicat să adăugăm un =ViewModel= pentru fiecare entitate, apoi discutăm despre arhitectura sistemelor software.
+   La sfârșit implementăm o conductă pentru =Continuous Integration=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s13/curs-s13.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s13-lab
+   :END:
+   La laborator lucrăm la proiectul de la finalul semestrului şi ne pregătim pentru prezentarea proiectelor.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
