@@ -346,6 +346,13 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s13-lab
    :END:
    La laborator lucrăm la proiectul de la finalul semestrului şi ne pregătim pentru prezentarea proiectelor.
+* Săptămâna 14
+  :PROPERTIES:
+  :CUSTOM_ID: s14
+  :END:
+   *Prezentare proiecte*
+
+   La curs şi laborator prezentăm proiectele.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
