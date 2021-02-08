@@ -41,7 +41,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -53,7 +53,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -194,57 +194,33 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/css/readtheorg.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
-<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/src/readtheorg_theme/js/readtheorg.js"></script>
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2020 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -273,7 +249,7 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Tehnici Avansate de Programare</h1>
 <div id="table-of-contents">
-<h2>Table of Contents</h2>
+<h2>Cuprins</h2>
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#prezentare">Prezentare</a></li>
@@ -283,7 +259,7 @@ for the JavaScript code in this tag.
 <li><a href="#date-despre-disciplina">Date despre disciplină</a></li>
 <li><a href="#evaluare">Evaluare</a>
 <ul>
-<li><a href="#org8ea0e2c">Standard minim de performanță:</a></li>
+<li><a href="#orgffd84ee">Standard minim de performanță:</a></li>
 </ul>
 </li>
 <li><a href="#bibliografie">Referințe bibliografice</a></li>
@@ -293,13 +269,13 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#petru-rebeja">Petru Rebeja</a>
 <ul>
-<li><a href="#orgb89707c">Email</a></li>
-<li><a href="#orgff5a1b9">Twitter</a></li>
+<li><a href="#org54c00b1">Email</a></li>
+<li><a href="#orgc248d82">Twitter</a></li>
 </ul>
 </li>
 <li><a href="#marius-apetrii">Marius Apetrii</a>
 <ul>
-<li><a href="#orgbc6a752">Email</a></li>
+<li><a href="#org4a0b883">Email</a></li>
 </ul>
 </li>
 </ul>
@@ -387,7 +363,7 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-org27826e9" class="outline-2">
+<div id="outline-container-prezentare" class="outline-2">
 <h2 id="prezentare">Prezentare</h2>
 <div class="outline-text-2" id="text-prezentare">
 <p>
@@ -404,11 +380,11 @@ Prezentarea cursului este disponibilă și în format <a href="course-presentati
 </p>
 </div>
 </div>
-<div id="outline-container-org40caf29" class="outline-2">
+<div id="outline-container-fisa-disciplinei" class="outline-2">
 <h2 id="fisa-disciplinei">Fișa disciplinei</h2>
 <div class="outline-text-2" id="text-fisa-disciplinei">
 </div>
-<div id="outline-container-orgdc71989" class="outline-3">
+<div id="outline-container-date-despre-program" class="outline-3">
 <h3 id="date-despre-program">Date despre program</h3>
 <div class="outline-text-3" id="text-date-despre-program">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -453,7 +429,7 @@ Prezentarea cursului este disponibilă și în format <a href="course-presentati
 </table>
 </div>
 </div>
-<div id="outline-container-org83b8223" class="outline-3">
+<div id="outline-container-date-despre-disciplina" class="outline-3">
 <h3 id="date-despre-disciplina">Date despre disciplină</h3>
 <div class="outline-text-3" id="text-date-despre-disciplina">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -498,7 +474,7 @@ Prezentarea cursului este disponibilă și în format <a href="course-presentati
 </table>
 </div>
 </div>
-<div id="outline-container-org776abd6" class="outline-3">
+<div id="outline-container-evaluare" class="outline-3">
 <h3 id="evaluare">Evaluare</h3>
 <div class="outline-text-3" id="text-evaluare">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -538,9 +514,9 @@ Prezentarea cursului este disponibilă și în format <a href="course-presentati
 </tbody>
 </table>
 </div>
-<div id="outline-container-org8ea0e2c" class="outline-4">
-<h4 id="org8ea0e2c">Standard minim de performanță:</h4>
-<div class="outline-text-4" id="text-org8ea0e2c">
+<div id="outline-container-orgffd84ee" class="outline-4">
+<h4 id="orgffd84ee">Standard minim de performanță:</h4>
+<div class="outline-text-4" id="text-orgffd84ee">
 \begin{equation}
 TS \ge 5
 \end{equation}
@@ -551,7 +527,7 @@ P \ge 5
 </div>
 </div>
 
-<div id="outline-container-orgc058cea" class="outline-3">
+<div id="outline-container-bibliografie" class="outline-3">
 <h3 id="bibliografie">Referințe bibliografice</h3>
 <div class="outline-text-3" id="text-bibliografie">
 <ol class="org-ol">
@@ -568,26 +544,26 @@ P \ge 5
 </div>
 </div>
 </div>
-<div id="outline-container-org81a886a" class="outline-2">
+<div id="outline-container-contact" class="outline-2">
 <h2 id="contact">Date de contact</h2>
 <div class="outline-text-2" id="text-contact">
 </div>
-<div id="outline-container-org61874d1" class="outline-3">
+<div id="outline-container-petru-rebeja" class="outline-3">
 <h3 id="petru-rebeja">Petru Rebeja</h3>
 <div class="outline-text-3" id="text-petru-rebeja">
 </div>
-<div id="outline-container-orgb89707c" class="outline-4">
-<h4 id="orgb89707c">Email</h4>
-<div class="outline-text-4" id="text-orgb89707c">
+<div id="outline-container-org54c00b1" class="outline-4">
+<h4 id="org54c00b1">Email</h4>
+<div class="outline-text-4" id="text-org54c00b1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(concat <span style="color: #3e999f;">"petru"</span> <span style="color: #3e999f;">"."</span> <span style="color: #3e999f;">"rebeja"</span> <span style="color: #3e999f;">"@gmail.com"</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgff5a1b9" class="outline-4">
-<h4 id="orgff5a1b9">Twitter</h4>
-<div class="outline-text-4" id="text-orgff5a1b9">
+<div id="outline-container-orgc248d82" class="outline-4">
+<h4 id="orgc248d82">Twitter</h4>
+<div class="outline-text-4" id="text-orgc248d82">
 <p>
 <code>@petrurebeja</code>
 </p>
@@ -598,13 +574,13 @@ Anunțurile legate de curs/laborator vor fi marcate cu <code>#TAP2020</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-org32875b9" class="outline-3">
+<div id="outline-container-marius-apetrii" class="outline-3">
 <h3 id="marius-apetrii">Marius Apetrii</h3>
 <div class="outline-text-3" id="text-marius-apetrii">
 </div>
-<div id="outline-container-orgbc6a752" class="outline-4">
-<h4 id="orgbc6a752">Email</h4>
-<div class="outline-text-4" id="text-orgbc6a752">
+<div id="outline-container-org4a0b883" class="outline-4">
+<h4 id="org4a0b883">Email</h4>
+<div class="outline-text-4" id="text-org4a0b883">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(concat <span style="color: #3e999f;">"mapetrii"</span> <span style="color: #3e999f;">"@uaic.ro"</span>)
 </pre>
@@ -613,11 +589,11 @@ Anunțurile legate de curs/laborator vor fi marcate cu <code>#TAP2020</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-orgda5992d" class="outline-2">
+<div id="outline-container-s01" class="outline-2">
 <h2 id="s01">Săptămâna 01</h2>
 <div class="outline-text-2" id="text-s01">
 </div>
-<div id="outline-container-org057c548" class="outline-3">
+<div id="outline-container-s01-curs" class="outline-3">
 <h3 id="s01-curs">Curs</h3>
 <div class="outline-text-3" id="text-s01-curs">
 <p>
@@ -633,7 +609,7 @@ Prezentarea de la curs poate fi descărcată în format <a href="s01/curs-s01.pd
 </p>
 </div>
 </div>
-<div id="outline-container-org848c6fc" class="outline-3">
+<div id="outline-container-s01-lab" class="outline-3">
 <h3 id="s01-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s01-lab">
 <p>
@@ -647,11 +623,11 @@ Prezentarea de la curs poate fi descărcată în format <a href="s01/curs-s01.pd
 </div>
 </div>
 </div>
-<div id="outline-container-org41be115" class="outline-2">
+<div id="outline-container-s02" class="outline-2">
 <h2 id="s02">Săptămâna 02</h2>
 <div class="outline-text-2" id="text-s02">
 </div>
-<div id="outline-container-org79ee806" class="outline-3">
+<div id="outline-container-s02-curs" class="outline-3">
 <h3 id="s02-curs">Curs</h3>
 <div class="outline-text-3" id="text-s02-curs">
 <p>
@@ -668,7 +644,7 @@ Prezentarea de la curs poate fi descărcată în format <a href="s02/curs-s02.pd
 </p>
 </div>
 </div>
-<div id="outline-container-org98c094c" class="outline-3">
+<div id="outline-container-s02-lab" class="outline-3">
 <h3 id="s02-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s02-lab">
 <p>
@@ -685,11 +661,11 @@ O parte din noțiunile discutate se regăsesc și în acest <a href="https://reb
 </div>
 </div>
 </div>
-<div id="outline-container-org9ce10c1" class="outline-2">
+<div id="outline-container-s03" class="outline-2">
 <h2 id="s03">Săptămâna 03</h2>
 <div class="outline-text-2" id="text-s03">
 </div>
-<div id="outline-container-orgca1c361" class="outline-3">
+<div id="outline-container-s03-curs" class="outline-3">
 <h3 id="s03-curs">Curs</h3>
 <div class="outline-text-3" id="text-s03-curs">
 <p>
@@ -705,7 +681,7 @@ Prezentarea de la curs poate fi descărcată în format <a href="s03/curs-s03.pd
 </p>
 </div>
 </div>
-<div id="outline-container-orgf79da49" class="outline-3">
+<div id="outline-container-s03-lab" class="outline-3">
 <h3 id="s03-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s03-lab">
 <p>
@@ -718,11 +694,11 @@ Pagina cu cerințele pentru evaluare este pe <a href="https://github.com/RePierr
 </div>
 </div>
 </div>
-<div id="outline-container-org7d1a227" class="outline-2">
+<div id="outline-container-s04" class="outline-2">
 <h2 id="s04">Săptămâna 04</h2>
 <div class="outline-text-2" id="text-s04">
 </div>
-<div id="outline-container-orga53636c" class="outline-3">
+<div id="outline-container-s04-curs" class="outline-3">
 <h3 id="s04-curs">Curs</h3>
 <div class="outline-text-3" id="text-s04-curs">
 <p>
@@ -739,7 +715,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s04/curs-s04.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-orgf87c109" class="outline-3">
+<div id="outline-container-s04-lab" class="outline-3">
 <h3 id="s04-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s04-lab">
 <p>
@@ -748,11 +724,11 @@ La laborator aplicăm conceptele <code>SOLID</code> și fluxul de lucru discutat
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb71c0b" class="outline-2">
+<div id="outline-container-s05" class="outline-2">
 <h2 id="s05">Săptămâna 05</h2>
 <div class="outline-text-2" id="text-s05">
 </div>
-<div id="outline-container-orgcd1a2c7" class="outline-3">
+<div id="outline-container-s05-curs" class="outline-3">
 <h3 id="s05-curs">Curs</h3>
 <div class="outline-text-3" id="text-s05-curs">
 <p>
@@ -768,7 +744,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s05/curs-s05.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-orge3f86f9" class="outline-3">
+<div id="outline-container-s05-lab" class="outline-3">
 <h3 id="s05-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s05-lab">
 <p>
@@ -777,11 +753,11 @@ La laborator modularizăm aplicația implementată la <a href="https://github.co
 </div>
 </div>
 </div>
-<div id="outline-container-org80015f1" class="outline-2">
+<div id="outline-container-s06" class="outline-2">
 <h2 id="s06">Săptămâna 06</h2>
 <div class="outline-text-2" id="text-s06">
 </div>
-<div id="outline-container-org2f88916" class="outline-3">
+<div id="outline-container-s05-curs" class="outline-3">
 <h3 id="s05-curs">Curs</h3>
 <div class="outline-text-3" id="text-s05-curs">
 <p>
@@ -797,7 +773,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s06/curs-s06.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org05d402b" class="outline-3">
+<div id="outline-container-s06-lab" class="outline-3">
 <h3 id="s06-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s06-lab">
 <p>
@@ -806,11 +782,11 @@ La laborator extindem aplicația implementată la <a href="https://github.com/Re
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7dc326" class="outline-2">
+<div id="outline-container-s07" class="outline-2">
 <h2 id="s07">Săptămâna 07</h2>
 <div class="outline-text-2" id="text-s07">
 </div>
-<div id="outline-container-org1e02f7a" class="outline-3">
+<div id="outline-container-s07-curs" class="outline-3">
 <h3 id="s07-curs">Curs</h3>
 <div class="outline-text-3" id="text-s07-curs">
 <p>
@@ -826,7 +802,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s07/curs-s07.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org247589e" class="outline-3">
+<div id="outline-container-s07-lab" class="outline-3">
 <h3 id="s07-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s07-lab">
 <p>
@@ -835,11 +811,11 @@ La laborator începem să definim schema de baze de date pentru proiectul de cur
 </div>
 </div>
 </div>
-<div id="outline-container-org46bddf2" class="outline-2">
+<div id="outline-container-s08" class="outline-2">
 <h2 id="s08">Săptămâna 08</h2>
 <div class="outline-text-2" id="text-s08">
 </div>
-<div id="outline-container-orga2e3e72" class="outline-3">
+<div id="outline-container-s08-curs" class="outline-3">
 <h3 id="s08-curs">Curs</h3>
 <div class="outline-text-3" id="text-s08-curs">
 <p>
@@ -855,7 +831,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s08/curs-s08.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org9a6101e" class="outline-3">
+<div id="outline-container-s08-lab" class="outline-3">
 <h3 id="s08-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s08-lab">
 <p>
@@ -864,11 +840,11 @@ La laborator analizăm propunerile pentru proiectele de curs.
 </div>
 </div>
 </div>
-<div id="outline-container-org39b7f10" class="outline-2">
+<div id="outline-container-s09" class="outline-2">
 <h2 id="s09">Săptămâna 09</h2>
 <div class="outline-text-2" id="text-s09">
 </div>
-<div id="outline-container-org47b18fb" class="outline-3">
+<div id="outline-container-s09-curs" class="outline-3">
 <h3 id="s09-curs">Curs</h3>
 <div class="outline-text-3" id="text-s09-curs">
 <p>
@@ -884,7 +860,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s09/curs-s09.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org1b362a1" class="outline-3">
+<div id="outline-container-s09-lab" class="outline-3">
 <h3 id="s09-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s09-lab">
 <p>
@@ -897,11 +873,11 @@ Pagina cu cerințele pentru evaluare este pe <a href="https://github.com/RePierr
 </div>
 </div>
 </div>
-<div id="outline-container-orga03c264" class="outline-2">
+<div id="outline-container-s10" class="outline-2">
 <h2 id="s10">Săptămâna 10</h2>
 <div class="outline-text-2" id="text-s10">
 </div>
-<div id="outline-container-orgf3a4e3a" class="outline-3">
+<div id="outline-container-s10-curs" class="outline-3">
 <h3 id="s10-curs">Curs</h3>
 <div class="outline-text-3" id="text-s10-curs">
 <p>
@@ -917,7 +893,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s10/curs-s10.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org5b0c570" class="outline-3">
+<div id="outline-container-s10-lab" class="outline-3">
 <h3 id="s10-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s10-lab">
 <p>
@@ -926,11 +902,11 @@ La laborator lucrăm la proiectul de la finalul semestrului.
 </div>
 </div>
 </div>
-<div id="outline-container-orgdbab6aa" class="outline-2">
+<div id="outline-container-s11" class="outline-2">
 <h2 id="s11">Săptămâna 11</h2>
 <div class="outline-text-2" id="text-s11">
 </div>
-<div id="outline-container-orgd9f5643" class="outline-3">
+<div id="outline-container-s11-curs" class="outline-3">
 <h3 id="s11-curs">Curs</h3>
 <div class="outline-text-3" id="text-s11-curs">
 <p>
@@ -946,7 +922,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s11/curs-s11.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org7e797ad" class="outline-3">
+<div id="outline-container-s11-lab" class="outline-3">
 <h3 id="s11-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s11-lab">
 <p>
@@ -955,11 +931,11 @@ La laborator lucrăm la proiectul de la finalul semestrului.
 </div>
 </div>
 </div>
-<div id="outline-container-org23b6443" class="outline-2">
+<div id="outline-container-s12" class="outline-2">
 <h2 id="s12">Săptămâna 12</h2>
 <div class="outline-text-2" id="text-s12">
 </div>
-<div id="outline-container-orgff5376f" class="outline-3">
+<div id="outline-container-s12-curs" class="outline-3">
 <h3 id="s12-curs">Curs</h3>
 <div class="outline-text-3" id="text-s12-curs">
 <p>
@@ -975,7 +951,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s12/curs-s12.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-orgfb60308" class="outline-3">
+<div id="outline-container-s12-lab" class="outline-3">
 <h3 id="s12-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s12-lab">
 <p>
@@ -984,11 +960,11 @@ La laborator lucrăm la proiectul de la finalul semestrului.
 </div>
 </div>
 </div>
-<div id="outline-container-org7dafe23" class="outline-2">
+<div id="outline-container-s13" class="outline-2">
 <h2 id="s13">Săptămâna 13</h2>
 <div class="outline-text-2" id="text-s13">
 </div>
-<div id="outline-container-orge1d64dd" class="outline-3">
+<div id="outline-container-s13-curs" class="outline-3">
 <h3 id="s13-curs">Curs</h3>
 <div class="outline-text-3" id="text-s13-curs">
 <p>
@@ -1005,7 +981,7 @@ Prezentarea la curs poate fi descărcat în format <a href="s13/curs-s13.pdf">pd
 </p>
 </div>
 </div>
-<div id="outline-container-org14ccf8c" class="outline-3">
+<div id="outline-container-s13-lab" class="outline-3">
 <h3 id="s13-lab">Laborator</h3>
 <div class="outline-text-3" id="text-s13-lab">
 <p>
@@ -1014,7 +990,7 @@ La laborator lucrăm la proiectul de la finalul semestrului şi ne pregătim pen
 </div>
 </div>
 </div>
-<div id="outline-container-org1311e96" class="outline-2">
+<div id="outline-container-s14" class="outline-2">
 <h2 id="s14">Săptămâna 14</h2>
 <div class="outline-text-2" id="text-s14">
 <p>
@@ -1026,7 +1002,7 @@ La curs şi laborator prezentăm proiectele.
 </p>
 </div>
 </div>
-<div id="outline-container-orge3c181e" class="outline-2">
+<div id="outline-container-links" class="outline-2">
 <h2 id="links">Legături utile</h2>
 <div class="outline-text-2" id="text-links">
 <ul class="org-ul">
@@ -1044,8 +1020,8 @@ La curs şi laborator prezentăm proiectele.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Author: Petru Rebeja</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="author">Autor: Petru Rebeja</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
