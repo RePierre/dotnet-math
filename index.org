@@ -92,3 +92,16 @@ Aplicația va fi propusă de către membrii echipei.
    #+begin_src emacs-lisp :exports code
    (concat "petru" "." "rebeja" "@gmail.com")
    #+end_src
+* Săptămâna 01
+  :PROPERTIES:
+  :CUSTOM_ID: s01
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s01-curs
+   :END:
+   *Infrastructură și unelte*
+
+   La curs discutăm despre infrastructura și uneltele necesare pentru dezvoltarea aplicațiilor pe platforma =.net core=.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s01/curs-s01.pdf][pdf]].
