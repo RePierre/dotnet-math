@@ -18,3 +18,77 @@
 
   Pe parcursul cursului studenții vor acumula un set de bune practici pentru dezvoltarea produselor software pe care le vor aplica lucrând în echipe la dezvoltarea unei aplicații Web.
 Aplicația va fi propusă de către membrii echipei.
+* Fișa disciplinei
+  :PROPERTIES:
+  :CUSTOM_ID: fisa-disciplinei
+  :END:
+** Date despre program
+   :PROPERTIES:
+   :CUSTOM_ID: date-despre-program
+   :END:
+   | Instituția de învățământ        | Universitatea „Alexandru Ioan Cuza” din Iași |
+   | Facultatea                      | Facultatea de Matematică                     |
+   | Departamentul                   | Matematică                                   |
+   | Domeniul de studii              | Matematică                                   |
+   | Ciclul de studii                | Licență                                      |
+   | Programul de studii/Calificarea | Matematică-Informatică                       |
+** Date despre disciplină
+   :PROPERTIES:
+   :CUSTOM_ID: date-despre-disciplina
+   :END:
+   | Denumirea disciplinei              | Tehnici avansate de programare             |
+   | Titularul activităților de curs    | Lect. Dr. Marius Apetrii/Drd. Petru Rebeja |
+   | Titularul activităților de seminar | Lect. Dr. Marius Apetrii/Drd. Petru Rebeja |
+   | An de studiu                       | III                                        |
+   | Semestru                           | IV                                         |
+   | Regimul disciplinei                | Opțional                                   |
+** Evaluare
+   :PROPERTIES:
+   :CUSTOM_ID: evaluare
+   :END:
+   | Tip activitate | Criterii de evaluare                                                        | Metode de evaluare                          | Pondere în nota finală |
+   |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
+   | Curs           | Cunoașterea și utilizarea corectă a noțiunilor și rezultatelor fundamentale | 2 teste (S3 şi S9)(*TS*)                    |                    60% |
+   | Laborator      | Implementarea corectă a rezultatelor teoretice                              | Evaluarea portofoliului (teme+proiect)(*P*) |                    40% |
+   |----------------+-----------------------------------------------------------------------------+---------------------------------------------+------------------------|
+*** Standard minim de performanță:
+    \begin{equation}
+    TS \ge 5
+    \end{equation}
+    \begin{equation}
+    P \ge 5
+    \end{equation}
+
+** Referințe bibliografice
+   :PROPERTIES:
+   :CUSTOM_ID: bibliografie
+   :END:
+   1. Liviu Negrescu, Lavinia Negrescu, *Limbajul C# pentru începători*, Editura Albastră, 2011
+   2. Joseph Albahari, Ben Albahari, *C# 7.0 in a Nutshell: The Definitive Reference*, O'Reilly, 2017
+   3. Adam Freeman, *Pro ASP.NET Core MVC*, Apress, 2016
+   4. Adam Freeman, *Pro Entity Framework Core 2 for ASP.NET Core MVC*, Apress, 2018
+   5. https://docs.microsoft.com/en-us/visualstudio/releasenotes/tfs2017-relnotes
+   6. https://git-scm.com/
+   7. Robert C. Martin, *Design Principles and Design Patterns*, 2000
+   8. Martin Fowler, *Refactoring. Improving the Design of Existing Code*, Addison-Wesley, 2018
+   9. https://www.martinfowler.com/microservices/
+* Date de contact
+  :PROPERTIES:
+  :CUSTOM_ID: contact
+  :END:
+** Marius Apetrii
+   :PROPERTIES:
+   :CUSTOM_ID: marius-apetrii
+   :END:
+*** Email
+   #+begin_src emacs-lisp :exports code
+   (concat "mapetrii" "@uaic.ro")
+   #+end_src
+** Petru Rebeja
+   :PROPERTIES:
+   :CUSTOM_ID: petru-rebeja
+   :END:
+*** Email
+   #+begin_src emacs-lisp :exports code
+   (concat "petru" "." "rebeja" "@gmail.com")
+   #+end_src
