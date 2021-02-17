@@ -18,11 +18,3 @@
 
   Pe parcursul cursului studenții vor acumula un set de bune practici pentru dezvoltarea produselor software pe care le vor aplica lucrând în echipe la dezvoltarea unei aplicații Web.
 Aplicația va fi propusă de către membrii echipei.
-* Arhivă
-  :PROPERTIES:
-  :CUSTOM_ID: arhiva
-  :END:
-** [[./2020/index.html][2020]]
-   :PROPERTIES:
-   :CUSTOM_ID: arhiva-2020
-   :END:
