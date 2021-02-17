@@ -1,0 +1,141 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Infrastructură și unelte
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 18 Februarie 2021
+#+language: ro
+#+options: H:1 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+* Informații
+  Pagina cursului: https://rebeja.eu/dotnet-math
+
+  #+attr_latex: :height 0.6\textheight
+  [[file:img/qr-pagina-curs.png]]
+* Ciclul de dezvoltare al aplicațiilor
+  #+begin_src dot :exports results :file ./img/ciclul-agile.png
+    digraph agile_sdlc{
+	    rankdir=LR;
+	    splines=ortho;
+	    node[shape=rect]
+
+	    start[label="Început\nproiect"]
+	    {
+		    rank=same;
+		    prod_backlog[label="Cerințe\nprodus"]
+		    planning[label="Sessiune\nplanificare"]
+		    sprint_backlog[label="Cerințe\niterație"]
+	    }
+	    dev[label="Dezvoltare"]
+	    test[label="Testare"]
+	    {
+		    rank=same;
+		    prod[label="Producție"]
+		    split[shape=point]
+		    demo[label="Prezentare"]
+	    }
+	    end[label="Retragere\nprodus"]
+	    start->prod_backlog[label="Cerințe inițiale"];
+
+	    prod_backlog->planning->sprint_backlog->dev->test->demo;
+	    test->dev;
+	    split->demo[dir=none];
+	    prod->split[dir="back"]
+	    prod->end;
+	    split->planning[label="Iterație nouă"];
+
+	    prod->prod_backlog[label="Cerințe\nsuplimentare"];
+    }
+  #+end_src
+
+  #+attr_latex: :width \textwidth
+  #+RESULTS:
+  [[file:./img/ciclul-agile.png]]
+* Etapa I: Identificarea unei nevoi
+  Un sistem software trebuie să satisfacă o anumită nevoie a utilizatorului:
+  - Automatizarea procesului manual,
+  - Performanță sporită
+  - Etc.
+* Etapa II: Cerințe inițiale
+  - După identificarea nevoii se alcătuiește lista de cerințe inițiale.
+  - Opțional, se identifică atributele arhitecturale suplimentare ale sistemului.
+* Etapa III: Minimum Viable Product
+  Din lista cerințelor inițiale se aleg cele care constituie un minim de viabilitate pentru proiect.
+** Minimum viable product                                      :B_definition:
+   :PROPERTIES:
+   :BEAMER_env: definition
+   :END:
+   Versiune a produsului software care conține o cantitate suficientă de funcționalitate pentru a satisface utilizatorii timpurii.[fn:1]
+* Etapa IV: Dezvoltarea în iterații
+  - Cerințele sunt ordonate în funcție de importanță.
+  - Echipa alege $N$ cele mai importante cerințe.
+* Etapa IV: Dezvoltarea în iterații (cont.)
+  - Mai întâi se planifică abordarea (task breakdown).
+  - Fiecare membru ia câte o sarcină.
+* Etapa IV: Dezvoltarea în iterații (cont.)
+  - Când o funcționalitate este gata, ea trece la testare.
+  - Dacă este conformă cu cerințele, aceasta este marcată ca finalizată.
+  - Altfel, revine la programator.
+* Etapa IV: Dezvoltarea în iterații (cont.)
+  - La sfârșitul iterației se face o prezentare a funcționalităților implementate.
+  - Procesul se reia într-o iterație nouă.
+* Etapa V: Lansarea în producție
+  - Lansarea în producție se face când:
+    - Avem suficientă funcționalitate implementată.
+    - Situația o impune (urgențe, defecte etc.).
+* Etapa VI: Întreținerea și dezvoltarea
+  - Utilizatorii semnalează erori și cer funcționalități noi.
+  - Acestea sunt adăugate la lista de cerințe.
+* Etapa VII: Retragerea produsului
+  Se întâmplă din mai multe motive:
+  - Nu aduce încasări suficiente,
+  - Perimare
+  - Etc.
+* Unelte pentru dezvoltare - Visual Studio[fn:2]
+  file:img/vs2019.jpg
+* Bune practici în scrierea codului-sursă
+  - Codul-sursă trebuie scris în limba engleză.
+  - Textul trebuie să fie preluat dintr-un set de resurse.
+  - Alegeți tipul de date potrivit.
+  - Rescrieți codul, nu dați copy/paste.
+  - Dacă nu există în sistemul de păstrare a istoricului atunci nu există.
+* Păstrarea istoricului codului-sursă
+  - Produsele software mari pot ajunge și la milioane de linii de cod.
+  - Sistemele de control al reviziilor (version control systems) ne permit:
+    - Să vedem toate modificările făcute asupra unui fișier,
+    - Să revenim la o versiune anterioară,
+    - Să lucrăm mai multe persoane simultan la același fișier.
+* Git
+** Git SCM                                                          :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   Git este un sistem de control al reviziilor open-source, distribuit și gratuit. Sistemul a fost proiectat să gestioneze rapid și eficient proiecte de toate dimensiunile.[fn:3]
+* Fluxul de lucru /GitHub/[fn:5]
+  #+attr_latex: :width \textwidth
+  [[file:img/github-flow.png]]
+* Bune practici pentru controlul reviziilor[fn:4]
+  - Dacă nu există în sistemul de control al reviziilor atunci nu există deloc.
+  - Fiecare versiune trebuie să fie atomică.
+  - Preferați mai multe versiuni mici decât una mare.
+  - Descrieți modificările cât mai bine.
+  - Nu păstrați istoric pentru fișierele generate la compilare.
+* Vă mulțumesc!
+  #+begin_center
+  Mulțumesc pentru atenție!
+  #+end_center
+* Footnotes
+[fn:5]https://raw.githubusercontent.com/DRPrincess/BlogImages/master/qiniu/46e70c0bb557565b2fdcc1e5e4efefce.png
+
+[fn:4]https://www.troyhunt.com/10-commandments-of-good-source-control/
+
+[fn:3]https://git-scm.com/
+
+[fn:2]https://dev.infohub.cc/wp-content/uploads/2019/04/vs2019.jpg
+
+[fn:1][[https://en.wikipedia.org/wiki/Minimum_viable_product]]
