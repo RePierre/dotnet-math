@@ -105,6 +105,14 @@ Aplicația va fi propusă de către membrii echipei.
    La curs discutăm despre infrastructura și uneltele necesare pentru dezvoltarea aplicațiilor pe platforma =.net core=.
 
    Prezentarea de la curs poate fi descărcată în format [[file:s01/curs-s01.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s01-lab
+   :END:
+   *Pregătirea mediului de lucru*
+   - Instalare [[https://visualstudio.microsoft.com/downloads/][Visual Studio 2019 Community Edition]]
+   - Cont [[https://github.com/][GitHub]]
+   - Cont [[https://dev.azure.com/][Azure DevOps]]
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
