@@ -1,0 +1,152 @@
+#    -*- mode: org -*-
+#+title: Tehnici Avansate de Programare
+#+subtitle: Recapitulare și noțiuni de bază
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 25 Februarie 2021
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+* Introducere
+** Ce am discutat data trecută
+   \pause
+   - Ciclul de dezvoltare al aplicațiilor
+   - Dezvoltarea în iterații
+   - Unelte de lucru
+   - Fluxul de lucru Git
+   - Bune practici
+** Ce vom discuta azi
+    - Tipuri de date în =.net=
+    - Principiile programării orientată-obiect
+    - Clase abstracte vs. interfețe.
+    - Acuplare și Coeziune.
+* Tipuri de date în =.net=
+** Tipuri =referință= și tipuri =valoare=
+   #+begin_src dot :exports results :file ./img/netcore-types.png
+     digraph types{
+	     graph[dpi=600]
+	     rankdir=BT;
+	     node[shape=rectangle]
+
+	     {"Refecence\nType", "Value\nType"}->"Object"
+     }
+   #+end_src
+
+   #+attr_latex: :width 0.6\textwidth
+   #+RESULTS:
+   [[file:./img/netcore-types.png]]
+** Tipuri =referință= și tipuri =valoare=
+*** Exemple
+    | Tip Referință                        | Tip Valoare     |
+    |--------------------------------------+-----------------|
+    | =string=                             | =int=           |
+    | =System.Object=                      | =float=         |
+    | =System.Action=                      | =bool=          |
+    | =System.IO.MemoryStream=             | Tipuri =struct= |
+    | =System.Collections.Generic.List<T>= | Tipuri =enum=   |
+** Tipuri =valoare=
+   - O variabilă a unui tip valoare conține o instanță a tipului respectiv.
+   - La crearea unei instanțe se alocă o singură zonă în memorie.
+   - Dimensiunea zonei alocate este dată de tip.
+** Tipuri =referință=
+   - O variabilă a unui tip referință conține adresa de memorie unde este alocată instanța propriu-zisă.
+   - La crearea unei instanțe se alocă două zone de memorie:
+     - O zonă pentru adresă (stivă),
+     - O zonă pentru instanță (memoria heap).
+   - Dimensiunea zonei alocate pentru instanță poate să varieze (ex. =List<T>=).
+** Cazul special: =string=
+   - Deși tipul =string= este un tip referință, acesta se comportă ca un tip valoare.
+   - Această proprietate se numește =imuabilitate=
+* Principiile Programării Orientate-Obiect
+** Recapitulare
+   - *Încapsularea* --- îmbinarea datelor și metodelor care le procesează.
+   - *Moștenire* --- proprietățile tipului părinte se păstrează și la copii.
+   - *Polimorfism* --- același comportament manifestat de mai multe tipuri.
+** Exemplificare
+*** Context                                                         :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    \vskip 0.1in
+    Pentru exemplificare vom modela o serie de operațiuni bancare.
+** Exemplificare
+*** Cerință I                                                       :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    \vskip 0.1in
+    În calitate de posesor al unui cont bancar vreau să pot depune și extrage diverse sume de bani din cont.
+** Încapsularea
+   În situația de față, *încapsularea* ne permite să îmbinăm retragerea de fonduri cu verificarea dacă sunt fonduri suficiente.
+** Exemplificare
+*** Cerință II                                                      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    \vskip 0.1in
+    În calitate de posesor de conturi, pot avea conturi de diferite tipuri: economii și debit. Pentru retragerea de fonduri din fiecare cont se percep comisioane diferite în funcție de tipul acestuia:
+    - Pentru contul de debit: 0 %
+    - Pentru contul de economii: 0.5 %
+** Exemplificare
+*** Cerință III                                                     :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    \vskip 0.1in
+    În calitate de posesor de conturi pot avea un cont de credit cu un comision de retragere de 0.7%
+** Moștenirea
+   În exemplul dat *moștenirea* ne permite să declarăm o clasă de bază cu proprietățile comune și să implementăm particularitățile în clasele derivate.
+** Polimorfismul
+   *Polimorfismul* ne permite să aplicăm reguli de calcul diferite pentru aceeași metodă.
+* Clase abstracte vs. Interfețe
+** Clasa abstractă
+   - Oferă o implementare implicită pentru metode și proprietăți.
+   - Nu se pot crea instanțe ale claselor abstracte.
+   - Este mai puțin abstractă decât înterfața.
+   - Poate impune anumite constrângeri (ex. constructorul).
+   - Un tip de date poate deriva dintr-o singură clasă abstractă.
+** Interfața
+   - Nu oferă nicio implementare.
+   - Cel mai mare grad de abstractizare.
+   - Nu impune constrângeri decât asupra semnăturii metodelor.
+   - Un tip de date poate implementa mai multe interfețe.
+* Modularizarea codului-sursă
+** Acuplare și Coeziune
+   Două atribute foarte importante ale unui produs software de succes sunt:
+   - Grad mic de acuplare,
+   - Grad mare de coeziune.
+** Acuplarea
+*** Acuplarea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Acuplarea* este o măsură a gradului de interdependență dintre modulele unui produs software[fn:1].
+** Acuplarea --- exemplu
+   Implementarea clasică a șablonului =Singleton= este un exemplu de grad înalt de acuplare: clasele care folosesc metodele definite de =Singleton= sunt dependente de acesta.
+** Coeziunea
+*** Coeziunea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Coeziunea* este măsura în care elementele unui modul aparțin unul de celălalt[fn:2].
+* Încheiere
+** Ce am discutat azi
+   - Tipuri de date în =.net=.
+   - Principiile programării orientată-obiect.
+   - Clase abstracte vs. interfețe.
+   - Acuplare și Coeziune.
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+* Footnotes
+
+[fn:2]https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+
+[fn:1]https://en.wikipedia.org/wiki/Coupling_(computer_programming)
