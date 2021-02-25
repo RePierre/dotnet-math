@@ -113,6 +113,20 @@ Aplicația va fi propusă de către membrii echipei.
    - Instalare [[https://visualstudio.microsoft.com/downloads/][Visual Studio 2019 Community Edition]]
    - Cont [[https://github.com/][GitHub]]
    - Cont [[https://dev.azure.com/][Azure DevOps]]
+* Săptămâna 02
+  :PROPERTIES:
+  :CUSTOM_ID: s02
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s02-curs
+   :END:
+   *Recapitulare și noțiuni de bază*
+
+   La curs discutăm despre tipurile de date în =.net= și exemplificăm principiile programării orientate-obiect pe o mini-aplicație.
+   Discuția continuă cu diferența dintre clasele abstracte și interfețe iar spre sfârșit discutăm despre acuplare și coeziune.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s02/curs-s02.pdf][pdf]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
