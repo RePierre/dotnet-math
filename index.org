@@ -127,6 +127,13 @@ Aplicația va fi propusă de către membrii echipei.
    Discuția continuă cu diferența dintre clasele abstracte și interfețe iar spre sfârșit discutăm despre acuplare și coeziune.
 
    Prezentarea de la curs poate fi descărcată în format [[file:s02/curs-s02.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s02-lab
+   :END:
+   La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
+
+   O parte din noțiunile discutate se regăsesc și în acest [[https://rebeja.eu/posts/fii-practic-2016/][articol]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
