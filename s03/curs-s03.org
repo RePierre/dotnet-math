@@ -1,0 +1,128 @@
+#  -*- mode: org; -*-
+#+title: Tehnici Avansate de Programare
+#+subtitle: Modularizare, =git= și evaluare
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 4 Martie 2021
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Informații
+   #+begin_center
+   Avem spațiu dedicat cursului pe Discord.
+   #+end_center
+   #+attr_latex: :height 0.5\textheight
+   [[file:img/qr-discord-server.png]]
+** Recapitulare
+   @@latex:\pause@@
+   - Tipuri de date în =.net=
+   @@latex:\pause@@
+   - Principiile programării orientată-obiect
+** Despre ce vom discuta azi
+   - Clase abstracte vs. interfețe.
+   - Acuplare și Coeziune.
+   - Fluxul de lucru GitHub
+   - Evaluare
+* Clase abstracte vs. Interfețe
+** Clasa abstractă
+   - Oferă o implementare implicită pentru metode și proprietăți.
+   - Nu se pot crea instanțe ale claselor abstracte.
+   - Este mai puțin abstractă decât înterfața.
+   - Poate impune anumite constrângeri (ex. constructorul).
+   - Un tip de date poate deriva dintr-o singură clasă abstractă.
+** Interfața
+   - Nu oferă nicio implementare.
+   - Cel mai mare grad de abstractizare.
+   - Nu impune constrângeri decât asupra semnăturii metodelor.
+   - Un tip de date poate implementa mai multe interfețe.
+* Modularizarea codului-sursă
+** Acuplare și Coeziune
+   Două atribute foarte importante ale unui produs software de succes sunt:
+   - Grad mic de acuplare,
+   - Grad mare de coeziune.
+** Acuplarea
+*** Acuplarea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Acuplarea* este o măsură a gradului de interdependență dintre modulele unui produs software[fn:1].
+** Acuplarea --- exemplu
+   Implementarea clasică a șablonului =Singleton= este un exemplu de grad înalt de acuplare: clasele care folosesc metodele definite de =Singleton= sunt dependente de acesta.
+** Coeziunea
+*** Coeziunea                                                   :B_quotation:
+    :PROPERTIES:
+    :BEAMER_env: quotation
+    :END:
+    *Coeziunea* este măsura în care elementele unui modul aparțin unul de celălalt[fn:2].
+* Fluxul de lucru Git
+** Git[fn:3]
+   #+attr_latex: :height .8\textheight
+   [[file:img/xkcd-git.png]]
+** Fluxul de lucru GitHub[fn:4]
+   #+attr_latex: :width \textwidth
+   [[file:img/github-flow.png]]
+** Fluxul de lucru GitHub
+   Pentru proiectele la care aveți drepturi să faceți modificări:
+   - Creați o ramură nouă,
+   - Implementați cerințele prin *modificări multiple și atomice*,
+   - Creați un *Pull Request* din ramura nouă,
+   - Revizuiți și modificați dacă este cazul,
+   - Îmbinați ramura nouă cu =main=,
+   - Livrați funcționalitatea adăugată.
+** Fluxul de lucru extins[fn:5]
+   Pentru proiectele la care nu aveți dreptul să faceți modificări:
+   - Creați un =fork= al proiectului,
+   - Adăugați modificările necesare în =fork=-ul propriu (folosing fluxul de lucru de mai sus),
+   - Creați un =Pull Request= din =fork=-ul propriu,
+   - Adăugați modificări suplimentare dacă este cazul
+   - O persoană desemnată va decide dacă modificările vor fi acceptate sau nu.
+** Descrierea modificărilor[fn:6]
+   #+attr_latex: :width .7\textwidth
+   [[file:img/xkcd-git-commit.png]]
+** Ghid pentru descrierea modificărilor[fn:7]
+   - Lăsați o linie goală între sumar și restul descrierii.
+   - Sumarul trebuie să aibă maxim 50 caractere.
+   - Scrieți conform regulilor de gramatică și ortografie:
+     - Începeți propozițiile cu majusculă,
+     - Nu puneți punct după sumar.
+   - Descrierea trebuie să explice *ce* și *de ce* a fost modificat; nu /cum/.
+* Evaluare
+** Întrebări?
+   #+begin_center
+   Întrebări legate de prima evaluare.
+   #+end_center
+* Încheiere
+** Recapitulare
+   - Clase abstracte vs. interfețe.
+   - Acuplare și Coeziune.
+   - Fluxul de lucru GitHub
+   - Evaluare
+** Vă mulțumesc
+   #+begin_center
+   Succes la evaluare!
+   #+end_center
+
+* Footnotes
+
+[fn:1]https://en.wikipedia.org/wiki/Coupling_(computer_programming)
+
+[fn:2]https://en.wikipedia.org/wiki/Cohesion_(computer_science)
+
+[fn:3]https://xkcd.com/1597/
+
+[fn:4]https://guides.github.com/introduction/flow/
+
+[fn:5]https://guides.github.com/activities/forking/
+
+[fn:6]https://xkcd.com/1296/
+
+[fn:7]https://chris.beams.io/posts/git-commit/
