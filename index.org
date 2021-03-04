@@ -124,7 +124,7 @@ Aplicația va fi propusă de către membrii echipei.
    *Recapitulare și noțiuni de bază*
 
    La curs discutăm despre tipurile de date în =.net= și exemplificăm principiile programării orientate-obiect pe o mini-aplicație.
-   Discuția continuă cu diferența dintre clasele abstracte și interfețe iar spre sfârșit discutăm despre acuplare și coeziune.
+   Discuția continuă cu diferența
 
    Prezentarea de la curs poate fi descărcată în format [[file:s02/curs-s02.pdf][pdf]].
 ** Laborator
@@ -134,6 +134,19 @@ Aplicația va fi propusă de către membrii echipei.
    La laborator aplicăm conceptele discutate la curs în dezvoltare unei mini-aplicații.
 
    O parte din noțiunile discutate se regăsesc și în acest [[https://rebeja.eu/posts/fii-practic-2016/][articol]].
+* Săptămâna 03
+  :PROPERTIES:
+  :CUSTOM_ID: s03
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s03-curs
+   :END:
+   *Modularizare, =git= și evaluare*
+
+   La curs discutăm despre diferențele dintre clasele abstracte și interfețe, continuăm cu acuplarea și coeziunea și apoi trecem în revistă pașii fluxului de lucru GitHub.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s03/curs-s03.pdf][pdf]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
