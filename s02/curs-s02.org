@@ -24,8 +24,6 @@
 ** Ce vom discuta azi
     - Tipuri de date în =.net=
     - Principiile programării orientată-obiect
-    - Clase abstracte vs. interfețe.
-    - Acuplare și Coeziune.
 * Tipuri de date în =.net=
 ** Tipuri =referință= și tipuri =valoare=
    #+begin_src dot :exports results :file ./img/netcore-types.png
@@ -104,49 +102,11 @@
    În exemplul dat *moștenirea* ne permite să declarăm o clasă de bază cu proprietățile comune și să implementăm particularitățile în clasele derivate.
 ** Polimorfismul
    *Polimorfismul* ne permite să aplicăm reguli de calcul diferite pentru aceeași metodă.
-* Clase abstracte vs. Interfețe
-** Clasa abstractă
-   - Oferă o implementare implicită pentru metode și proprietăți.
-   - Nu se pot crea instanțe ale claselor abstracte.
-   - Este mai puțin abstractă decât înterfața.
-   - Poate impune anumite constrângeri (ex. constructorul).
-   - Un tip de date poate deriva dintr-o singură clasă abstractă.
-** Interfața
-   - Nu oferă nicio implementare.
-   - Cel mai mare grad de abstractizare.
-   - Nu impune constrângeri decât asupra semnăturii metodelor.
-   - Un tip de date poate implementa mai multe interfețe.
-* Modularizarea codului-sursă
-** Acuplare și Coeziune
-   Două atribute foarte importante ale unui produs software de succes sunt:
-   - Grad mic de acuplare,
-   - Grad mare de coeziune.
-** Acuplarea
-*** Acuplarea                                                   :B_quotation:
-    :PROPERTIES:
-    :BEAMER_env: quotation
-    :END:
-    *Acuplarea* este o măsură a gradului de interdependență dintre modulele unui produs software[fn:1].
-** Acuplarea --- exemplu
-   Implementarea clasică a șablonului =Singleton= este un exemplu de grad înalt de acuplare: clasele care folosesc metodele definite de =Singleton= sunt dependente de acesta.
-** Coeziunea
-*** Coeziunea                                                   :B_quotation:
-    :PROPERTIES:
-    :BEAMER_env: quotation
-    :END:
-    *Coeziunea* este măsura în care elementele unui modul aparțin unul de celălalt[fn:2].
 * Încheiere
 ** Ce am discutat azi
    - Tipuri de date în =.net=.
    - Principiile programării orientată-obiect.
-   - Clase abstracte vs. interfețe.
-   - Acuplare și Coeziune.
 ** Vă mulțumesc!
    #+begin_center
    Mulțumesc pentru atenție!
    #+end_center
-* Footnotes
-
-[fn:2]https://en.wikipedia.org/wiki/Cohesion_(computer_science)
-
-[fn:1]https://en.wikipedia.org/wiki/Coupling_(computer_programming)
