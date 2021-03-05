@@ -147,6 +147,13 @@ Aplicația va fi propusă de către membrii echipei.
    La curs discutăm despre diferențele dintre clasele abstracte și interfețe, continuăm cu acuplarea și coeziunea și apoi trecem în revistă pașii fluxului de lucru GitHub.
 
    Prezentarea de la curs poate fi descărcată în format [[file:s03/curs-s03.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s03-lab
+   :END:
+   La laborator avem prima evaluare din acest semestru.
+
+   Pagina cu cerințele pentru evaluare este pe [[https://github.com/RePierre/tap2021-e01][GitHub]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
