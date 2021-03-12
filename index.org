@@ -169,6 +169,11 @@ Aplicația va fi propusă de către membrii echipei.
    Apoi, discutăm și despre cum este indicat să adăugăm biblioteci din surse terțe la aplicația noastră.
 
    Prezentarea la curs poate fi descărcat în format [[file:s04/curs-s04.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s04-lab
+   :END:
+   La laborator exemplificăm instalare de biblioteci terțe folosind =NuGet= și continuăm dezvoltarea aplicației demonstrative.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
