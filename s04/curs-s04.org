@@ -20,7 +20,7 @@
    - Acuplare și Coeziune.
    - Fluxul de lucru GitHub
 ** Despre ce vom discuta azi
-   - =Garbage collector=/=IDisposable=
+   - =Garbage collector= / =IDisposable=
    - Ecosistemul =NuGet=
 * Gestiunea resurselor în =.net=
 ** Resursele utilizate de aplicații

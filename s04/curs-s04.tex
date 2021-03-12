@@ -1,4 +1,4 @@
-% Created 2021-03-11 Thu 06:52
+% Created 2021-03-12 Fri 07:40
 % Intended LaTeX compiler: pdflatex
 \documentclass[presentation]{beamer}
 \usepackage[utf8]{inputenc}
@@ -37,36 +37,36 @@
 
 \maketitle
 \section{Introducere}
-\label{sec:org8410815}
-\begin{frame}[label={sec:org5d6059e}]{Recapitulare}
+\label{sec:orgbe8c593}
+\begin{frame}[label={sec:org849d015}]{Recapitulare}
 \begin{itemize}
 \item Clase abstracte vs. interfețe.
 \item Acuplare și Coeziune.
 \item Fluxul de lucru GitHub
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org60f68bf},fragile]{Despre ce vom discuta azi}
+\begin{frame}[label={sec:org610bce9},fragile]{Despre ce vom discuta azi}
  \begin{itemize}
-\item \texttt{Garbage collector=/=IDisposable}
+\item \texttt{Garbage collector} / \texttt{IDisposable}
 \item Ecosistemul \texttt{NuGet}
 \end{itemize}
 \end{frame}
 \section{Gestiunea resurselor în \texttt{.net}}
-\label{sec:orgcdba7de}
-\begin{frame}[label={sec:orgaab4e0b},fragile]{Resursele utilizate de aplicații}
+\label{sec:orgf3f71a4}
+\begin{frame}[label={sec:org464386e},fragile]{Resursele utilizate de aplicații}
  Platforma \texttt{.net} separă resursele în două categorii:
 \begin{enumerate}
 \item Resurse gestionate automat (\emph{managed resources})
 \item Resurse gestionate manual (\emph{unmanaged resources})
 \end{enumerate}
 \end{frame}
-\begin{frame}[label={sec:org453dbd8},fragile]{Resurse gestionate automat}
+\begin{frame}[label={sec:org9be524e},fragile]{Resurse gestionate automat}
  \begin{itemize}
 \item Resursele gestionate automat sunt resursele care se află sub controlul platformei \texttt{.net}.
 \item Pot fi dealocate automat de \texttt{Garbage Collector}.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org3316790}]{Resurse gestionate manual}
+\begin{frame}[label={sec:org5fded49}]{Resurse gestionate manual}
 Resursele gestionate manual sunt resursele din afara platformei dar cu care avem nevoie să interacționăm.
 
 Exemple:
@@ -77,10 +77,10 @@ Exemple:
 \item Etc.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org7bab12a}]{Modul de gestiune al resurselor}
+\begin{frame}[label={sec:org513dddc}]{Modul de gestiune al resurselor}
 Resursele utilizate de aplicații \uline{trebuie} gestionate eficient.
 \end{frame}
-\begin{frame}[label={sec:org8772ac9}]{De ce contează asta?}
+\begin{frame}[label={sec:org9bcf32d}]{De ce contează asta?}
 \begin{itemize}
 \item Gestiunea resurselor are impact direct asupra aplicațiilor.
 \item O gestiune necorespunzătoare poate avea efecte precum:
@@ -91,7 +91,7 @@ Resursele utilizate de aplicații \uline{trebuie} gestionate eficient.
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org80cb909},fragile]{Modul de gestiune al resurselor}
+\begin{frame}[label={sec:org1b633b7},fragile]{Modul de gestiune al resurselor}
  Resursele unei aplicații \texttt{.net} sunt gestionate astfel:
 \begin{itemize}
 \item \texttt{Garbage Collector} se ocupă de curățarea memoriei alocată resurselor gestionate automat,
@@ -99,15 +99,15 @@ Resursele utilizate de aplicații \uline{trebuie} gestionate eficient.
 \end{itemize}
 \end{frame}
 \section{\texttt{Garbage Collector}}
-\label{sec:org3eef715}
-\begin{frame}[label={sec:org8d18c76},fragile]{\texttt{Garbage Collector}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals}\label{orge7c6519}} (\texttt{GC})}
+\label{sec:org12d0e9e}
+\begin{frame}[label={sec:org869be03},fragile]{\texttt{Garbage Collector}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals}\label{org78505c0}} (\texttt{GC})}
  \begin{itemize}
 \item Este responsabil de gestiunea eficientă a memoriei.
 \item Elimină necesitatea de a elibera manual memoria ocupată de resursele aplicației.
 \item Oferă siguranța la acces (un obiect nu poate citi conținutul altuia).
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orge41c7ce}]{Generații de obiecte\textsuperscript{\ref{orge7c6519}}}
+\begin{frame}[label={sec:org7c5e621}]{Generații de obiecte\textsuperscript{\ref{org78505c0}}}
 Memoria heap este organizată în 3 generații:
 \begin{enumerate}
 \item \alert{Generația 0} --- conține obiecte cu termen de viață foarte scurt. Marea majoritate a obiectelor trebuie să fie în generația 0.
@@ -115,7 +115,7 @@ Memoria heap este organizată în 3 generații:
 \item \alert{Generația 2} --- conține obiecte cu termen de viață lung. Ex: date statice ale aplicației.
 \end{enumerate}
 \end{frame}
-\begin{frame}[label={sec:org281962a},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{orge7c6519}}}
+\begin{frame}[label={sec:org89c9151},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{org78505c0}}}
  \begin{itemize}
 \item La crearea unui obiect nou, acesta este pus în Generația 0.
 \item La următoarea execuție a \texttt{GC} se verifică:
@@ -126,27 +126,27 @@ Memoria heap este organizată în 3 generații:
 \item Procesul se repetă pentru fiecare generație în parte.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orga6b5ef8},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{orge7c6519}}}
+\begin{frame}[label={sec:org04d3af9},fragile]{Modul de lucru al \texttt{GC}\textsuperscript{\ref{org78505c0}}}
  \begin{itemize}
 \item Când \texttt{GC} începe verificarea memoriei, toate firele de execuție a aplicației sunt suspendate.
 \item Excepție: firul care declanșează \texttt{GC} nu este supendat.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org35a532e},fragile]{Impactul \texttt{GC}}
+\begin{frame}[label={sec:org41baded},fragile]{Impactul \texttt{GC}}
  Efectul execuției \texttt{GC} asupra procesorului și impactul asupra timpului de răspuns al aplicației \texttt{Discord}\footnote{\url{https://blog.discordapp.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f}}.
 \begin{center}
 \includegraphics[width=.9\linewidth]{img/gc-impact.png}
 \end{center}
 \end{frame}
 \section{\texttt{Dispose pattern}}
-\label{sec:org901ac17}
-\begin{frame}[label={sec:orge68c88a},fragile]{\texttt{Dispose pattern}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose}\label{orgb023fa7}}}
+\label{sec:org794fc19}
+\begin{frame}[label={sec:org5ca6292},fragile]{\texttt{Dispose pattern}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose}\label{org8007a0d}}}
  \begin{itemize}
 \item Este folosit pentru a dealoca memoria resurselor gestionate automat.
 \item Este o implementare a metodei \texttt{System.IDisposable.Dispose()}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org28e28c9},fragile]{\texttt{IDisposable}}
+\begin{frame}[label={sec:orgb00ecb6},fragile]{\texttt{IDisposable}}
  \begin{verbatim}
 public interface IDisposable
 {
@@ -154,7 +154,7 @@ public interface IDisposable
 }
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:orgd236052},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgb023fa7}}}
+\begin{frame}[label={sec:org9d14a68},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{org8007a0d}}}
  \begin{verbatim}
 public void Dispose()
 {
@@ -163,7 +163,7 @@ public void Dispose()
 }
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:orgd27e1f9},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgb023fa7}}}
+\begin{frame}[label={sec:org1a8699e},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{org8007a0d}}}
  \begin{verbatim}
 protected virtual void Dispose(bool disposing)
 {
@@ -180,7 +180,7 @@ protected virtual void Dispose(bool disposing)
 }
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:org464bbd7},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{orgb023fa7}}}
+\begin{frame}[label={sec:orgeb9297e},fragile]{\texttt{Dispose pattern}\textsuperscript{\ref{org8007a0d}}}
  \begin{verbatim}
 ~DisposableResource()
 {
@@ -189,8 +189,8 @@ protected virtual void Dispose(bool disposing)
 \end{verbatim}
 \end{frame}
 \section{Cum utilizăm obiecte \texttt{IDisposable}}
-\label{sec:org5e8cddd}
-\begin{frame}[label={sec:org606ec02},fragile]{Cum utilizăm obiecte \texttt{IDisposable}}
+\label{sec:org9ee3eee}
+\begin{frame}[label={sec:org0d84841},fragile]{Cum utilizăm obiecte \texttt{IDisposable}}
  \begin{itemize}
 \item Obiectele care implementează \texttt{IDisposable} trebuie dealocate prin apelarea metodei \texttt{Dispose()}.
 \item Apelarea se poate face în două moduri:
@@ -200,7 +200,7 @@ protected virtual void Dispose(bool disposing)
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgac5639f},fragile]{Blocul \texttt{try/finally}}
+\begin{frame}[label={sec:orgc7c1822},fragile]{Blocul \texttt{try/finally}}
  \begin{verbatim}
 DisposableResource res = null;
 try
@@ -214,7 +214,7 @@ finally
 }
 \end{verbatim}
 \end{frame}
-\begin{frame}[label={sec:org4713340},fragile]{Instrucțiunea \texttt{using}}
+\begin{frame}[label={sec:org58e4ebf},fragile]{Instrucțiunea \texttt{using}}
  \begin{itemize}
 \item Apelează automat metoda \texttt{Dispose()} la părăsirea contextului curent.
 \item Este echivalentă cu blocul \texttt{try/finally}.
@@ -228,29 +228,29 @@ using(var res = new DisposableResource())
 \end{verbatim}
 \end{frame}
 \section{Ecosistemul \texttt{NuGet}}
-\label{sec:org62f5a03}
-\begin{frame}[label={sec:org52e88e1},fragile]{Ce este \texttt{NuGet}?}
+\label{sec:org2a24cf9}
+\begin{frame}[label={sec:orgaeb52c6},fragile]{Ce este \texttt{NuGet}?}
  \begin{itemize}
 \item Aplicație utilitară pentru integrarea bibliotecilor oferite de terți în soluție/proiect.
 \item Facilitează instalarea pachetelor și a pachetelor de care acestea depind.
 \item Facilitează ștergerea și actualizarea pachetelor.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgffdee22},fragile]{Ce este un \texttt{pachet NuGet}?}
+\begin{frame}[label={sec:orga3b537c},fragile]{Ce este un \texttt{pachet NuGet}?}
  \begin{itemize}
 \item O arhivă cu extensia schimbată din \texttt{.zip} în \texttt{.nupkg}.
 \item Conține bibliotecile necesare (fișierele \texttt{.dll}) și metadate.
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:org63c7437},fragile]{Pachetele \texttt{NuGet}}
+\begin{frame}[label={sec:orge23e6d3},fragile]{Pachetele \texttt{NuGet}}
  \begin{itemize}
 \item Cele publice se găsesc pe \url{https://www.nuget.org/}.
 \item Pentru pachetele private sunt necesare servere dedicate.
 \end{itemize}
 \end{frame}
 \section{Încheiere}
-\label{sec:orgba9589e}
-\begin{frame}[label={sec:orgc98f7d3},fragile]{Recapitulare --- \texttt{GC}}
+\label{sec:org331ed18}
+\begin{frame}[label={sec:orgcecb14e},fragile]{Recapitulare --- \texttt{GC}}
  \begin{itemize}
 \item Resurse gestionate automat vs resurse gestionate manual,
 \item Organizarea în 3 generații,
@@ -261,10 +261,10 @@ using(var res = new DisposableResource())
 \end{itemize}
 \end{itemize}
 \end{frame}
-\begin{frame}[label={sec:orgc1a9e77},fragile]{Recapitulare --- \texttt{NuGet}}
+\begin{frame}[label={sec:org09cf003},fragile]{Recapitulare --- \texttt{NuGet}}
  Este indicat să folosim \texttt{NuGet} pentru adăugarea de biblioteci în soluție/proiect.
 \end{frame}
-\begin{frame}[label={sec:orgba83173}]{Vă mulțumesc}
+\begin{frame}[label={sec:org4cd2f23}]{Vă mulțumesc}
 \begin{center}
 Mulțumesc pentru atenție!
 \end{center}
