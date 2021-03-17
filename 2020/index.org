@@ -19,7 +19,6 @@
   Pe parcursul cursului studenții vor acumula un set de bune practici pentru dezvoltarea produselor software pe care le vor aplica lucrând în echipe la dezvoltarea unei aplicații Web.
 Aplicația va fi propusă de către membrii echipei.
 
-  Prezentarea cursului este disponibilă și în format [[file:course-presentation.pdf][pdf]].
 * Fișa disciplinei
   :PROPERTIES:
   :CUSTOM_ID: fisa-disciplinei
