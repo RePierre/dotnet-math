@@ -174,6 +174,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s04-lab
    :END:
    La laborator exemplificăm instalare de biblioteci terțe folosind =NuGet= și continuăm dezvoltarea aplicației demonstrative.
+* Săptămâna 05
+  :PROPERTIES:
+  :CUSTOM_ID: s05
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s05-curs
+   :END:
+   *Principiile =SOLID= și modularizarea codului-sursă*
+
+   La curs enunțăm și exemplificăm principiile =SOLID= și discutăm despre cât este de important să modularizăm codul-sursă.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s05/curs-s05.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s05-lab
+   :END:
+   La laborator modularizăm aplicația demonstrativă.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
