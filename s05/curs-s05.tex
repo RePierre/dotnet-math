@@ -1,0 +1,186 @@
+% Created 2021-03-17 Wed 13:53
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{18 Martie 2021}
+\title{Tehnici Avansate de Programare}
+\subtitle{Principiile \texttt{SOLID} și modularizarea codului-sursă}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.4.4)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:org2428c5f}
+\begin{frame}[label={sec:org5e734f2},fragile]{Recapitulare}
+ \begin{itemize}
+\item Resurse gestionate automat vs resurse gestionate manual,
+\item Organizarea în 3 generații,
+\item Gestionarea ineficientă a resurselor are impact negativ,
+\item Folosim \texttt{NuGet} pentru adăugarea bibliotecilor terțe.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org3f24f36},fragile]{Despre ce vom discuta azi}
+ \begin{itemize}
+\item Principiile \texttt{SOLID}
+\item Cum organizăm codul-sursă în soluție
+\end{itemize}
+\end{frame}
+\section{Principiile \texttt{SOLID}}
+\label{sec:org23a6d92}
+\begin{frame}[label={sec:org90a5503}]{SOLID}
+\begin{description}
+\item[{S}] Single Responsibility Principle
+\item[{O}] Open-Closed Principle
+\item[{L}] Liskov Substitution Principle
+\item[{I}] Interface Segregation Principle
+\item[{D}] Dependency Inversion Principle
+\end{description}
+\end{frame}
+\begin{frame}[label={sec:orgca02fb6},fragile]{Context}
+ Vrem să simulăm tranzacții financiare modelând diverse tipuri de conturi bancare (\texttt{Debit}, \texttt{Credit} etc.) precum și operațiunile care se fac asupra acestora.
+\end{frame}
+\begin{frame}[label={sec:org30d808a}]{Single Responsibility Principle}
+\begin{block}{Single Responsibility Principle}
+Fiecare modul trebuie să fie responsabil pentru un singur aspect legat de funcționalitatea oferită de sistemul software. Mai mult, acel aspect trebuie să fie încapsulat în întregime de modulul responsabil\footnote{\url{https://en.wikipedia.org/wiki/Single\_responsibility\_principle}}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgb8ccf3f}]{Open-Closed Principle}
+\begin{block}{Open-Closed Principle}
+Părțile componente ale unui sistem software trebuie să fie ușor de extins dar greu de modificat\footnote{\url{https://en.wikipedia.org/wiki/Open/closed\_principle}}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org18988f0}]{Liskov Substitution Principle}
+\begin{block}{Liskov Substitution Principle}
+Obiectele unui sistem software trebuie să fie substituibile de către instanțe ale unor subtipuri de obiecte, fără ca substituția să afecteze corectitudinea sistemului\footnote{\url{https://en.wikipedia.org/wiki/Liskov\_substitution\_principle}}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgdb7cb3f}]{Interface Segregation Principle}
+\begin{block}{Interface Segregation Principle}
+Interfețele trebuie să fie mici și specifice contextului de utilizare; nu mari și generale\footnote{\url{https://en.wikipedia.org/wiki/Interface\_segregation\_principle}}.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org1269d28}]{Dependency Inversion Principle}
+\begin{block}{Dependency Inversion Principle}
+Modulele unui sistem software trebuie să depindă de reprezentări abstracte și nu de implementări concrete\footnote{\url{https://en.wikipedia.org/wiki/Dependency\_inversion\_principle}}.
+\end{block}
+\end{frame}
+\section{Concepte de bază în Visual Studio}
+\label{sec:orge6bc502}
+\begin{frame}[label={sec:orga67f53c}]{Soluție}
+\begin{itemize}
+\item O mulțime de resurse necesare pentru crearea unei aplicații.
+\item Resursele sunt grupate (de obicei) în proiecte.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org98cb3eb},fragile]{Proiect}
+ \begin{itemize}
+\item O submulțime de resurse menite să fie compilate împreună în:
+\begin{itemize}
+\item O bibliotecă software (\texttt{.dll}),
+\item O aplicație executabilă (\texttt{.exe}),
+\item O aplicație Web.
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org63daafe},fragile]{Spațiu de nume (\texttt{namespace})}
+ \begin{itemize}
+\item Denotă un domeniu restrâns căruia îi aparține o mulțime de tipuri.
+\item Este folosit pentru a diferenția tipurile cu același nume.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org55572f9},fragile]{Denumirea spațiilor de nume}
+ Șablonul recomandat pentru denumirea spațiilor de nume noi este\footnote{\url{https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-namespaces}}:
+\begin{verbatim}
+<Company>.(<Product>|<Technology>)[.<Feature>][.<Subnamespace>]
+\end{verbatim}
+\end{frame}
+\section{Modularizarea codului sursă}
+\label{sec:org84a2016}
+\begin{frame}[label={sec:org9569cd9}]{Recapitulare: Acuplarea}
+\begin{quotation} %% Acuplarea
+\alert{Acuplarea} este o măsură a gradului de interdependență dintre modulele unui produs software\footnote{\url{https://en.wikipedia.org/wiki/Coupling\_(computer\_programming)}}.
+\end{quotation}
+\end{frame}
+\begin{frame}[label={sec:orga78ca0c}]{Recapitulare: Coeziunea}
+\begin{quotation} %% Coeziunea
+\alert{Coeziunea} este măsura în care elementele unui modul aparțin unul de celălalt\footnote{\url{https://en.wikipedia.org/wiki/Cohesion\_(computer\_science)}}.
+\end{quotation}
+\end{frame}
+\section{De ce modularizăm codul-sursă?}
+\label{sec:orgf7b30f3}
+\begin{frame}[label={sec:orgdb072d7}]{Separarea funcționalităților}
+\begin{itemize}
+\item Fiecare modul este responsabil de o singură funcționalitate.
+\item Gradul ridicat de coeziune și gradul redus de acuplare rezultă în cod ușor de întreținut.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga3b644c},fragile]{Reutilizarea codului-sursă}
+ \begin{itemize}
+\item Modulele pot fi combinate pentru a obține aplicații noi (ex: pachete \texttt{NuGet}).
+\item Aceleași module pot fi reutilizate pentru publicarea aplicației pe diferite platforme.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org2ca9c6b}]{Încapsulare}
+\begin{itemize}
+\item Modulul expune doar interfața publică și ascunde detaliile de implementare.
+\item Ulterior detaliile de implementare pot fi modificate fără să afecteze funcționalitatea consumatorilor.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org6694515}]{Ușor de testat}
+\begin{itemize}
+\item Este mai ușor să scrii teste pentru module cu acuplare mică și coeziune mare.
+\item La rândul lor și testele devin suficient de mici și modulare.
+\end{itemize}
+\end{frame}
+\section{Încheiere}
+\label{sec:org39a69f9}
+\begin{frame}[label={sec:orgd64be01},fragile]{Recapitulare --- \texttt{SOLID}}
+ \begin{itemize}
+\item \alert{Single Responsibility Principle}
+\item \alert{Open-Closed Principle}
+\item \alert{Liskov Substitution Principle}
+\item \alert{Interface Segregation Principle}
+\item \alert{Dependency Inversion Principle}
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org0585e6f}]{Recapitulare --- modularizare}
+Modularizarea codului-sursă ne permite să:
+\begin{itemize}
+\item Separăm funcționalitățile/responsabilitățile,
+\item Încapsulăm și reutilizăm codul-sursă și
+\item Să testăm mai codul mai ușor/rapid.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org3f6ed04}]{Vă mulțumesc!}
+\begin{center}
+Mulțumesc pentru atenție!
+\end{center}
+\end{frame}
+\end{document}
