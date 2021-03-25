@@ -192,6 +192,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s05-lab
    :END:
    La laborator modularizăm aplicația demonstrativă.
+* Săptămâna 06
+  :PROPERTIES:
+  :CUSTOM_ID: s06
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s05-curs
+   :END:
+   *Delegates,  Attributes, Lambda Expressionis & Extension Methods*
+
+   La curs discutăm despre Delegates,  Attributes, Lambda Expressionis și Extension Methods.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s06/curs-s06.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s06-lab
+   :END:
+   La laborator extindem aplicația demonstrativă și începem să discutăm despre proiectele de curs.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
