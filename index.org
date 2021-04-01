@@ -3,6 +3,7 @@
 #+description: Pagina cursului Technici Avansate de Programare. Facultatea de Matematică, Universitatea Alexandru Ioan Cuza, Iași.
 #+language: ro
 #+select_tags: export
+#+startup: content
 #+exclude_tags: noexport
 #+options: author:t broken-links:nil c:nil creator:nil
 #+options: timestamp:nil title:t toc:t todo:t |:t
@@ -210,6 +211,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s06-lab
    :END:
    La laborator extindem aplicația demonstrativă și începem să discutăm despre proiectele de curs.
+* Săptămâna 07
+  :PROPERTIES:
+  :CUSTOM_ID: s07
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s07-curs
+   :END:
+   *LINQ & Entity Framework*
+
+   La curs discutăm despre =LINQ=, =Entity Framework= și cum abstractizăm accesul la date cu =Repository Pattern=.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s07/curs-s07.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s07-lab
+   :END:
+   La laborator începem să definim schema de baze de date pentru proiectul de curs.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
