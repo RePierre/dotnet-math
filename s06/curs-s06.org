@@ -51,7 +51,7 @@
     :END:
     #+begin_src csharp
       var parse = new Transformer<string, int>(System.Convert.ToInt32);
-      var result = parse("2020");
+      var result = parse("2021");
     #+end_src
 ** Instanță =Delegate=
    Compilatorul ne oferă o sintaxă mai simplă pentru declararea instanțelor =Delegate=:
@@ -61,7 +61,7 @@
     :END:
     #+begin_src csharp
       Transformer<string, int> parse = System.Convert.ToInt32;
-      var result = parse("2020");
+      var result = parse("2021");
     #+end_src
 ** =Delegate= vs interfață[fn:3]
    - Problemele pe care le rezolvă un =Delegate= pot fi rezolvate și cu o interfață.
@@ -185,7 +185,7 @@
      static void Main()
      {
 	 Console.WriteLine(DateTime.Today.ToIsoShortDate());
-	 // 2020-03-26
+	 // 2021-03-26
      }
    #+end_src
 ** Avantajele metodelor de extensiune
