@@ -169,7 +169,7 @@ Aplicația va fi propusă de către membrii echipei.
 
    Apoi, discutăm și despre cum este indicat să adăugăm biblioteci din surse terțe la aplicația noastră.
 
-   Prezentarea la curs poate fi descărcat în format [[file:s04/curs-s04.pdf][pdf]].
+   Prezentarea de la curs poate fi descărcată în format [[file:s04/curs-s04.pdf][pdf]].
 ** Laborator
    :PROPERTIES:
    :CUSTOM_ID: s04-lab
@@ -187,7 +187,7 @@ Aplicația va fi propusă de către membrii echipei.
 
    La curs enunțăm și exemplificăm principiile =SOLID= și discutăm despre cât este de important să modularizăm codul-sursă.
 
-   Prezentarea la curs poate fi descărcat în format [[file:s05/curs-s05.pdf][pdf]].
+   Prezentarea de la curs poate fi descărcată în format [[file:s05/curs-s05.pdf][pdf]].
 ** Laborator
    :PROPERTIES:
    :CUSTOM_ID: s05-lab
@@ -205,7 +205,7 @@ Aplicația va fi propusă de către membrii echipei.
 
    La curs discutăm despre Delegates,  Attributes, Lambda Expressionis și Extension Methods.
 
-   Prezentarea la curs poate fi descărcat în format [[file:s06/curs-s06.pdf][pdf]].
+   Prezentarea de la curs poate fi descărcată în format [[file:s06/curs-s06.pdf][pdf]].
 ** Laborator
    :PROPERTIES:
    :CUSTOM_ID: s06-lab
@@ -223,12 +223,30 @@ Aplicația va fi propusă de către membrii echipei.
 
    La curs discutăm despre =LINQ=, =Entity Framework= și cum abstractizăm accesul la date cu =Repository Pattern=.
 
-   Prezentarea la curs poate fi descărcat în format [[file:s07/curs-s07.pdf][pdf]].
+   Prezentarea de la curs poate fi descărcată în format [[file:s07/curs-s07.pdf][pdf]].
 ** Laborator
    :PROPERTIES:
    :CUSTOM_ID: s07-lab
    :END:
    La laborator începem să definim schema de baze de date pentru proiectul de curs.
+* Săptămâna 08
+  :PROPERTIES:
+  :CUSTOM_ID: s08
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s08-curs
+   :END:
+   *Unit of Work pattern & Dependency Injection*
+
+   La curs discutăm despre cum putem încapsula operațiile asupra bazei de date într-o tranzacție cu =Unit of Work pattern= apoi discutăm despre =Dependency Injection= și cum această tehnică ne ajută să decuplăm codul-sursă și să-i reducem complexitatea.
+
+   Prezentarea de la curs poate fi descărcată în format [[file:s08/curs-s08.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s08-lab
+   :END:
+   La laborator analizăm propunerile pentru proiectele de curs.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
