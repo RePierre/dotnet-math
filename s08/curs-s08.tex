@@ -1,0 +1,233 @@
+% Created 2021-04-08 Thu 06:44
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{8 Aprilie 2021}
+\title{Tehnici Avansate de Programare}
+\subtitle{Unit of Work pattern \& Dependency Injection}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.4.4)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:orgf39e77a}
+\begin{frame}[label={sec:org0f08fa3}]{Recapitulare}
+\begin{itemize}
+\item \alert{LINQ} --- O mulțime de funcții ce permit interogarea uniformă a colecțiilor de date din diverse surse.
+\item \alert{Entity Framework} --- O platformă care permite interogarea și manipularea datelor folosind paradigma orientat-obiect.
+\item \alert{Repository Pattern} --- Șablon de proiectare ce decuplează logica aplicației de accesul la date.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgb2b6948}]{Agenda}
+\begin{itemize}
+\item Unit of Work pattern
+\item Dependency Injection
+\end{itemize}
+\end{frame}
+\section{\texttt{Unit of Work} pattern}
+\label{sec:org3a889e6}
+\begin{frame}[label={sec:org081f1eb},fragile]{Repository}
+ \begin{verbatim}
+public interface IRepository<TEntity>
+{
+    IQueryable<TEntity> Query();
+    void Insert(TEntity entity);
+    void Update(TEntity entity);
+    void Delete(TEntity entityId);
+    void SaveChanges();
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:org87894b6},fragile]{Repository}
+ \begin{itemize}
+\item Folosim o instanță de \texttt{repository} pentru a efectua operații \texttt{CRUD} asupra uneia sau a mai multor entități de același tip.
+\item Toate modificările sunt păstrate în memorie.
+\item Metoda \texttt{SaveChanges()} este apelată pentru a salva modificările în baza de date.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org8f3ae94},fragile]{Scenariu problematic}
+ Vrem să introducem în baza de date un client nou și datele de contact ale acestuia:
+
+\begin{verbatim}
+customerRepository.Insert(new Customer{...});
+customerRepository.SaveChanges();
+
+addressRepository.Insert(new CustomerAddress{...});
+addressRepository.SaveChanges();
+\end{verbatim}
+\pause
+Ce se întâmplă dacă \texttt{addressRepository.SaveChanges()} aruncă o excepție?
+\end{frame}
+\begin{frame}[label={sec:org9ce1c8f},fragile]{Scenariu problematic}
+ Ce se întâmplă dacă \texttt{addressRepository.SaveChanges()} aruncă o excepție?
+\begin{itemize}
+\item Clientul este salvat în baza de date dar adresa nu.
+\item Baza de date rămâne într-o stare neconsistentă.
+\item Pentru a reveni la consistență clientul fără adresă trebuie șters.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgbe52551}]{Scenariu problematic}
+\begin{itemize}
+\item Astfel de scenarii se regăsesc des în cerințele aplicațiilor.
+\item Atunci când lucrăm cu mai mult de două entități asigurarea consistenței datelor devine un mecanism foarte complex.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org0e737a0},fragile]{Soluția}
+ Pentru a evita astfel de probleme folosim \texttt{Unit of Work}.
+\end{frame}
+\begin{frame}[label={sec:org52a49bf},fragile]{Unit of Work}
+ \begin{block}{Unit of Work}
+\texttt{Unit of Work} ține evidența tuturor modificărilor aferente bazei de date efectuate în timpul unei tranzacții logice din aplicație. La finalul tranzacției modificările sunt salvate în baza de date într-un mod care asigură atomicitatea și integritatea datelor.\footnote{\url{https://www.martinfowler.com/eaaCatalog/unitOfWork.html}}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org62ff8df},fragile]{Unit of Work Pattern}
+ \begin{verbatim}
+public interface IRepository<TEntity>
+{
+    IQueryable<TEntity> Query();
+    void Insert(TEntity entity);
+    void Update(TEntity entity);
+    void Delete(TEntity entityId);
+}
+
+public interface IUnitOfWork
+{
+    void Commit();
+}
+\end{verbatim}
+\begin{itemize}
+\item Metoda \texttt{SaveChanges()} devine redundantă și trebuie eliminată din interfața \texttt{IRepository}.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orga10523e},fragile]{Exemplu}
+ \begin{verbatim}
+public class RegisterCustomerTransaction
+{
+    public RegisterCustomerTransaction(
+	IRepository<Customer> customerRepository,
+	IRepository<CustomerAddress> addressRepository,
+	IUnitOfWork unitOfWork)
+    {
+	...
+    }
+
+    public void Execute(Customer customer, CustomerAddress address)
+    {
+	customerRepository.Insert(customer);
+	addressRepository.Insert(address);
+	unitOfWork.Commit();
+    }
+}
+\end{verbatim}
+\end{frame}
+\section{\texttt{Depencency Injection}}
+\label{sec:org5e8228d}
+\begin{frame}[label={sec:org34d646c},fragile]{Definiție}
+ \begin{block}{Dependency Injection}
+\texttt{Dependency Injection} este o tehnică prin care un obiect îi furnizează altuia dependențele de care acesta din urmă are nevoie.\footnote{\url{https://en.wikipedia.org/wiki/Dependency\_injection}}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgdf59dae},fragile]{Definiție}
+ \begin{block}{Dependency Injection}
+\texttt{Dependency Injection} este un termen de 25 dolari pentru un concept de 5 cenți. [\ldots{}] \texttt{Dependency Injection} înseamnă să-i dai unei instanțe a unui anumit obiect variabilele de care are nevoie.\footnote{\url{https://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html}}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org5d64f76}]{Avantaje}
+\begin{itemize}
+\item Separarea responsabilităților\footnote{\url{https://en.wikipedia.org/wiki/Dependency\_injection}}:
+\begin{itemize}
+\item \alert{Injectorul} construiește dependențele și le injectează în client și
+\item \alert{Clientul} manipulează dependențele pentru obținerea unui anumit scop.
+\end{itemize}
+\item Reducerea codului de umplutură și a gradului de acuplare.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgbb25372}]{Avantaje}
+\begin{itemize}
+\item Flexibilitatea la schimbări fără necesitatea de recompilare --- efectele execuției codului client pot fi modificate prin injectarea unei implementări diferite.
+\item Facilitează testarea în izolare.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org6813d9f},fragile]{Dezavantaje}
+ \begin{itemize}
+\item Grad de abstractizare mai mare care crește dificultatea codului.
+\item Induce o dependență față de o bibliotecă pentru \texttt{Dependency Injection}.
+\item Poate duce la o acuplare mai mare prin utilizarea defectuoasă.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgfdd4dea},fragile]{\texttt{Service Locator}}
+ \begin{block}{\texttt{Service Locator}}
+  Ideea de bază a unui \texttt{Service Locator} este să ai la dispoziție un obiect care știe cum să obțină, la cerere, instanțe ale tuturor serviciilor necesare unei aplicații\footnote{\url{https://martinfowler.com/articles/injection.html\#UsingAServiceLocator}}.
+\vskip 0.5in
+\alert{N.B.}: O instanță de serviciu = o dependență.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgc68b1a5},fragile]{\texttt{Service Locator} --- exemplu}
+ \begin{verbatim}
+public class RegisterCustomerTransaction
+{
+    public RegisterCustomerTransaction()
+    {
+	customerRepository = ServiceLocator
+	    .GetInstance<IRepository<Customer>>();
+	addressRepository = ServiceLocator
+	    .GetInstance<IRepository<CustomerAddress>>();
+	unitOfWork = ServiceLocator.GetInstance<IUnitOfWork>();
+    }
+}
+\end{verbatim}
+\end{frame}
+\begin{frame}[label={sec:org2d060d1},fragile]{\texttt{Service Locator}}
+ \begin{itemize}
+\item \alert{Este un anti-șablon}\footnote{\url{https://blog.ploeh.dk/2010/02/03/ServiceLocatorisanAnti-Pattern/}}.
+\item Induce un grad mare de acuplare.
+\item Ascunde dependențele.
+\end{itemize}
+\end{frame}
+\section{Încheiere}
+\label{sec:org455a509}
+\begin{frame}[label={sec:org2ed473f}]{Recapitulare}
+\pause
+\begin{block}{Unit of Work}
+\pause
+Este un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+\pause
+\end{block}
+\begin{block}{Dependency Injection}
+\pause
+Este o modalitate de a-i da unei instanțe variabilele de care aceasta are nevoie separând astfel crearea de instanțe de utilizarea lor.
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:org13f10c0}]{Vă mulțumesc!}
+\begin{center}
+Mulțumesc pentru atenție!
+\end{center}
+\end{frame}
+\end{document}
