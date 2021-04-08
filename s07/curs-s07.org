@@ -132,7 +132,7 @@
 *** Entity
     - Denumire generică pentru fiecare tip de date din modelul bazei de date.
 ** Noțiuni de bază
-*** Relație / =Navigational Properity=
+*** Relație / =Navigational Property=
     - O proprietate a unei entități prin care se modelează relația cu altă entitate,
     - Ex: =Student.Classes= este o listă ce modelează relația =1:N= dintre entitățile =Student= și =Class=.
 ** Noțiuni de bază
