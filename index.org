@@ -247,6 +247,19 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s08-lab
    :END:
    La laborator analizăm propunerile pentru proiectele de curs.
+* Săptămâna 09
+  :PROPERTIES:
+  :CUSTOM_ID: s09
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s09-curs
+   :END:
+   *Test-Driven Development și Recapitulare*
+
+   La curs discutăm despre =Test-Driven Development= și facem o recapitulare înainte de evaluare.
+
+   Prezentarea la curs poate fi descărcat în format [[file:s09/curs-s09.pdf][pdf]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
