@@ -1,0 +1,139 @@
+% Created 2021-04-15 Thu 07:11
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\usetheme{metropolis}
+\usecolortheme{}
+\usefonttheme{}
+\useinnertheme{}
+\useoutertheme{}
+\author{Petru Rebeja, Marius Apetrii}
+\date{15 Aprilie 2021}
+\title{Tehnici Avansate de Programare}
+\subtitle{\texttt{Test-Driven Development} și Recapitulare}
+\institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+\hypersetup{
+ pdfauthor={Petru Rebeja, Marius Apetrii},
+ pdftitle={Tehnici Avansate de Programare},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.4.5)},
+ pdflang={Romanian}}
+\begin{document}
+
+\maketitle
+\section{Introducere}
+\label{sec:org04ccc11}
+\begin{frame}[label={sec:org92c969e}]{Recapitulare}
+\begin{itemize}
+\item \alert{Unit of Work} --- un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+\item \alert{Dependency Injection} --- o modalitate de a-i da unei instanțe variabilele de care aceasta are nevoie separând astfel crearea de instanțe de utilizarea lor.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org608c10d},fragile]{Agenda}
+ \begin{itemize}
+\item \texttt{Test-Driven Development}
+\item Recapitulare
+\end{itemize}
+\end{frame}
+\section{Test-Driven Development}
+\label{sec:org6bca3ba}
+\begin{frame}[label={sec:org97005cb}]{Definiție}
+\begin{block}{Test-Driven Development\footnote{\url{https://www.agilealliance.org/glossary/tdd}}}
+Este un stil de dezvoltare a aplicațiilor constând în trecerea frecventă prin următoarele trei activități:
+\begin{itemize}
+\item Scrierea de cod
+\item Scrierea de teste unitare și
+\item Refactorizare.
+\end{itemize}
+\end{block}
+\end{frame}
+\begin{frame}[label={sec:orgf9e52b7},fragile]{Ciclul de dezvoltare \texttt{TDD}\footnote{\url{https://www.agilealliance.org/glossary/tdd}}}
+ \begin{itemize}
+\item Scierea unui singur test unitar menit să descrie un anumit aspect al metodei,
+\item Execuția testului care eșuează deoarece aspectul încă nu este implementat,
+\item Scrierea cantității de cod necesare pentru a trece testul,
+\item Refactorizarea codului scris pentru a se încadra în diverse criterii (simplitate, lizibilitate etc.).
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org94c78e5},fragile]{Ciclul de dezvoltare \texttt{TDD}}
+ Procesul se repetă de mai multe ori ducând la acumularea de teste unitare pentru fiecare aspect al aplicației.
+\end{frame}
+\begin{frame}[label={sec:org23aaa28}]{Avantaje}
+\begin{itemize}
+\item Reduce timpul petrecut pentru depanare,
+\item Reduce numărul defectelor din aplicație,
+\item Scade gradul de acuplare și crește coeziunea.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org6d3e55e}]{Dezavantaje}
+\begin{itemize}
+\item Crește timpul necesar pentru dezvoltare,
+\item Crește efortul necesar întreținerii,
+\item Necesită o perioadă de adaptare.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:orgfd52fc0},fragile]{Teste unitare}
+ \begin{itemize}
+\item Metode care verifică un anumit aspect al modulului pe care îl testează.
+\item Sunt decorate cu un anumit atribut (ex.: \texttt{[TestMethod]}).
+\item Clasa care le conține poate fi și ea decorată cu un anumit atribut (ex.: \texttt{[TestClass]}).
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org8d98d5e},fragile]{Structura unui test}
+ Un test este structurat conform șablonului \texttt{AAA}:
+\begin{itemize}
+\item \alert{Arrange}  --- pregătirile necesare pentru a apela metoda testată: crearea de instanțe false, instanțierea clasei etc.
+\item \alert{Act} --- apelarea propriu-zisă a metodei testate și preluarea rezultatelor.
+\item \alert{Assert} --- verificarea rezultatelor și/sau comportamentului metodei testate.
+\end{itemize}
+\end{frame}
+\section{Demonstrații}
+\label{sec:org8152035}
+\section{Încheiere}
+\label{sec:org3c2490c}
+\begin{frame}[label={sec:org7f48693},fragile]{Recapitulare --- \texttt{TDD}}
+ \begin{itemize}
+\item \alert{Test-Driven Development} --- un stil de dezvoltare software în care mai întâi se scriu testele pentru un anumit aspect iar mai apoi implementarea propriu-zisă.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org2d9e188},fragile]{Recapituralre --- \texttt{SOLID}}
+ \begin{description}
+\item[{S}] Single Responsibility Principle
+\item[{O}] Open-Closed Principle
+\item[{L}] Liskov Substitution Principle
+\item[{I}] Interface Segregation Principle
+\item[{D}] Dependency Inversion Principle
+\end{description}
+\end{frame}
+\begin{frame}[label={sec:org4171031},fragile]{Recapitulare --- \texttt{extension methods}}
+ \begin{itemize}
+\item Metode statice care extind funcționalitatea unui tip existent fără să-l modifice.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org6d79396},fragile]{Recapitulare --- \texttt{Repository} \& \texttt{UnitOfWork}}
+ \begin{itemize}
+\item \alert{Repository Pattern} --- șablon de proiectare ce decuplează logica aplicației de accesul la date.
+\item \alert{Unit of Work} --- un șablon care ne permite să executăm toate modificările aferente bazei de date într-o singură tranzacție.
+\end{itemize}
+\end{frame}
+\begin{frame}[label={sec:org351c364}]{Vă mulțumesc}
+\begin{center}
+Succes la evaluare!
+\end{center}
+\end{frame}
+\end{document}
