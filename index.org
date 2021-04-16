@@ -260,6 +260,13 @@ Aplicația va fi propusă de către membrii echipei.
    La curs discutăm despre =Test-Driven Development= și facem o recapitulare înainte de evaluare.
 
    Prezentarea la curs poate fi descărcat în format [[file:s09/curs-s09.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s09-lab
+   :END:
+   La laborator avem a doua evaluare din acest semestru.
+
+   Pagina cu cerințele pentru evaluare este pe [[https://github.com/RePierre/tap2021-e02][GitHub]].
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
