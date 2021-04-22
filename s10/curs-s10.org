@@ -1,0 +1,208 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: Baze de date
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 22 Aprilie 2021
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   - *Test-Driven Development* --- un stil de dezvoltare software în care mai întâi se scriu testele pentru un anumit aspect iar mai apoi implementarea propriu-zisă.
+** Agenda
+   - Baze de date
+   - Istoricul schemei bazei de date relaționale
+   - Proiectarea bazelor de date
+* Baze de date
+** Noțiuni de bază
+*** Bază de date                                                    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    O =bază de date= este o colecție organizată de date care sunt stocate și accesate de pe un calculator[fn:1].
+** Noțiuni de bază
+*** Sistem de Gestiune al Bazelor de Date                           :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Sistemul de Gestiune a Bazelor de Date este un sistem software care le permite utilizatorilor să definească, să creeze, să întrețină și să controleze accesul la baza de date[fn:2].
+** Noțiuni de bază
+*** Schema bazei de date                                            :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Schema bazei de date este structura logică a bazei de date descrisă într-un limbaj formal suportat de SGBD[fn:3] sau o reprezentare vizuală a acesteia[fn:4]
+** Tipuri de baze de date
+   Există două tipuri de baze de date:
+   - Relaționale (=SQL=) și
+   - Non-relaționale (=No-SQL=)
+** Baze de date relaționale
+   - Sunt bazate pe tabele și modelează relația dintre ele,
+   - Au o schemă predefinită,
+   - Suportă interogări complexe,
+** Baze de date relaționale (cont.)
+   - Suportă creșterea pe verticală (=vertical scaling=) prin adăugarea de memorie RAM, spațiu pe disk etc.,
+   - Pun accentul pe proprietățile =ACID=:
+     - =Atomicity= --- modificări atomice,
+     - =Consistency= --- impune consistența datelor
+     - =Isolation= --- modificările se fac în izolare unele față de altele
+     - =Durability= --- modificările sunt salvate pe disk.
+** Baze de date No-SQL
+   - Sunt bazate pe documente, grafuri, perechi cheie-valoare etc.
+   - *Nu* au o schemă predefinită,
+   - Au suport limitat pentru interogări complexe,
+** Baze de date No-SQL (cont.)
+   - Suportă creșterea pe orizontală (=horizontal scaling=) prin adăugarea de noduri noi,
+   - Aplică teorema CAP[fn:5] --- în orice moment oferă două proprietăți din următoarele:
+     - =Consistency= --- orice scriere primește cele mai recente date sau o eroare,
+     - =Availability= --- fiecare cerere primește un răspuns dar datele pot să nu fie cele mai recente,
+     - =Partition tolerance= --- systemul continuă să funcționeze în ciuda pierderii unor mesaje.
+* Evoluția bazei de date
+** Evoluția aplicației
+   - Baza de date evoluează (de obicei) împreună cu aplicația,
+   - Modificările bazei de date fac parte din ciclul de dezvoltare.
+** Bune practici
+   - Schema bazei de date trebuie păstrată în sistemul de management al istoricului[fn:6] pentru a asigura sincronizarea între modificările aplicației și a bazei de date,
+   - Aplicarea modificărilor trebuie sincronizată,
+   - Altfel întregul sistem software devine inutilizabil.
+* Proiectarea bazelor de date
+** Primary/Foreign Key
+   - O cheie primară (=Primary Key=) este o mulţime de coloane ale unui tabel a căror valori identifică în mod unic o înregistrare[fn:7].
+   - O cheie străină (=Foreign Key=) este o mulţime de coloane ale unui tabel care fac referinţă la o cheie primară[fn:8].
+** Relaţie
+   Adăugarea unei chei străine crează o =relaţie= între cele două tabele unde:
+   - Tabelul =copil= este cel care conţine cheia străină,
+   - Tabelul =părinte= este cel care conţine cheia primară referenţiată de tabelul copil.
+** Exemplu: 1*N
+   #+attr_latex: :width \textwidth
+   [[file:img/one-to-many.png]]
+** Exemplu[fn:9]: N*M
+   #+attr_latex: :width .8\textwidth
+   [[file:img/many-to-many.png]]
+** Normalizare
+*** Normalizarea bazei de date                                      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   Procesul de structurare a unei baze de date relaţionale pentru a reduce redundanţa datelor şi a îmbunătăţi integritatea acestora[fn:10].
+** Objectivele normalizării
+   - Modelarea conceptelor din lumea reală şi a relaţiilor dintre acestea.
+   - Extensibilitate sporită: adăugarea obiectelor noi se face cu intervenţie minimă.
+** Forme normale
+   - Normalizarea se face prin aducerea schemei la o =formă normală=.
+   - O =formă normală= este o proprietate a structurii bazei de date.
+   - Există mai multe forme normale (=FN1=---=FN6= etc.).
+   - O bază de date este normalizată dacă respectă cel puţin =FN3=.
+** Forma Normală 1
+*** FN1                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    O relaţie este în =Forma Normală 1= dacă în fiecare coloană a unui tabel avem doar valori atomice.
+** Forma Normală 1
+   Normalizarea la =FN1= se face prin:
+   1. Eliminarea grupurilor care se repetă.
+   2. Crearea unui table pentru fiecare colecţie de date cu coeziune mare.
+   3. Adăugarea unei chei primare.
+** Forma Normală 2
+*** FN2                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   O relaţie este în =Forma Normală 2= dacă:
+   1. Este în =Forma Normală 1= şi
+   2. Toate atributele unui tabel depind doar de cheia primară direct sau indirect.
+** Forma Normală 2
+   Tournament winners[fn:11]
+   | _Tournament_         | _Year_ | Winner         | Winner's date of birth |
+   |----------------------+------+----------------+------------------------|
+   | Indiana Invitational | 1998 | Al Fredrickson | 21 July 1975           |
+   | Cleveland Open       | 1999 | Bob Albertson  | 28 September 1968      |
+   | Des Moines Masters   | 1999 | Al Fredrickson | 21 July 1975           |
+   | Indiana Invitational | 1999 | Chip Masterson | 14 March 1977          |
+** Forma Normală 3
+*** FN3                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+   @@latex:\vskip 0.1in@@
+   O relaţie este în =Forma Normală 3= dacă:
+   1. Este în =Forma Normală 2= şi
+   2. Fiecare atribut depinde direct de cheia primară.
+** Forma Normală 3[fn:12]
+*** Tournament winners                                             :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :END:
+   | Tournament           | Year | Winner         |
+   |----------------------+------+----------------|
+   | Indiana Invitational | 1998 | Al Fredrickson |
+   | Cleveland Open       | 1999 | Bob Albertson  |
+   | Des Moines Masters   | 1999 | Al Fredrickson |
+   | Indiana Invitational | 1999 | Chip Masterson |
+*** Winner's dates of birth                                        :B_column:
+    :PROPERTIES:
+    :BEAMER_env: column
+    :END:
+   | Winner         | Date of birth     |
+   |----------------+-------------------|
+   | Chip Masterson | 14 March 1977     |
+   | Al Fredrickson | 21 July 1975      |
+   | Bob Albertson  | 28 September 1968 |
+* Încheiere
+** Recapitulare --- baze de date
+   - *Baza de date* este o colecție organizată de date care pot fi manipulate prin intermediul unui SGBD.
+   - *SGBD* = Sistem de Gestiune al Bazelor de Date; permite manipulearea datelor și întreținerea bazelor de date.
+   - *Schema bazei de date* este reprezentarea structurii bazei de date și trebuie păstrată în sistemul de gestiune al istoricului alături de codul-sursă al aplicației.
+   - Folosiți =Database project= din Visual Studio pentru modificarea schemei bazei de date.
+** Recapitulare --- ACID
+   - =Atomicity= --- modificări atomice,
+   - =Consistency= --- impune consistența datelor
+   - =Isolation= --- modificările se fac în izolare unele față de altele
+   - =Durability= --- modificările sunt salvate pe disk.
+** Recapitulare --- proiectarea bazei de date
+   - Elemente esenţiale în proiectarea bazelor de date: =cheie primară=, =cheie străină= şi =relaţie=.
+   - =Normalizare= --- proiectarea/restructurarea bazei de date pentru a o aduce în (cel puţin) =forma normală 3=.
+   - O schemă este în =forma normală 3= (=FN3=) dacă atributele fiecărui tabel sunt atomice și depind doar de cheia primară.
+** Vă mulțumesc
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:12]https://en.wikipedia.org/wiki/Third_normal_form
+[fn:11]https://en.wikipedia.org/wiki/Third_normal_form
+
+[fn:10]https://en.wikipedia.org/wiki/Database_normalization
+[fn:9]https://smehrozalam.wordpress.com/2010/06/29/entity-framework-queries-involving-many-to-many-relationship-tables
+
+[fn:8]https://www.w3schools.com/sql/sql_foreignkey.asp
+[fn:7]http://www.differencebetween.net/technology/difference-between-primary-key-and-unique-key/
+
+[fn:6]https://www.troyhunt.com/10-commandments-of-good-source-control/
+
+[fn:5]https://en.wikipedia.org/wiki/CAP_theorem
+
+[fn:4]https://www.techopedia.com/definition/30601/database-schema
+[fn:3]http://en.wikipedia.org/wiki/Database_schema
+[fn:2]Connolly, Thomas M.; Begg, Carolyn E. (2014). Database Systems – A Practical Approach to Design Implementation and Management (6th ed.). Pearson. p. 64. ISBN 978-1292061184.
+[fn:1]https://en.wikipedia.org/wiki/Database
+# Local Variables:
+# mode: org
+# eval: (load-library "ox-beamer")
+# End:
