@@ -1,0 +1,160 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: ASP.NET Core MVC --- Introducere
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 29 Aprilie 2021
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   @@latex:\pause@@
+   - *Baza de date* este o colecție organizată de date care pot fi manipulate prin intermediul unui *Sistem de Gestiune al Bazelor de Date*.
+   @@latex:\pause@@
+   - *Schema bazei de date* este reprezentarea structurii bazei de date. Visual Studio ne pune la dispoziţie un şablon de proiect pentru păstrarea şi modificarea schemei.
+   @@latex:\pause@@
+   - Bazele de date relaţionale pun accentul pe proprietățile *ACID*; bazele de date non-relaționale --- teorema *CAP*.
+** Agenda
+   - Şablonul =MVC=
+   - Introducere în =ASP.NET Core MVC=
+* Şablonul =MVC=
+** =Model-View-Controller=
+*** MVC                                                             :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    *Model-View-Controller* este un şablon de proiectare utilizat pentru a decupla interfaţa grafică (=view=), datele (=model=) şi logica aplicaţiei (=controller=)[fn:1].
+** Componente
+   - =Modelul= --- încapsulează datele şi logica aplicaţiei; este independent de interfaţa cu utilizatorul[fn:2].
+   - =Viewul= --- prezintă datele din =model= în diverse formate; acelaşi =model= poate avea mai multe =viewuri=.
+   - =Controllerul= --- converteşte datele de intrare în comenzi pentru =Model= sau =View=[fn:3] şi le validează dacă este nevoie.
+** =Model-View-Controller=
+   #+name: fig-mvc-interaction
+   #+caption: Interacţiunea dintre =model=, =view= şi =controller= în raport cu acţiunile iniţiate de utilizator.
+   #+begin_src dot :exports results :file ./img/diagrama-mvc.png
+     digraph mvc{
+	 graph[dpi=600];
+	 rankdir=LR;
+	 node[shape=rect]
+
+	 user[shape="circle"; label="User"]
+	 model[label="Model"]
+	 {
+	     rank=same;
+	     view[label="View"]
+	     inv[style=invis];
+	     controller[label="Controller"]
+	 }
+
+	 user->controller[label="uses"];
+	 controller->model[label="manipulates"];
+	 controller->inv[style=invis];
+	 inv->view[style=invis];
+	 model->view[label="updates"];
+	 view->user[label="displays to"];
+     }
+   #+end_src
+
+   #+attr_latex: :width 0.8\textwidth
+   #+RESULTS: fig-mvc-interaction
+
+   @@latex:\tiny@@
+   Interacţiunea dintre =model=, =view= şi =controller= în raport cu acţiunile iniţiate de utilizator.
+   Imagine adaptată după[fn:4].
+** Fluxul de lucru
+   1. Utilizatorul iniţiază o acţiune (click pe buton/request http).
+   2. =Controllerul= procesează acţiunea printr-o metodă dedicată.
+   3. =Controllerul= notifică =modelul= existent sau crează unul nou.
+   4. =Modelul= îşi schimbă starea (dacă este cazul).
+   5. =Viewul= generează interfaţa grafică pe baza modelului.
+   6. Interfaţa generată aşteaptă alte acţiuni din partea utilizatorului.
+** Avantaje[fn:5]
+   - Permite dezvoltarea în paralel; ex. câte un programator per componentă.
+   - Grad ridicat de coeziune --- metodele care manipulează acelaşi =model= pot fi grupate în acelaşi =controller=; la fel şi =viewurile=.
+   - Grad scăzut de acuplare --- obţinut prin separarea în 3 componente.
+   - Componente uşor de modificat.
+   - Componentele pot fi testate independent.
+** Dezavantaje[fn:6]
+   - Mult cod de umplutură.
+   - Cod greu de navigat din cauza separării.
+   - Necesită disciplină şi exerciţiu --- separarea pe componente nu este intuitivă; în cazuri extreme logica este dispersată în toate cele trei componente.
+* ASP.NET Core MVC
+** ASP.NET Core MVC[fn:7]
+   - Platformă =open source= de dimensiuni mici.
+   - Suportă cele mai noi standarde web.
+   - Suportă dezvoltarea în stilul =TDD=.
+** Funcţionalităţi suportate
+   - =Routing=
+   - =Model binding=
+   - Validarea datelor
+   - Filtre
+   - =Dependency Injection=
+   - Modularizare (=Areas=)
+** =Routing=
+   - Apelează o anumită metodă din =controller= pe baza unui =URL= asociat acesteia.
+   - Asocierile se fac:
+     - pe baza convenţiilor
+     - cu atribute dedicate.
+** =Model binding=
+   - Transformă datele dintr-un =request= =http= în instanţe ale tipurilor definite de utilizator.
+   - Instanţele rezultate sunt pasate metodelor din controller ca parametri.
+** Validarea datelor
+   Validarea se poate face prin:
+   - Atribute --- pe client şi server.
+   - Metode expuse de biblioteci terţe, ex: =FluentValidation=[fn:8] --- pe server.
+** Filtre
+   Filtrele permit invocarea anumitor metode înainte/după executarea unei anumite părţi din logica aplicaţiei.
+
+   Exemple:
+   - Restricţionarea accesului la o anumită metodă,
+   - Gestiunea erorilor etc.
+** =Dependency Injection=
+   =ASP.NET Core MVC= conţine şi un modul propriu de =Dependency Injection= dar permite şi integrarea de biblioteci terţe specializate (ex. =AutoFac=[fn:9]) .
+** =Areas=
+   - Oferă posibilitatea de a separa aplicaţia în mai multe module.
+   - Fiecare modul (=area=) conţine structura convenţională a unei aplicaţii (=modele=, =viewuri=, =controllere=).
+
+   Exemple de module:
+   - =Account= --- modificarea datelor utilizatorului; preferinţe etc.
+   - =Accounting= --- facturi, plăţi, bilanţe contabile etc.
+   - =Public= --- toate acţiunile disponibile utilizatorilor neautentificaţi.
+* Încheiere
+** Recapitulare
+   - *MVC* este un şablon de proiectare utilizat pentru a decupla interfaţa grafică (=view=), datele (=model=) şi logica aplicaţiei (=controller=).
+   - *ASP.NET Core MVC* este o platformă =open-source= care permite dezvoltarea de aplicaţii Web pe baza convenţiilor asociate şablonului =MVC=.
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:9]https://autofaccn.readthedocs.io/en/latest/integration/aspnetcore.html
+
+[fn:8]https://docs.fluentvalidation.net/en/latest/aspnet.html
+
+[fn:7]https://docs.microsoft.com/en-us/aspnet/core/mvc/overview
+
+[fn:6]https://en.wikipedia.org/wiki/Model-view-controller
+
+[fn:5]https://en.wikipedia.org/wiki/Model-view-controller
+
+[fn:1]https://dotnet.microsoft.com/apps/aspnet/mvc
+
+[fn:2]Burbeck, Steve (1992) Applications Programming in Smalltalk-80:How to use Model–View–Controller (MVC)
+
+[fn:3]https://www.codeproject.com/Articles/25057/Simple-Example-of-MVC-Model-View-Controller-Design
+
+[fn:4]https://en.wikipedia.org/wiki/Model-view-controller
+# Local Variables:
+# mode: org
+# eval: (load-library "ox-beamer")
+# End:
