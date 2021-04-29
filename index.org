@@ -285,6 +285,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s10-lab
    :END:
    La laborator exemplificăm noțiunile de la curs și începem proiectarea bazei de date pentru proiectul de curs.
+* Săptămâna 11
+  :PROPERTIES:
+  :CUSTOM_ID: s11
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s11-curs
+   :END:
+   *ASP.NET Core MVC --- Introducere*
+
+   La curs discutăm despre şablonul =Model-View-Controller= şi facem introducerea platformei =ASP.NET Core MVC=.
+
+   Prezentarea la curs poate fi descărcată în format [[file:s11/curs-s11.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s11-lab
+   :END:
+   Laboratorul din această săptămână nu se ține --- 30 aprilie 2021 este zi liberă cu ocazia sărbătorilor de Paști.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
