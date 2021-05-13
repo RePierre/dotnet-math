@@ -303,6 +303,24 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s11-lab
    :END:
    Laboratorul din această săptămână nu se ține --- 30 aprilie 2021 este zi liberă cu ocazia sărbătorilor de Paști.
+* Săptămâna 12
+  :PROPERTIES:
+  :CUSTOM_ID: s12
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s12-curs
+   :END:
+   *=TPL=, =middleware= şi securitatea în ASP.NET Core MVC*
+
+   La curs discutăm despre =Task Parallel Library= şi cum =async= şi =await= ne ajută în implementarea proprie a modulelor care se ocupă de autorizare şi autentificare în =ASP.NET Core MVC=.
+
+   Prezentarea la curs poate fi descărcată în format [[file:s12/curs-s12.pdf][pdf]].
+** Laborator
+   :PROPERTIES:
+   :CUSTOM_ID: s12-lab
+   :END:
+   La laborator lucrăm la proiectul de la finalul semestrului.
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
