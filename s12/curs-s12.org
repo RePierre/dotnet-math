@@ -1,0 +1,161 @@
+#+title: Tehnici Avansate de Programare
+#+subtitle: =TPL=, =middleware= şi securitatea în ASP.NET Core MVC
+#+author: Petru Rebeja, Marius Apetrii
+#+date: 13 Mai 2021
+#+language: ro
+#+options: H:2 toc:nil \n:nil @:t ::t |:t ^:t *:t TeX:t LaTeX:t
+#+latex_class: beamer
+#+columns: %45ITEM %10BEAMER_env(Env) %10BEAMER_act(Act) %4BEAMER_col(Col) %8BEAMER_opt(Opt)
+#+beamer_theme: metropolis
+#+beamer_color_theme:
+#+beamer_font_theme:
+#+beamer_inner_theme:
+#+beamer_outer_theme:
+#+beamer_header: \institute[UAIC]{Facultatea de Matematică\\Universitatea Alexandru Ioan Cuza, Iași}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+* Introducere
+** Recapitulare
+   @@latex:\pause@@
+   - *MVC* este un şablon de proiectare utilizat pentru a decupla interfaţa grafică (=view=), datele (=model=) şi logica aplicaţiei (=controller=).
+   @@latex:\pause@@
+   - *ASP.NET Core MVC* este o platformă =open-source= care permite dezvoltarea de aplicaţii Web pe baza convenţiilor asociate şablonului =MVC=.
+** Agenda
+   - Task Parallel Library
+   - Middleware
+   - Securitatea în =ASP.NET Core MVC=
+* =Task Parallel Library=
+** Execuţie sincronă vs asincronă
+   Exemplu: Încărcarea unei pagini web de către server.
+   @@latex:\vskip 0.1in@@
+   Utilizatorii A  şi B deschid pagina web din navigatorul web. Pentru a încărca datele serverul trece prin următorii paşi.
+** Execuţie sincronă
+   1. Trimite interogare la baza de date pentru A
+   2. Aşteaptă răspunsul
+   3. Primeşte răspuns de la baza de date pentru A
+   4. Generează HTML-ul
+   5. Trimite răspuns lui A
+   6. Trimite interogarea la baza de date pentru B
+   7. Aşteaptă răspunsul
+   8. Primeşte răspuns la interogarea pentru B
+   9. Generează HTML-ul pentru B
+   10. Trimite răspuns lui B
+** Execuţie asincronă
+   1. Trimite interogare la baza de date pentru utilizatorul A
+   2. Trimite interogare la baza de date pentru utilizatorul B
+   3. Primeşte răspuns la interogarea pentru A
+   4. Generează HTML-ul pentru A
+   5. Trimite răspuns lui A
+   6. Primeşte răspuns la interogarea pentru B
+   7. Generează HTML-ul pentru B
+   8. Trimite răspuns lui B
+** Ce este =TPL=
+*** =Task Parallel Library=[fn:1]                                         :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    O mulţime de tipuri şi funcţii pentru a simplifica integrarea execuţiei paralele şi concurente într-o aplicaţie.
+** Beneficiile =TPL=[fn:2]
+   - Utilizarea eficientă a procesoarelor.
+   - Distribuie eficient munca între firele de execuţie.
+   - Gestionează automat detalii precum:
+     - Alocarea timpului de procesor,
+     - Tranziţia între stări etc.
+   - Oferă suport pentru anulare.
+   - Reduce codul de umplutură.
+** Imaginea de ansamblu[fn:3]
+   #+attr_latex: :height .7\textheight
+   [[file:img/tpl.png]]
+** Ce este un =Task=
+   - Unitatea de bază din =TPL=.
+   - Reprezintă o operaţie care este executată asincron[fn:4] şi poate întoarce un rezultat.
+** =Task= vs =Thread=
+   - Un fir de execuţie poate executa mai multe =Taskuri=.
+   - Un =Task= poate întoarce un rezultat (prin proprietatea =Result=); un fir de execuţie nu.
+** =Task= vs =Thread=[fn:5]
+   #+attr_latex: :height .8\textheight
+   [[file:img/task-parallelism.png]]
+** Async & await
+   - =async= este aplicat în declaraţia metodei pentru a semnala că metoda se execută asincron.
+   - Metodele declarate cu =async= trebuie să întoarcă un =Task= sau un =Task<T>=.
+   - =await= este un operator care suspendă execuţia metodei marcată cu =await= până la terminarea execuţiei operandului. Apoi metoda îşi reia execuţia.
+* =Middleware=
+** Ce este =middleware=?
+*** =Middleware=                                                    :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Componente software asamblate într-un sistem pentru a defini un flux de lucru care să proceseze interogările venite de la utilizatori şi răspunsurile la aceste interogări[fn:6].
+** =Middleware=[fn:7]
+   #+attr_latex: :width \textwidth
+   [[file:img/middleware.png]]
+* Securitatea în =ASP.NET Core MVC=
+** Autentificare
+*** Autentificare                                                   :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Procesul de preluare a datelor care atestă identitatea unui utilizator şi verificarea acestora.
+** Autorizare
+*** Autorizare                                                      :B_block:
+    :PROPERTIES:
+    :BEAMER_env: block
+    :END:
+    @@latex:\vskip 0.1in@@
+    Procesul de verificare a drepturilor de acces a  unui utilizator în vederea accesării unei anumite resurse.
+** ASP.NET Core Identity
+   - Bibliotecă pentru implementarea autentificării.
+   - Gestionează utilizatori, parole, roluri ş.a.
+** Componente[fn:8]
+   #+attr_latex: :height .7\textheight
+   [[file:img/identity-architecture-diagram.png]]
+** Autorizarea
+   - Se face prin adnotarea controllerului sau metodelor din controller cu atributul =AuthorizeAttribute=.
+   - Poate fi de mai multe feluri.
+** Tipuri de autorizare[fn:9]
+   - Simplă: =[Authorize]=
+   - Pe bază de roluri: ~[Authorize(Roles="Admin;Manager")]~
+   - Pe bază de reguli: ~[Authorize(Policy="EmployeeOnly")]~
+** Fluxul de lucru pentru autentificare şi autorizare[fn:10]
+   #+attr_latex: :width \textwidth
+   [[file:img/auth.png]]
+* Încheiere
+** Recapitulare
+   - =TPL= simplifică integrarea execuţiei paralele şi asincrone în aplicaţie lăsând în grija sistemului detaliile de nivel inferior a.î. programatorul să se poată concentra asupra logicii aplicaţiei.
+   - =Middleware= sunt componentele care fac parte din linia de procesare a interogărilor şi răspunsurilor la interogări.
+   - Două componente de acest fel sunt middleware pentru autentificare şi autorizare care se ocupă de atestarea identităţii utilizatorului şi respectiv verificarea drepturilor de acces.
+   - Putem folosi =ASP.NET Core Identity= pentru a implementa autentificarea.
+   - Autorizarea se face cu ajutorul =AuthorizeAttribute=.
+** Vă mulțumesc!
+   #+begin_center
+   Mulțumesc pentru atenție!
+   #+end_center
+
+* Footnotes
+
+[fn:1] https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl
+
+[fn:2] https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl
+
+[fn:3] http://www.albahari.com/threading/part5.aspx
+
+[fn:4] https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task
+
+[fn:5] Diagrama este simplificată la un singur fir de execuţie per nucleu (core) .
+
+[fn:6] https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/
+
+[fn:7] https://andrewlock.net/asp-net-core-in-action-what-is-middleware/
+
+[fn:8] https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity-custom-storage-providers
+
+[fn:9] https://docs.microsoft.com/en-us/aspnet/core/security/authorization/introduction
+
+[fn:10] https://andrewlock.net/asp-net-core-in-action-what-is-middleware/
+# Local Variables:
+# mode: org
+# eval: (load-library "ox-beamer")
+# End:
