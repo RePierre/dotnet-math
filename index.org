@@ -321,6 +321,20 @@ Aplicația va fi propusă de către membrii echipei.
    :CUSTOM_ID: s12-lab
    :END:
    La laborator lucrăm la proiectul de la finalul semestrului.
+* Săptămâna 13
+  :PROPERTIES:
+  :CUSTOM_ID: s13
+  :END:
+** Curs
+   :PROPERTIES:
+   :CUSTOM_ID: s13-curs
+   :END:
+   *Hackathon P01*
+
+   La curs demarăm un hackathon din patru părți în care reluăm ciclul de dezvoltare a unei aplicații de la zero pe platforma =ASP.Net Core MVC=.
+
+   În prima parte a acestui hackathon vom identifica fluxurile de lucru uzuale pe care aplicația să le acopere precum și obiectele din domeniu și relațiile dintre acestea.
+
 * Legături utile
   :PROPERTIES:
   :CUSTOM_ID: links
