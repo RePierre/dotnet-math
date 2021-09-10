@@ -1,4 +1,4 @@
-#+title: Tehnici Avansate de Programare
+#+title: Tehnici Avansate de Programare 2021
 #+author: Petru Rebeja
 #+description: Pagina cursului Technici Avansate de Programare. Facultatea de Matematică, Universitatea Alexandru Ioan Cuza, Iași.
 #+language: ro
